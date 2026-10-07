@@ -159,13 +159,14 @@ test("countdown ticks every second and shows Today on the wedding date", async (
   await expect(page.locator(".today")).toHaveText("Сегодня!");
 });
 
-test("video frame stays clear of lettering on phones, desktop and reduced motion", async ({
+test("full-screen portrait film, dove below characters and reduced motion", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const [width, height] of [
     [320, 568],
     [390, 844],
+    [430, 932],
     [844, 390],
     [1440, 900],
   ]) {
@@ -173,34 +174,51 @@ test("video frame stays clear of lettering on phones, desktop and reduced motion
     await page.goto("/");
     await expect(page.locator(".film-poster")).toBeVisible();
     await expect(page.locator("video")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /Пропустить/ })).toHaveCount(
+      0,
+    );
     const stage = await page.locator(".film-stage").boundingBox();
-    const heading = await page.locator(".film-heading").boundingBox();
-    const footer = await page.locator(".film-footer").boundingBox();
-    expect(heading.y + heading.height).toBeLessThanOrEqual(stage.y + 1);
-    expect(stage.y + stage.height).toBeLessThanOrEqual(footer.y + 1);
-    expect(
-      await page
-        .locator(".film-poster")
-        .evaluate((img) => getComputedStyle(img).objectFit),
-    ).toBe("contain");
+    expect(stage.x).toBe(0);
+    expect(stage.y).toBe(0);
+    expect(stage.width).toBe(width);
+    expect(stage.height).toBe(height);
+    if (width < height) {
+      expect(
+        await page
+          .locator(".film-poster")
+          .evaluate((img) => getComputedStyle(img).objectFit),
+      ).toBe("cover");
+      // Source couple occupies y=.37–.60, x=.34–.65: verify the CTA is below them after cover cropping.
+      const scale = Math.max(width / 1080, height / 1758);
+      const cropY = (1758 * scale - height) * 0.46;
+      const coupleBottom = 1758 * 0.6 * scale - cropY;
+      const button = await page.locator(".dove-invitation").boundingBox();
+      expect(button.y).toBeGreaterThan(coupleBottom);
+      expect(button.y + button.height).toBeLessThanOrEqual(height);
+    }
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
-    expect(footer.y + footer.height).toBeLessThanOrEqual(height);
-    await page.screenshot({ path: `/tmp/wedding-video-${width}.png` });
+    await page.screenshot({ path: `/tmp/wedding-fullscreen-${width}.png` });
   }
 });
-test("skip and unavailable video still allow opening the invitation", async ({
+test("no skip, blocked autoplay needs playback, failed video permits fallback", async ({
   page,
 }) => {
+  await page.addInitScript(() => {
+    HTMLMediaElement.prototype.play = () =>
+      Promise.reject(new DOMException("Autoplay blocked", "NotAllowedError"));
+  });
   await page.goto("/");
-  await page.getByRole("button", { name: "Пропустить историю" }).click();
-  await expect(page.locator("video")).toHaveJSProperty("paused", true);
+  await expect(
+    page.getByRole("button", { name: "Воспроизвести видео" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Открыть приглашение" }),
-  ).toBeVisible();
+  ).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Пропустить/ })).toHaveCount(0);
   await page.route("**/opening-story.mp4", (route) => route.abort());
   await page.reload();
   await expect(page.locator(".film-poster")).toBeVisible();

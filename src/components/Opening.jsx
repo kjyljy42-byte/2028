@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { wedding } from "../data/wedding.js";
-import { Ornament } from "./Decorations.jsx";
 const KEY = "wedding-invitation-opened";
 export function hasOpened() {
   try {
@@ -41,7 +40,6 @@ export default function Opening({ onOpen }) {
     video.current.play().catch(() => {
       if (active) {
         setNeedsPlay(true);
-        setReady(true);
       }
     });
     return () => {
@@ -65,7 +63,10 @@ export default function Opening({ onOpen }) {
     if (video.current) {
       video.current.muted = next;
       if (!next && video.current.paused) {
-        if (video.current.ended) video.current.currentTime = 0;
+        if (video.current.ended) {
+          video.current.currentTime = 0;
+          setReady(false);
+        }
         await play();
       }
     }
@@ -75,7 +76,7 @@ export default function Opening({ onOpen }) {
       await video.current?.play();
       setNeedsPlay(false);
     } catch {
-      setReady(true);
+      setNeedsPlay(true);
     }
   }
   return (
@@ -85,11 +86,9 @@ export default function Opening({ onOpen }) {
       aria-modal="true"
       aria-labelledby="opening-title"
     >
-      <header className="film-heading">
-        <Ornament type="crown" />
-        <p>СВАДЕБНАЯ ХРОНИКА</p>
-        <h1 id="opening-title">У каждой любви есть своя сказка</h1>
-      </header>
+      <h1 id="opening-title" className="sr-only">
+        Свадебное приглашение — {wedding.names}
+      </h1>
       <div className="film-stage">
         {reduced || failed ? (
           <img
@@ -119,39 +118,90 @@ export default function Opening({ onOpen }) {
           />
         )}
       </div>
-      <footer className="film-footer">
-        <p className="film-names">{wedding.names}</p>
-        <p className="film-date">22 ИЮНЯ 2028</p>
-        <div className="film-action" aria-live="polite">
-          {ready ? (
-            <button className="film-open" onClick={open} disabled={leaving}>
-              Открыть приглашение <span aria-hidden="true">✧</span>
+      {ready && (
+        <div className="dove-arrival" aria-live="polite">
+          <button className="dove-invitation" onClick={open} disabled={leaving}>
+            <svg
+              className="invitation-dove"
+              viewBox="0 0 180 120"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="dove-feathers" x1="0" y1="0" x2="0" y2="1">
+                  <stop stopColor="#fff" />
+                  <stop offset="1" stopColor="#e9e7df" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M94 75C71 71 57 55 51 39 44 22 32 13 17 10 24 30 34 43 45 52 29 44 16 36 6 35 16 54 35 66 54 70 40 69 28 66 16 63 30 78 48 82 68 82L49 101 75 93 66 111 91 90C109 89 121 82 128 70L141 60 156 61 147 53C147 43 138 37 130 42L119 51C112 52 107 47 101 35 92 18 78 8 62 4 66 25 77 39 89 49 80 46 71 39 63 30 67 52 78 65 94 75Z"
+                fill="url(#dove-feathers)"
+                stroke="#fff"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M24 24Q39 53 66 66M20 45Q45 67 71 71M74 19Q83 44 102 59M76 43Q86 62 108 70M79 81l-15 13"
+                fill="none"
+                stroke="#c8cbd1"
+                strokeWidth="1.1"
+              />
+              <circle cx="137" cy="49" r="1.5" fill="#536077" />
+              <path
+                d="M144 60q-11 13-11 25m1-8q-12-1-13 6 11 2 13-6m-1 7q10-1 11 5-10 1-11-5"
+                fill="none"
+                stroke="#f5f0df"
+                strokeWidth="1.4"
+              />
+            </svg>
+            <span>Открыть приглашение</span>
+          </button>
+          {failed && (
+            <p className="film-fallback-note">
+              Видео не загрузилось. Приглашение доступно.
+            </p>
+          )}
+        </div>
+      )}
+      {!ready && (
+        <div className="film-playback-controls">
+          {needsPlay ? (
+            <button className="film-play" type="button" onClick={play}>
+              Воспроизвести видео
             </button>
           ) : (
             <button
-              className="film-skip"
-              onClick={() => {
-                video.current?.pause();
-                setReady(true);
-              }}
+              className="film-sound"
+              type="button"
+              onClick={toggleSound}
+              aria-pressed={!muted}
+              aria-label={muted ? "Включить звук" : "Выключить звук"}
             >
-              Пропустить историю →
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 9h4l5-4v14l-5-4H4z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                {muted ? (
+                  <path
+                    d="m17 9 5 6m0-6-5 6"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                ) : (
+                  <path
+                    d="M17 8q5 4 0 8"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                )}
+              </svg>
             </button>
           )}
         </div>
-        <div className="film-controls">
-          {!reduced && !failed && (
-            <button type="button" onClick={toggleSound} aria-pressed={!muted}>
-              {muted ? "Включить звук" : "Выключить звук"}
-            </button>
-          )}
-          {needsPlay && !reduced && !failed && (
-            <button type="button" onClick={play}>
-              Воспроизвести видео
-            </button>
-          )}
-        </div>
-      </footer>
+      )}
     </div>
   );
 }
