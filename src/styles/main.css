@@ -949,316 +949,11 @@ img {
   font-size: 11px;
   text-decoration: none;
 }
-.opening {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  background: #bcc1b0;
-  overflow: hidden;
-  color: #373e31;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition:
-    opacity 1s,
-    transform 1s;
-  isolation: isolate;
-}
-.opening-sky {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  background: linear-gradient(#b9c2bb, #e0d6b8);
-  animation: nightSky 10.5s forwards;
-}
-.opening:after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border: 1px solid #ac925855;
-  pointer-events: none;
-  z-index: 4;
-}
-.opening-stars {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0;
-  animation: starsAppear 10.5s forwards;
-  pointer-events: none;
-}
-.opening-stars > img:first-child {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.opening-stars .moon {
-  position: absolute;
-  width: 130px;
-  right: 15%;
-  top: 14%;
-}
-.opening-top {
-  text-align: center;
-  padding: 45px 25px 0;
-  position: relative;
-  z-index: 3;
-  animation: nightInk 10.5s forwards;
-}
-.opening-top > span {
-  font-size: 9px;
-  letter-spacing: 4px;
-}
-.opening-top .ornament {
-  display: block;
-  margin: 13px auto 8px;
-  width: 135px;
-}
-.opening-top h1 {
-  font-size: clamp(25px, 3vw, 42px);
-  font-style: italic;
-}
-.castle-scene {
-  position: absolute;
-  width: min(900px, 100%);
-  left: 50%;
-  top: 44%;
-  transform: translate(-50%, -50%);
-}
-.castle {
-  width: 100%;
-  mix-blend-mode: multiply;
-  animation: castleNight 10.5s forwards;
-}
-.window-light {
-  position: absolute;
-  width: 7.4%;
-  height: 19%;
-  left: 46.3%;
-  top: 33.4%;
-  background: #bea672;
-  clip-path: path("M0 90V28Q30 -15 60 28V90Z");
-  opacity: 0;
-  animation: windowGlow 10.5s forwards;
-}
-.prince,
-.princess {
-  position: absolute;
-  width: 10.5%;
-  height: 18%;
-  top: 35%;
-  object-fit: fill;
-  opacity: 0;
-  transform-origin: center bottom;
-  filter: drop-shadow(0 0 2px #e9cf8166);
-}
-.prince {
-  left: 40.9%;
-  animation: princeMeet 10.5s forwards;
-}
-.princess {
-  left: 48.6%;
-  animation: princessMeet 10.5s forwards;
-}
-.kiss-spark {
-  position: absolute;
-  left: 49%;
-  top: 33%;
-  font-size: 24px;
-  color: #efdcac;
-  opacity: 0;
-  animation: kissGlow 10.5s forwards;
-}
-.opening-bottom {
-  position: absolute;
-  bottom: 8%;
-  text-align: center;
-  z-index: 5;
-  animation: nightInk 10.5s forwards;
-}
-.opening-bottom > p:first-child {
-  font-family: var(--display);
-  font-size: clamp(35px, 5vw, 58px);
-  margin-bottom: 5px;
-}
-.opening-bottom > span {
-  font-size: 10px;
-  letter-spacing: 4px;
-}
-.open-invitation {
-  display: block;
-  border: 0;
-  border-top: 1px solid #ae956766;
-  border-bottom: 1px solid #ae956766;
-  padding: 13px 28px;
-  margin: 22px auto 0;
-  background: none;
-  color: #e2c88f;
-  font-family: var(--display);
-  font-size: 30px;
-  min-height: 56px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition:
-    opacity 1.5s,
-    transform 1.5s;
-  text-shadow: 0 0 22px #ba95434d;
-}
-.open-invitation span {
-  margin-left: 15px;
-}
-.ready .open-invitation {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-}
-.opening-caption {
-  font-size: 10px;
-  letter-spacing: 1px;
-  margin: 18px 0 0;
-}
-.skip-opening {
-  position: absolute;
-  right: 35px;
-  bottom: 25px;
-  background: none;
-  border: 0;
-  color: #56533e;
-  min-height: 44px;
-  font-size: 10px;
-  text-decoration: underline;
-}
-.cloud {
-  position: absolute;
-  width: 250px;
-  height: 35px;
-  border-radius: 50%;
-  background: #f0e6ce44;
-  filter: blur(10px);
-  z-index: -2;
-  animation: cloudDrift 12s ease-in-out forwards;
-}
-.cloud-one {
-  top: 28%;
-  left: 5%;
-}
-.cloud-two {
-  top: 38%;
-  right: 5%;
-  animation-delay: 1s;
-}
-.opening.leaving {
-  opacity: 0;
-  transform: perspective(1200px) rotateY(-9deg) scale(1.03);
-  pointer-events: none;
-}
 .invitation-content {
   opacity: 0;
 }
 .invitation-content.revealed {
   animation: parchmentReveal 1.2s both;
-}
-@keyframes nightSky {
-  0%,
-  48% {
-    filter: brightness(1);
-    background: #c2c8bb;
-  }
-  85%,
-  100% {
-    background: #141e29;
-  }
-}
-@keyframes starsAppear {
-  0%,
-  57% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-@keyframes nightInk {
-  0%,
-  48% {
-    color: #3f4635;
-  }
-  90%,
-  100% {
-    color: #dcc69a;
-  }
-}
-@keyframes castleNight {
-  0%,
-  48% {
-    filter: brightness(1);
-  }
-  100% {
-    filter: brightness(0.58) sepia(0.1);
-  }
-}
-@keyframes windowGlow {
-  0%,
-  48% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.7;
-  }
-}
-@keyframes princeMeet {
-  0%,
-  18% {
-    opacity: 0;
-    transform: translateX(0);
-  }
-  28% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  58%,
-  100% {
-    opacity: 1;
-    transform: translateX(33%) rotate(9deg);
-  }
-}
-@keyframes princessMeet {
-  0%,
-  18% {
-    opacity: 0;
-    transform: translateX(0);
-  }
-  28% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  58%,
-  100% {
-    opacity: 1;
-    transform: translateX(-33%) rotate(-9deg);
-  }
-}
-@keyframes kissGlow {
-  0%,
-  51% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-}
-@keyframes cloudDrift {
-  to {
-    transform: translateX(50px);
-    opacity: 0;
-  }
 }
 @keyframes parchmentReveal {
   from {
@@ -1624,55 +1319,6 @@ img {
   .farewell {
     font-size: 25px;
   }
-  .opening-top {
-    padding-top: 55px;
-  }
-  .opening-top h1 {
-    font-size: 28px;
-    max-width: 300px;
-  }
-  .opening-top > span {
-    font-size: 8px;
-    letter-spacing: 3px;
-  }
-  .castle-scene {
-    width: 145%;
-    max-width: 750px;
-    top: 44%;
-  }
-  .opening-bottom {
-    bottom: 10%;
-    width: 100%;
-    padding: 0 22px;
-  }
-  .opening-bottom > p:first-child {
-    font-size: 43px;
-  }
-  .opening-stars .moon {
-    width: 90px;
-    right: 4%;
-    top: 24%;
-  }
-  .open-invitation {
-    font-size: 28px;
-    padding: 12px 15px;
-  }
-  .opening-caption {
-    font-size: 9px;
-  }
-  .skip-opening {
-    right: 25px;
-    bottom: 22px;
-  }
-  .opening:after {
-    inset: 12px;
-  }
-  .opening-bottom > span {
-    font-size: 8px;
-  }
-  .opening-top .ornament {
-    width: 120px;
-  }
   .header-rsvp {
     max-width: 210px;
   }
@@ -1707,44 +1353,12 @@ img {
     font-size: 9px;
     gap: 7px;
   }
-  .opening-bottom > p:first-child {
-    font-size: 37px;
-  }
   .manuscript-section {
     padding-left: 20px;
     padding-right: 20px;
   }
   .signature {
     font-size: 33px;
-  }
-}
-@media (max-height: 650px) {
-  .opening-top {
-    padding-top: 25px;
-  }
-  .opening-top h1 {
-    font-size: 24px;
-  }
-  .opening-top .ornament {
-    margin: 5px auto;
-  }
-  .opening-bottom {
-    bottom: 5%;
-  }
-  .opening-bottom > p:first-child {
-    font-size: 32px;
-  }
-  .opening-caption {
-    display: none;
-  }
-  .open-invitation {
-    margin-top: 10px;
-    font-size: 25px;
-  }
-  .castle-scene {
-    width: 100%;
-    max-width: 650px;
-    top: 46%;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1759,28 +1373,6 @@ img {
     transition-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
-  .opening-sky {
-    background: #141e29 !important;
-  }
-  .opening-stars {
-    opacity: 0.8;
-  }
-  .opening-top,
-  .opening-bottom {
-    color: #dcc69a;
-  }
-  .prince,
-  .princess {
-    opacity: 1;
-  }
-  .open-invitation {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-  .skip-opening {
-    display: none;
-  }
 }
 .choice input {
   z-index: 1;
@@ -1788,7 +1380,6 @@ img {
 .choice-mark {
   pointer-events: none;
 }
-.open-invitation > span,
 .header-rsvp > span {
   font-family: Georgia, serif;
 }
@@ -1835,7 +1426,6 @@ img {
   }
 }
 @media print {
-  .opening,
   .site-header,
   .site-footer,
   .scroll-link {
@@ -1849,7 +1439,6 @@ img {
     transform: none;
   }
 }
-.open-invitation > span,
 .header-rsvp > span {
   display: inline-block;
   width: 11px;
@@ -1861,7 +1450,6 @@ img {
   vertical-align: middle;
   flex-shrink: 0;
 }
-.open-invitation > span:after,
 .header-rsvp > span:after {
   content: "";
   position: absolute;
@@ -1872,45 +1460,228 @@ img {
   background: currentColor;
   transform: rotate(-45deg);
 }
-.gold-particles {
+/* The lettering lives outside the video frame, preserving the entire royal scene. */
+.opening-video {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #253249, #101a28 75%);
+  color: #edddbd;
+  text-align: center;
+  padding: 18px max(20px, env(safe-area-inset-right))
+    max(14px, env(safe-area-inset-bottom));
+  transition:
+    opacity 0.9s,
+    transform 0.9s;
+  isolation: isolate;
+}
+.opening-video:after {
+  content: "";
   position: absolute;
-  inset: 20% 35% 40%;
+  inset: 10px;
+  border: 1px solid #b29b6344;
+  pointer-events: none;
+  z-index: -1;
+}
+.film-heading {
+  padding-bottom: 14px;
+}
+.film-heading .ornament {
+  height: 32px;
+  width: 120px;
+  stroke: #bda574;
+}
+.film-heading > p {
+  font-size: 8px;
+  letter-spacing: 3px;
+  margin: 2px 0 7px;
+  color: #c6b38c;
+  line-height: 1.4;
+}
+.film-heading h1 {
+  font-size: clamp(22px, 3vw, 31px);
+  font-style: italic;
+  line-height: 1.15;
+  font-weight: 400;
+}
+.film-stage {
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.film-video,
+.film-poster {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  filter: none;
+  mix-blend-mode: normal;
+}
+.film-footer {
+  padding-top: 13px;
+}
+.film-names {
+  font-family: var(--display);
+  font-size: clamp(32px, 5vw, 46px);
+  line-height: 1.05;
+  margin: 0 0 7px;
+  color: #edddbd;
+}
+.film-date {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: #c6b38c;
+  margin: 0;
+  line-height: 1.4;
+}
+.film-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  margin-top: 8px;
+}
+.film-open {
+  font-family: var(--display);
+  font-size: 26px;
+  border: 1px solid #b69a6855;
+  border-left: 0;
+  border-right: 0;
+  background: none;
+  min-height: 51px;
+  padding: 9px 20px;
+  color: #ecd6a5;
+  text-shadow: 0 0 22px #ba95434d;
+  animation: filmInk 0.8s both;
+}
+.film-open > span {
+  font-size: 17px;
+  margin-left: 12px;
+  color: #bda574;
+}
+.film-skip {
+  border: 0;
+  background: none;
+  color: #d0c2a5;
+  min-height: 48px;
+  font-size: 11px;
+  padding: 10px 18px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.film-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  min-height: 44px;
+}
+.film-controls button {
+  font-size: 10px;
+  color: #d0c2a5;
+  background: none;
+  border: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.opening-video.leaving {
   opacity: 0;
-  animation: starsAppear 10.5s forwards;
+  transform: perspective(1200px) rotateY(-7deg) scale(1.02);
   pointer-events: none;
 }
-.gold-particles i {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #dcc68c;
-  border-radius: 50%;
-  box-shadow: 0 0 7px #dac38b;
-  left: calc(10% + var(--i) * 14%);
-  top: calc(20% + var(--i) * 10%);
-  animation: particleDrift 5s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.7s);
-}
-@keyframes particleDrift {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.3;
+@keyframes filmInk {
+  from {
+    opacity: 0;
   }
-  50% {
-    transform: translateY(-12px);
-    opacity: 0.9;
+  to {
+    opacity: 1;
   }
 }
-.opening.ready .opening-sky,
-.opening.ready .opening-stars,
-.opening.ready .opening-top,
-.opening.ready .opening-bottom,
-.opening.ready .castle,
-.opening.ready .prince,
-.opening.ready .princess,
-.opening.ready .window-light,
-.opening.ready .kiss-spark,
-.opening.ready .gold-particles {
-  animation-delay: -10.5s;
+@media (max-width: 760px) {
+  .opening-video {
+    padding-top: max(14px, env(safe-area-inset-top));
+  }
+  .film-heading {
+    padding-bottom: 10px;
+  }
+  .film-heading h1 {
+    font-size: 23px;
+    max-width: 340px;
+    margin: auto;
+  }
+  .film-heading .ornament {
+    height: 26px;
+    width: 100px;
+  }
+  .film-names {
+    font-size: 34px;
+  }
+  .film-footer {
+    padding-top: 10px;
+  }
+  .film-action {
+    margin-top: 5px;
+    min-height: 59px;
+  }
+  .film-open {
+    font-size: 25px;
+  }
+}
+@media (max-height: 650px) {
+  .opening-video {
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+  .film-heading .ornament,
+  .film-heading > p {
+    display: none;
+  }
+  .film-heading h1 {
+    font-size: 20px;
+  }
+  .film-heading {
+    padding-bottom: 8px;
+  }
+  .film-names {
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+  .film-footer {
+    padding-top: 8px;
+  }
+  .film-date {
+    font-size: 7px;
+  }
+  .film-action {
+    min-height: 47px;
+    margin-top: 3px;
+  }
+  .film-open {
+    font-size: 23px;
+    min-height: 44px;
+    padding: 5px 12px;
+  }
+  .film-controls {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .opening-video.leaving {
+    transform: none;
+  }
+}
+@media print {
+  .opening-video {
+    display: none;
+  }
 }

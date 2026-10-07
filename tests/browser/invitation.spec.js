@@ -15,9 +15,10 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
     page.getByRole("button", { name: "Открыть приглашение" }),
   ).toBeHidden();
   await page.screenshot({ path: "/tmp/wedding-opening-day.png" });
-  await page.waitForTimeout(6500);
-  await expect(page.locator(".prince")).toHaveCSS("opacity", "1");
-  await expect(page.locator(".princess")).toHaveCSS("opacity", "1");
+  await expect
+    .poll(() => page.locator("video").evaluate((v) => v.ended))
+    .toBe(true);
+  await expect(page.locator("video")).toHaveJSProperty("muted", true);
   await expect(
     page.getByRole("button", { name: "Открыть приглашение" }),
   ).toBeVisible({ timeout: 10000 });
@@ -156,4 +157,53 @@ test("countdown ticks every second and shows Today on the wedding date", async (
   await page.clock.setSystemTime(new Date("2028-06-22T10:00:00Z"));
   await page.clock.runFor(1000);
   await expect(page.locator(".today")).toHaveText("Сегодня!");
+});
+
+test("video frame stays clear of lettering on phones, desktop and reduced motion", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const [width, height] of [
+    [320, 568],
+    [390, 844],
+    [844, 390],
+    [1440, 900],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.goto("/");
+    await expect(page.locator(".film-poster")).toBeVisible();
+    await expect(page.locator("video")).toHaveCount(0);
+    const stage = await page.locator(".film-stage").boundingBox();
+    const heading = await page.locator(".film-heading").boundingBox();
+    const footer = await page.locator(".film-footer").boundingBox();
+    expect(heading.y + heading.height).toBeLessThanOrEqual(stage.y + 1);
+    expect(stage.y + stage.height).toBeLessThanOrEqual(footer.y + 1);
+    expect(
+      await page
+        .locator(".film-poster")
+        .evaluate((img) => getComputedStyle(img).objectFit),
+    ).toBe("contain");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    expect(footer.y + footer.height).toBeLessThanOrEqual(height);
+    await page.screenshot({ path: `/tmp/wedding-video-${width}.png` });
+  }
+});
+test("skip and unavailable video still allow opening the invitation", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Пропустить историю" }).click();
+  await expect(page.locator("video")).toHaveJSProperty("paused", true);
+  await expect(
+    page.getByRole("button", { name: "Открыть приглашение" }),
+  ).toBeVisible();
+  await page.route("**/opening-story.mp4", (route) => route.abort());
+  await page.reload();
+  await expect(page.locator(".film-poster")).toBeVisible();
+  await page.getByRole("button", { name: "Открыть приглашение" }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
 });

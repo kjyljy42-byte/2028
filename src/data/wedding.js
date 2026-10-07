@@ -8,7 +8,10 @@ export const wedding = {
   venue: "Few Horses",
   address: "Наро-Фоминский округ, деревня Новосумино",
   mapUrl: null,
-  openingDuration: 10500,
+  opening: {
+    video: "/assets/opening-story.mp4",
+    poster: "/assets/opening-story-poster.jpg",
+  },
   images: {
     venue: "/assets/few-horses.jpg",
     men: "/assets/dress-men.jpg",

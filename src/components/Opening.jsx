@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { wedding } from "../data/wedding.js";
 import { Ornament } from "./Decorations.jsx";
 const KEY = "wedding-invitation-opened";
@@ -10,90 +10,148 @@ export function hasOpened() {
   }
 }
 export default function Opening({ onOpen }) {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [reduced, setReduced] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
   const [ready, setReady] = useState(reduced);
   const [leaving, setLeaving] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [needsPlay, setNeedsPlay] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const video = useRef(null);
+  const transition = useRef(null);
   useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduced(preference.matches);
+      if (preference.matches) setReady(true);
+    };
+    preference.addEventListener("change", update);
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const timer = setTimeout(
-      () => setReady(true),
-      reduced ? 0 : wedding.openingDuration,
-    );
     return () => {
       document.body.style.overflow = previous;
-      clearTimeout(timer);
+      preference.removeEventListener("change", update);
+      clearTimeout(transition.current);
     };
-  }, [reduced]);
+  }, []);
+  useEffect(() => {
+    if (reduced || failed || !video.current) return;
+    let active = true;
+    video.current.play().catch(() => {
+      if (active) {
+        setNeedsPlay(true);
+        setReady(true);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [reduced, failed]);
   function open() {
     if (leaving) return;
+    video.current?.pause();
     try {
       sessionStorage.setItem(KEY, "yes");
     } catch {
       /* Storage is optional. */
     }
     setLeaving(true);
-    setTimeout(onOpen, reduced ? 150 : 1000);
+    transition.current = setTimeout(onOpen, reduced ? 150 : 900);
+  }
+  async function toggleSound() {
+    const next = !muted;
+    setMuted(next);
+    if (video.current) {
+      video.current.muted = next;
+      if (!next && video.current.paused) {
+        if (video.current.ended) video.current.currentTime = 0;
+        await play();
+      }
+    }
+  }
+  async function play() {
+    try {
+      await video.current?.play();
+      setNeedsPlay(false);
+    } catch {
+      setReady(true);
+    }
   }
   return (
     <div
-      className={`opening ${ready ? "ready" : ""} ${leaving ? "leaving" : ""}`}
+      className={`opening opening-video ${ready ? "ready" : ""} ${leaving ? "leaving" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby="opening-title"
     >
-      <div className="opening-sky" />
-      <div className="opening-stars">
-        <img src="/assets/stars.svg" alt="" />
-        <img className="moon" src="/assets/moon.svg" alt="" />
-      </div>
-      <div className="cloud cloud-one" />
-      <div className="cloud cloud-two" />
-      <div className="opening-top">
-        <span>СВАДЕБНАЯ ХРОНИКА</span>
+      <header className="film-heading">
         <Ornament type="crown" />
-        <h1 id="opening-title">Однажды, в одном королевстве…</h1>
+        <p>СВАДЕБНАЯ ХРОНИКА</p>
+        <h1 id="opening-title">У каждой любви есть своя сказка</h1>
+      </header>
+      <div className="film-stage">
+        {reduced || failed ? (
+          <img
+            className="film-poster"
+            src={wedding.opening.poster}
+            alt="Принц и принцесса целуются на балконе замка под звёздным небом"
+          />
+        ) : (
+          <video
+            ref={video}
+            className="film-video"
+            src={wedding.opening.video}
+            poster={wedding.opening.poster}
+            autoPlay
+            muted={muted}
+            playsInline
+            preload="auto"
+            aria-label="Принц и принцесса встречаются и целуются на балконе замка. День сменяется звёздной ночью."
+            onEnded={() => {
+              setReady(true);
+              setNeedsPlay(false);
+            }}
+            onError={() => {
+              setFailed(true);
+              setReady(true);
+            }}
+          />
+        )}
       </div>
-      <div className="castle-scene">
-        <img
-          className="castle"
-          src="/assets/castle-opening.svg"
-          alt="Старинный замок. Принц и принцесса встречаются в окне башни."
-        />
-        <div className="window-light" />
-        <img className="prince" src="/assets/prince.svg" alt="" />
-        <img className="princess" src="/assets/princess.svg" alt="" />
-        <div className="gold-particles" aria-hidden="true">
-          {Array.from({ length: 6 }, (_, i) => (
-            <i key={i} style={{ "--i": i }} />
-          ))}
+      <footer className="film-footer">
+        <p className="film-names">{wedding.names}</p>
+        <p className="film-date">22 ИЮНЯ 2028</p>
+        <div className="film-action" aria-live="polite">
+          {ready ? (
+            <button className="film-open" onClick={open} disabled={leaving}>
+              Открыть приглашение <span aria-hidden="true">✧</span>
+            </button>
+          ) : (
+            <button
+              className="film-skip"
+              onClick={() => {
+                video.current?.pause();
+                setReady(true);
+              }}
+            >
+              Пропустить историю →
+            </button>
+          )}
         </div>
-        <div className="kiss-spark" aria-hidden="true">
-          ✧
+        <div className="film-controls">
+          {!reduced && !failed && (
+            <button type="button" onClick={toggleSound} aria-pressed={!muted}>
+              {muted ? "Включить звук" : "Выключить звук"}
+            </button>
+          )}
+          {needsPlay && !reduced && !failed && (
+            <button type="button" onClick={play}>
+              Воспроизвести видео
+            </button>
+          )}
         </div>
-      </div>
-      <div className="opening-bottom">
-        <p>{wedding.names}</p>
-        <span>XXII · VI · MMXXVIII</span>
-        <button
-          className="open-invitation"
-          onClick={open}
-          disabled={!ready || leaving}
-          autoFocus={reduced}
-        >
-          Открыть приглашение <span aria-hidden="true">↗</span>
-        </button>
-        <p className="opening-caption" aria-live="polite">
-          {ready
-            ? "Ваша история начинается здесь"
-            : "У каждой любви есть своя сказка"}
-        </p>
-      </div>
-      {!ready && (
-        <button className="skip-opening" onClick={() => setReady(true)}>
-          Пропустить историю
-        </button>
-      )}
+      </footer>
     </div>
   );
 }

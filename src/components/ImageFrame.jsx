@@ -2,11 +2,14 @@ import { useState } from "react";
 import { wedding } from "../data/wedding.js";
 import { MedievalFrame } from "./Decorations.jsx";
 // Only request real photos when they exist. Missing photos use authored engravings.
-const photos = import.meta.glob("/public/assets/*.{jpg,jpeg,png,webp}", {
-  eager: true,
-  query: "?url",
-  import: "default",
-});
+const photos = import.meta.glob(
+  ["/public/assets/*.{jpg,jpeg,png,webp}", "!/public/assets/opening-*"],
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  },
+);
 export default function ImageFrame({ imageKey, alt, className = "" }) {
   const actual = photos["/public" + wedding.images[imageKey]];
   const [failed, setFailed] = useState(false);
