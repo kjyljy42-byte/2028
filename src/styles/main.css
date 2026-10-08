@@ -1681,7 +1681,7 @@ html[data-opening="true"] body {
     display: none;
   }
 }
-/* Three illuminated chapters, with opaque manuscript surfaces protecting readability. */
+/* Three illuminated chapters; lettering is integrated directly into the scenery. */
 :root {
   background: #111d30;
 }
@@ -1720,17 +1720,15 @@ html[data-opening="true"] body {
 }
 .section-inner {
   position: relative;
-  background: #e8dec4;
-  background-image: radial-gradient(ellipse at top, #f6ead2, #e1d0ac);
+  background: none;
   padding: 48px 52px;
-  border: 1px solid #b29a69;
-  box-shadow: 0 16px 45px #050c1c66;
-  outline: 1px solid #a58b5044;
-  outline-offset: -8px;
+  border: 0;
+  box-shadow: none;
+  outline: none;
 }
 .hero-frame {
-  background: radial-gradient(ellipse at top, #f5e9cd, #dfcdab);
-  box-shadow: 0 16px 45px #050c1c66;
+  background: none;
+  box-shadow: none;
 }
 .hero-side {
   color: #d5bf91;
@@ -1739,7 +1737,7 @@ html[data-opening="true"] body {
   display: none;
 }
 .dark .section-inner {
-  background: #172437;
+  background: none;
   color: #e8dec4;
   border-color: #b69a6877;
 }
@@ -1750,7 +1748,7 @@ html[data-opening="true"] body {
   color: #c7c9c4;
 }
 .burgundy .section-inner {
-  background: #432a32;
+  background: none;
   color: #f0dfc3;
 }
 .dark .choice.selected {
@@ -2048,5 +2046,215 @@ html[data-opening="true"] body {
   }
   .final {
     padding-top: 120px;
+  }
+}
+/* No filled panels: soft illumination belongs to the whole scene, never to a card. */
+.hero,
+.manuscript-section {
+  color: #f1e8d8;
+}
+.scene-background:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    #07111ecc 0%,
+    #07111e99 45%,
+    #07111e88 100%
+  );
+}
+.section-inner,
+.hero-frame {
+  color: #f1e8d8;
+  text-shadow: 0 2px 8px #050b16;
+}
+.hero h1,
+.signature {
+  color: #fff0cc;
+}
+.hero-and,
+.hero-subtitle,
+.hero-date,
+.handwritten,
+.date-ribbon,
+.chapter,
+.gifts .handwritten {
+  color: #e2c998;
+}
+.hero h1 {
+  font-weight: 500;
+  text-shadow: 0 2px 16px #020916;
+}
+.manuscript-section h2,
+.manuscript-section h3 {
+  color: #f5e3bb;
+  text-shadow: 0 2px 10px #040c18;
+}
+.ornament {
+  stroke: #c5aa71;
+}
+.corner {
+  background: none;
+  color: #d3b983;
+}
+.medieval-frame {
+  border-color: #bba16b88;
+  outline-color: #bba16b33;
+}
+.rsvp-frame {
+  background: none;
+  box-shadow: none;
+}
+.calendar-date {
+  border-color: #c5aa7177;
+  outline-color: #c5aa7122;
+  background: none;
+}
+.calendar-date strong {
+  color: #f5e3bb;
+}
+.small-copy,
+.local-note,
+.choice-hint,
+.image-frame figcaption,
+.countdown-section .small-copy {
+  color: #d0c7b5;
+  text-shadow: 0 1px 5px #050b16;
+}
+.hero-place,
+.scroll-link,
+.hero-side {
+  color: #dbcba8;
+}
+.scroll-link span {
+  color: #d3b983;
+}
+.choice {
+  background: none;
+  border-color: #c2aa6d66;
+  color: #f1e8d8;
+  text-shadow: 0 1px 5px #050b16;
+}
+.choice:hover {
+  background: #d9bd7b0d;
+  border-color: #d9bd7baa;
+}
+.choice.selected,
+.dark .choice.selected,
+.food .choice.selected {
+  background: #d9bd7b16;
+  border-color: #dec48a;
+}
+.choice-mark {
+  border-color: #dbc184;
+}
+.choice.selected .choice-mark:after {
+  background: #f1d99e;
+}
+.text-field input {
+  background: none;
+  color: #fff3db;
+  border-color: #cbb17b;
+  font-size: 16px;
+  text-shadow: 0 1px 5px #050b16;
+}
+.text-field input::placeholder {
+  color: #c6beaf;
+}
+.text-field input:focus {
+  background: #050f1c33;
+}
+.form-error {
+  color: #ffc3b9;
+  text-shadow: 0 1px 5px #050b16;
+}
+.medieval-button {
+  background: #0e1c2b;
+  box-shadow:
+    inset 0 0 0 4px #0e1c2b,
+    inset 0 0 0 5px #c6ad6c66;
+  color: #f4e3be;
+}
+.medieval-button:hover {
+  background: #172a3e;
+  box-shadow:
+    inset 0 0 0 4px #172a3e,
+    inset 0 0 0 5px #c6ad6c;
+}
+.image-frame .medieval-frame {
+  background: none;
+  box-shadow: none;
+}
+.dress-gallery img {
+  background: none;
+  filter: sepia(0.3) brightness(1.65);
+}
+.vignette,
+.burgundy .vignette,
+.dark .vignette {
+  mix-blend-mode: normal;
+  filter: sepia(0.45) brightness(1.7);
+  border: 0;
+  outline: 0;
+  padding: 0;
+}
+.chapter {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+}
+.dress-text,
+.gifts p:not(.lead):not(.handwritten),
+.overnight p,
+.venue-copy,
+.children p:not(.chapter) {
+  font-size: 15px;
+}
+@media (max-width: 760px) {
+  .section-inner {
+    padding: 26px 6px;
+  }
+  .chapter {
+    font-size: 10px;
+  }
+  .greeting p:not(.lead):not(.handwritten):not(.chapter) {
+    font-size: 15px;
+  }
+  .dress-text,
+  .gifts p:not(.lead):not(.handwritten),
+  .overnight p,
+  .children p:not(.chapter),
+  .venue-copy p {
+    font-size: 14px;
+  }
+  .rsvp-frame {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .countdown-section .section-inner {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .dress-gallery {
+    gap: 25px;
+  }
+  .hero .eyebrow {
+    font-size: 12px;
+  }
+}
+@media print {
+  .hero,
+  .manuscript-section,
+  .section-inner,
+  .hero-frame {
+    color: #413b2d;
+    text-shadow: none;
+  }
+  .manuscript-section h2,
+  .manuscript-section h3,
+  .hero h1 {
+    color: #413b2d;
+    text-shadow: none;
   }
 }
