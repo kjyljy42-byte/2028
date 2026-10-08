@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { wedding } from "../data/wedding.js";
 const KEY = "wedding-invitation-opened";
 export function hasOpened() {
@@ -19,6 +19,20 @@ export default function Opening({ onOpen }) {
   const [failed, setFailed] = useState(false);
   const video = useRef(null);
   const transition = useRef(null);
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const previous = root.getAttribute("data-opening");
+    const theme = document.querySelector('meta[name="theme-color"]');
+    const previousTheme = theme?.getAttribute("content");
+    root.setAttribute("data-opening", "true");
+    theme?.setAttribute("content", "#101a28");
+    return () => {
+      if (previous === null) root.removeAttribute("data-opening");
+      else root.setAttribute("data-opening", previous);
+      if (previousTheme !== null && previousTheme !== undefined)
+        theme?.setAttribute("content", previousTheme);
+    };
+  }, []);
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => {

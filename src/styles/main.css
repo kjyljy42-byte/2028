@@ -1461,6 +1461,22 @@ img {
   transform: rotate(-45deg);
 }
 
+/* Safari paints its safe areas from the document background, not just the film. */
+html[data-opening="true"],
+html[data-opening="true"] body {
+  background: #101a28;
+  overflow: hidden;
+  overscroll-behavior: none;
+  height: 100%;
+  width: 100%;
+}
+html[data-opening="true"] body {
+  position: fixed;
+  inset: 0;
+}
+.invitation-content:not(.revealed) {
+  display: none;
+}
 /* Full-screen film; the invitation arrives below the couple only after it ends. */
 .sr-only {
   position: absolute;
@@ -1476,6 +1492,10 @@ img {
 .opening-video {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100svh;
   z-index: 30;
   overflow: hidden;
   background: #101a28;

@@ -225,3 +225,49 @@ test("no skip, blocked autoplay needs playback, failed video permits fallback", 
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
+
+test("iPhone 16 Pro opening covers changing browser viewport and restores parchment", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 402, height: 874 },
+    isMobile: true,
+    deviceScaleFactor: 3,
+    hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+  for (const height of [874, 740, 670, 874]) {
+    await page.setViewportSize({ width: 402, height });
+    const result = await page.evaluate(() => {
+      const rect = document
+        .querySelector(".film-stage")
+        .getBoundingClientRect();
+      return {
+        bottom: rect.bottom,
+        top: rect.top,
+        height: innerHeight,
+        root: getComputedStyle(document.documentElement).backgroundColor,
+        body: getComputedStyle(document.body).backgroundColor,
+        scroll: document.documentElement.scrollHeight,
+        theme: document.querySelector('meta[name="theme-color"]').content,
+      };
+    });
+    expect(result.top).toBe(0);
+    expect(result.bottom).toBeGreaterThanOrEqual(result.height);
+    expect(result.root).toBe("rgb(16, 26, 40)");
+    expect(result.body).toBe("rgb(16, 26, 40)");
+    expect(result.scroll).toBeLessThanOrEqual(result.height);
+    expect(result.theme).toBe("#101a28");
+  }
+  await page.screenshot({ path: "/tmp/wedding-iphone16pro.png" });
+  await page.getByRole("button", { name: "Открыть приглашение" }).click();
+  await expect(page.locator(".opening-video")).toHaveCount(0);
+  expect(await page.locator("html").getAttribute("data-opening")).toBeNull();
+  expect(
+    await page.locator('meta[name="theme-color"]').getAttribute("content"),
+  ).toBe("#282d24");
+  await expect(page.locator("#hero")).toBeVisible();
+  await context.close();
+});
