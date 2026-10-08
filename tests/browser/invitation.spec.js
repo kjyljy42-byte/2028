@@ -271,3 +271,41 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
   await expect(page.locator("#hero")).toBeVisible();
   await context.close();
 });
+
+test("three chronicle scenes, visible animations and reduced-motion safety", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    sessionStorage.setItem("wedding-invitation-opened", "yes"),
+  );
+  await page.goto("/");
+  await expect(page.locator(".scene-background")).toHaveCount(13);
+  await expect(page.locator("#greeting .scene-night")).toHaveCount(1);
+  await expect(page.locator("#food .scene-hall")).toHaveCount(1);
+  await expect(page.locator("#final .scene-balcony")).toHaveCount(1);
+  await expect(page.locator("#hero .scene-background")).toHaveClass(
+    /is-active/,
+  );
+  await expect(page.locator("#hero .scene-stars i").first()).toHaveCSS(
+    "animation-play-state",
+    "running",
+  );
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator("#hero .scene-stars i").first()).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await page.locator("#final").scrollIntoViewIfNeeded();
+  await expect(page.locator("#hero .scene-background")).not.toHaveClass(
+    /is-active/,
+  );
+  await page.evaluate(async () => {
+    await Promise.all(
+      [...document.images].map((img) => {
+        img.loading = "eager";
+        return img.decode();
+      }),
+    );
+  });
+  await page.screenshot({ path: "/tmp/chronicle-final.png" });
+});

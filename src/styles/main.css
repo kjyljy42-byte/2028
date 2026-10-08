@@ -1681,3 +1681,372 @@ html[data-opening="true"] body {
     display: none;
   }
 }
+/* Three illuminated chapters, with opaque manuscript surfaces protecting readability. */
+:root {
+  background: #111d30;
+}
+.site-header {
+  background: #142135;
+  color: #e7d6b2;
+  max-width: none;
+  border-color: #ae916c66;
+}
+.hero,
+.manuscript-section {
+  isolation: isolate;
+  background: #142135;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  overflow: hidden;
+  border-color: #b69a6844;
+}
+.scene-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  contain: paint;
+  background-image: url("/assets/scene-night.svg");
+}
+.scene-hall {
+  background-image: url("/assets/scene-hall.svg");
+  background-color: #211c23;
+}
+.scene-balcony {
+  background-image: url("/assets/scene-balcony.svg");
+}
+.section-inner {
+  position: relative;
+  background: #e8dec4;
+  background-image: radial-gradient(ellipse at top, #f6ead2, #e1d0ac);
+  padding: 48px 52px;
+  border: 1px solid #b29a69;
+  box-shadow: 0 16px 45px #050c1c66;
+  outline: 1px solid #a58b5044;
+  outline-offset: -8px;
+}
+.hero-frame {
+  background: radial-gradient(ellipse at top, #f5e9cd, #dfcdab);
+  box-shadow: 0 16px 45px #050c1c66;
+}
+.hero-side {
+  color: #d5bf91;
+}
+.hero-botanical {
+  display: none;
+}
+.dark .section-inner {
+  background: #172437;
+  color: #e8dec4;
+  border-color: #b69a6877;
+}
+.dark h2 {
+  color: #eddbb6;
+}
+.dark .small-copy {
+  color: #c7c9c4;
+}
+.burgundy .section-inner {
+  background: #432a32;
+  color: #f0dfc3;
+}
+.dark .choice.selected {
+  background: #d6bf8622;
+}
+.scene-stars i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff2cf;
+  box-shadow: 0 0 8px #ffebcaaa;
+  animation: chronicleTwinkle 5s ease-in-out infinite;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+}
+.scene-clouds {
+  position: absolute;
+  top: 30px;
+  left: -10%;
+  width: 120%;
+  height: 170px;
+  background:
+    radial-gradient(ellipse at 5% 50%, #c5d0dc20, transparent 25%),
+    radial-gradient(ellipse at 95% 40%, #dfcda822, transparent 22%);
+  animation: chronicleClouds 26s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.scene-meteor {
+  position: absolute;
+  top: 8%;
+  right: 2%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f6e4b5);
+  transform: rotate(-35deg);
+  animation: chronicleMeteor 17s linear infinite;
+  animation-play-state: paused;
+}
+.scene-hall .scene-stars,
+.scene-hall .scene-clouds {
+  display: none;
+}
+.scene-candle {
+  position: absolute;
+  top: 52%;
+  width: 12px;
+  height: 65px;
+  background: linear-gradient(90deg, #987552, #ecd5a5, #a98b63);
+  box-shadow: 0 0 55px 18px #d99b3826;
+}
+.candle-left {
+  left: 3%;
+}
+.candle-right {
+  right: 3%;
+  top: 35%;
+}
+.scene-candle:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: -12px;
+  width: 36px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9c7f52;
+}
+.scene-candle i {
+  position: absolute;
+  bottom: 100%;
+  left: 1px;
+  width: 10px;
+  height: 22px;
+  border-radius: 70% 30% 60% 40%;
+  background: linear-gradient(#fff4c3, #eeb85d, #ad672c);
+  transform-origin: 50% 100%;
+  box-shadow: 0 0 17px #dfad59;
+  animation: chronicleFlame 2.7s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.scene-embers i {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  background: #e3b575;
+  box-shadow: 0 0 8px #d3964e;
+  animation: chronicleEmber 10s ease-out infinite;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+}
+.scene-background.is-active i,
+.scene-background.is-active .scene-clouds,
+.scene-background.is-active .scene-meteor {
+  animation-play-state: running;
+}
+@keyframes chronicleTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+@keyframes chronicleClouds {
+  to {
+    transform: translateX(3%);
+  }
+}
+@keyframes chronicleMeteor {
+  0%,
+  86% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-35deg);
+  }
+  87% {
+    opacity: 0.8;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translate(-180px, 126px) rotate(-35deg);
+  }
+}
+@keyframes chronicleFlame {
+  from {
+    transform: rotate(-5deg) scaleY(0.9);
+    opacity: 0.75;
+  }
+  to {
+    transform: rotate(5deg) scaleY(1.06);
+    opacity: 1;
+  }
+}
+@keyframes chronicleEmber {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  15% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(12px, -180px);
+  }
+}
+@media (max-width: 760px) {
+  .hero,
+  .manuscript-section {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+  .section-inner {
+    padding: 32px 21px;
+  }
+  .hero {
+    padding-top: 30px;
+    padding-bottom: 35px;
+  }
+  .scene-background {
+    background-size: auto 100%;
+    background-position: center;
+  }
+  .candle-left {
+    left: 3px;
+  }
+  .candle-right {
+    right: 3px;
+  }
+  .scene-stars i {
+    width: 2px;
+    height: 2px;
+  }
+  .calendar-section .section-inner {
+    grid-template-columns: 94px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .children .section-inner {
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .countdown-section .section-inner {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .countdown {
+    gap: 16px;
+  }
+  .countdown-part span {
+    font-size: 50px;
+  }
+  .dress-gallery {
+    gap: 20px;
+  }
+  .dress-gallery h3 {
+    font-size: 22px;
+  }
+  .rsvp-frame {
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .drinks-choices {
+    grid-template-columns: 1fr;
+  }
+  .signature {
+    font-size: 32px;
+  }
+  .site-header {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+@media (max-width: 360px) {
+  .section-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .calendar-section .section-inner {
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 13px;
+  }
+  .calendar-section .medieval-button {
+    font-size: 14px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .calendar-date strong {
+    font-size: 65px;
+  }
+  .calendar-date span {
+    letter-spacing: 0;
+  }
+  .countdown {
+    gap: 10px;
+  }
+  .countdown-part {
+    min-width: 49px;
+  }
+  .countdown-part span {
+    font-size: 44px;
+  }
+  .countdown-part:not(:last-child):after {
+    right: -8px;
+  }
+  .hero h1 {
+    font-size: 53px;
+  }
+  .rsvp-frame .medieval-button {
+    font-size: 19px;
+    gap: 8px;
+  }
+  .dress-gallery {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .dress-gallery img {
+    max-height: 300px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-background * {
+    animation: none !important;
+  }
+}
+@media print {
+  .scene-background {
+    display: none;
+  }
+  .hero,
+  .manuscript-section {
+    background: #e8dec4;
+  }
+  .section-inner {
+    box-shadow: none;
+  }
+}
+.scene-background {
+  background-size: 100% 100%;
+}
+.final {
+  padding-top: 140px;
+}
+@media (max-width: 760px) {
+  .scene-background {
+    background-size: 100% 100%;
+  }
+  .final {
+    padding-top: 120px;
+  }
+}

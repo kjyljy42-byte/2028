@@ -1,3 +1,4 @@
+import SceneBackground from "../components/SceneBackground.jsx";
 import { useState } from "react";
 import { wedding } from "../data/wedding.js";
 import {
@@ -107,6 +108,7 @@ export default function Invitation() {
           className="hero"
           aria-labelledby="hero-title"
         >
+          <SceneBackground scene="night" />
           <div className="hero-side left" aria-hidden="true">
             ANNO DOMINI · MMXXVIII
           </div>
