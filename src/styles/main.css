@@ -2625,3 +2625,16 @@ html[data-opening="true"] body {
 .hero .seal { width:104px; height:104px; font-size:35px; }
 .hero .seal small { font-size:19px; }
 .hero .wax-seal { display:block; width:120px; height:120px; object-fit:contain; margin:5px auto 18px; transform:rotate(-7deg); filter:drop-shadow(0 5px 7px #0008); }
+/* Real dragon film: black blends into the shared night sky. */
+.hero { isolation:auto; }
+.video-dragon { min-height:285px; overflow:hidden; }
+.video-dragon .dragon-guardian { width:100%; height:235px; margin:0 auto; filter:none; mix-blend-mode:screen; transform:none; transition:none; }
+.video-dragon .dragon-guardian:disabled { opacity:1; }
+.dragon-resting,.dragon-film { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.dragon-film { opacity:0; }
+.dragon-playing .dragon-film,.dragon-exiting .dragon-film { opacity:1; }
+.dragon-playing .dragon-resting,.dragon-exiting .dragon-resting { opacity:0; }
+.dragon-exiting .dragon-guardian { animation:dragon-depart .8s ease-in forwards; }
+.dragon-done { min-height:285px; }
+@keyframes dragon-depart { to { transform:translateX(-110%); opacity:0; } }
+@media(prefers-reduced-motion:reduce) { .dragon-exiting .dragon-guardian { animation:none; } }

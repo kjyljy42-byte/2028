@@ -297,8 +297,10 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator("#guarded-date")).toBeHidden();
   await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).focus();
   await page.keyboard.press("Enter");
+  await expect(page.locator(".dragon-film")).toHaveJSProperty("loop", false);
+  await expect(page.locator("#guarded-date")).toBeVisible({ timeout: 10000 });
   await expect(page.locator("#guarded-date")).toContainText("12.08.2028");
-  await expect(page.locator(".dragon-guardian")).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator(".dragon-guardian")).toHaveCount(0);
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await page.locator("#food").scrollIntoViewIfNeeded();
@@ -307,6 +309,15 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
   await expect(page.locator(".journey-layer")).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".dragon-breath").first()).toHaveCSS("animation-name", "none");
+
   await expect(page.locator(".celestial-stars i").first()).toHaveCSS("animation-name", "none");
+});
+
+test("reduced motion reveals dragon date immediately without playing video", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).click();
+  await expect(page.locator("#guarded-date")).toBeVisible();
+  await expect(page.locator(".dragon-film")).toHaveCount(0);
 });
