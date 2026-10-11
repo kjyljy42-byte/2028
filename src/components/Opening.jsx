@@ -1,5 +1,4 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import GateReveal from "./GateReveal.jsx";
 import { wedding } from "../data/wedding.js";
 const KEY = "wedding-invitation-opened";
 export function hasOpened() {
@@ -9,7 +8,7 @@ export function hasOpened() {
     return false;
   }
 }
-export default function Opening({ onOpen }) {
+export default function Opening({ onOpen, onBeginOpen }) {
   const [reduced, setReduced] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
@@ -70,6 +69,7 @@ export default function Opening({ onOpen }) {
       /* Storage is optional. */
     }
     setLeaving(true);
+    onBeginOpen?.(!reduced);
     transition.current = setTimeout(onOpen, reduced ? 150 : 3200);
   }
   async function toggleSound() {
@@ -106,7 +106,6 @@ export default function Opening({ onOpen }) {
       </h1>
       <img src={wedding.images.terrace} alt="" hidden />
       <img src={wedding.images.gate} alt="" hidden />
-      {leaving && !reduced && <GateReveal />}
       <div className="film-stage">
         {reduced || failed ? (
           <img

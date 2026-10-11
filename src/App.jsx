@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Opening, { hasOpened } from "./components/Opening.jsx";
+import GateReveal from "./components/GateReveal.jsx";
 import Invitation from "./sections/Invitation.jsx";
 export default function App() {
   const [opened, setOpened] = useState(hasOpened);
   const content = useRef(null);
+  const [gating, setGating] = useState(false);
   useEffect(() => {
     if (!opened) return;
     document.querySelector("#invitation")?.focus({ preventScroll: true });
@@ -32,12 +34,13 @@ export default function App() {
         inert={!opened}
         aria-hidden={!opened}
         className={
-          opened ? "invitation-content revealed" : "invitation-content"
+          opened || gating ? "invitation-content revealed" : "invitation-content"
         }
       >
         <Invitation />
       </div>
-      {!opened && <Opening onOpen={() => setOpened(true)} />}
+      {!opened && <Opening onBeginOpen={(animate) => setGating(animate)} onOpen={() => { setOpened(true); setGating(false); }} />}
+      {gating && <GateReveal />}
     </>
   );
 }

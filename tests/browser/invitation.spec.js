@@ -33,11 +33,17 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
   await expect(page.locator(".gate-reveal")).toBeVisible();
   await expect(page.locator(".gate-leaf")).toHaveCount(2);
+  await expect(page.locator(".gate-landscape, .gate-welcome")).toHaveCount(0);
+  const gateBox = await page.locator(".gate-depth").boundingBox();
+  expect(gateBox.width).toBe(390);
+  expect(gateBox.height).toBe(844);
+  const heroDuring = await page.locator("#hero-title").boundingBox();
   await expect(page.locator(".gate-left")).toHaveCSS("animation-name", "iron-left");
   await expect(page.locator(".gate-right")).toHaveCSS("animation-name", "iron-right");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("[data-section]")).toHaveCount(13);
   await expect(page.locator("#invitation")).toBeFocused();
+  expect(await page.locator("#hero-title").boundingBox()).toEqual(heroDuring);
   await page.screenshot({ path: "/tmp/wedding-mobile.png", fullPage: true });
   await page.reload();
   await expect(page.getByRole("dialog")).toHaveCount(0);

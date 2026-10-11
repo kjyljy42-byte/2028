@@ -2570,3 +2570,8 @@ html[data-opening="true"] body {
 .gate-artwork img { position:absolute; width:148.66%; max-width:none; height:101.46%; left:-26.86%; top:-.85%; object-fit:fill; user-select:none; }
 .gate-right .gate-artwork { transform:scaleX(-1); }
 .gate-leaf { filter:drop-shadow(0 3px 5px #0009); }
+/* The real invitation remains underneath the full-screen gates throughout. */
+.invitation-content.revealed { animation:none; opacity:1; transform:none; }
+.gate-reveal { position:fixed; inset:0; z-index:2000; background:transparent; animation:none; overflow:hidden; }
+.gate-depth { inset:0; width:100%; height:100%; aspect-ratio:auto; transform:none; }
+.opening-video.leaving { transform:none; transition:opacity .2s ease; }
