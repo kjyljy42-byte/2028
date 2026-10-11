@@ -10,6 +10,9 @@
   --burgundy: #59302d;
   --display: "Cormorant Garamond", Georgia, serif;
 }
+[hidden] {
+  display: none !important;
+}
 * {
   box-sizing: border-box;
 }

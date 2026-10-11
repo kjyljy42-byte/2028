@@ -11,6 +11,9 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   });
   await page.goto("/");
   await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.locator(".celestial-background")).toHaveCount(0);
+  await expect(page.locator(".opening img")).toHaveCount(0);
+  await expect(page.locator(".film-video")).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Открыть приглашение" }),
   ).toBeHidden();

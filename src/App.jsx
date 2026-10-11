@@ -37,7 +37,7 @@ export default function App() {
           opened || gating ? "invitation-content revealed" : "invitation-content"
         }
       >
-        <Invitation />
+        {(opened || gating) && <Invitation />}
       </div>
       {!opened && <Opening onBeginOpen={(animate) => setGating(animate)} onOpen={() => { setOpened(true); setGating(false); }} />}
       {gating && <GateReveal />}
