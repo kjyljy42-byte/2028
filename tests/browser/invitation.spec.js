@@ -286,7 +286,7 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
   await context.close();
 });
 
-test("continuous castle journey and dragon reveal work with reduced motion", async ({ page }) => {
+test("continuous starry background and dragon reveal work with reduced motion", async ({ page }) => {
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
   await expect(page.locator("#guarded-date")).toBeHidden();
@@ -297,9 +297,11 @@ test("continuous castle journey and dragon reveal work with reduced motion", asy
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await page.locator("#food").scrollIntoViewIfNeeded();
-  await expect(page.locator(".journey-world")).toHaveClass(/journey-hall/);
+  await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
   await page.locator("#final").scrollIntoViewIfNeeded();
-  await expect(page.locator(".journey-world")).toHaveClass(/journey-balcony/);
+  await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
+  await expect(page.locator(".journey-layer")).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator(".dragon-breath").first()).toHaveCSS("animation-name", "none");
+  await expect(page.locator(".celestial-stars i").first()).toHaveCSS("animation-name", "none");
 });

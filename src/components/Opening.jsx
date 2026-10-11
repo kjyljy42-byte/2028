@@ -104,7 +104,7 @@ export default function Opening({ onOpen, onBeginOpen }) {
       <h1 id="opening-title" className="sr-only">
         Свадебное приглашение — {wedding.names}
       </h1>
-      <img src={wedding.images.terrace} alt="" hidden />
+      <img src={wedding.images.background} alt="" hidden />
       <img src={wedding.images.gate} alt="" hidden />
       <div className="film-stage">
         {reduced || failed ? (
