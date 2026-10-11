@@ -36,7 +36,7 @@ export function createCalendar(now = new Date()) {
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
       "BEGIN:VEVENT",
-      "UID:valery-yulia-20280622@wedding-chronicle.local",
+      "UID:valery-yulia-20280812@wedding-chronicle.local",
       `DTSTAMP:${utc(now)}`,
       `DTSTART:${utc(wedding.startsAt)}`,
       `SUMMARY:${escape("Свадебный пир — " + wedding.names)}`,

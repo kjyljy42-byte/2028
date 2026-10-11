@@ -62,7 +62,7 @@ test("RSVP choices, custom drink, validation, mock submission, map and calendar"
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe("valery-yulia-2028.ics");
   const ics = await fs.readFile(await download.path(), "utf8");
-  expect(ics).toContain("DTSTART:20280622T100000Z");
+  expect(ics).toContain("DTSTART:20280812T100000Z");
   await page.getByLabel("Ваше имя и фамилия").fill("Анна Петрова");
   await page.getByRole("button", { name: "Подтвердить присутствие" }).click();
   await expect(page.getByRole("alert")).toContainText("Выберите ночёвку");
@@ -154,14 +154,14 @@ test("countdown ticks every second and shows Today on the wedding date", async (
   await page.addInitScript(() =>
     sessionStorage.setItem("wedding-invitation-opened", "yes"),
   );
-  await page.clock.install({ time: new Date("2028-06-21T10:00:03Z") });
+  await page.clock.install({ time: new Date("2028-08-11T10:00:03Z") });
   await page.goto("/");
   await expect(page.locator('[data-count="days"]')).toHaveText("00");
   await expect(page.locator('[data-count="hours"]')).toHaveText("23");
   await expect(page.locator('[data-count="seconds"]')).toHaveText("57");
   await page.clock.runFor(1000);
   await expect(page.locator('[data-count="seconds"]')).toHaveText("56");
-  await page.clock.setSystemTime(new Date("2028-06-22T10:00:00Z"));
+  await page.clock.setSystemTime(new Date("2028-08-12T10:00:00Z"));
   await page.clock.runFor(1000);
   await expect(page.locator(".today")).toHaveText("Сегодня!");
 });
@@ -276,40 +276,20 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
   await context.close();
 });
 
-test("three chronicle scenes, visible animations and reduced-motion safety", async ({
-  page,
-}) => {
-  await page.addInitScript(() =>
-    sessionStorage.setItem("wedding-invitation-opened", "yes"),
-  );
+test("continuous castle journey and dragon reveal work with reduced motion", async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
-  await expect(page.locator(".scene-background")).toHaveCount(13);
-  await expect(page.locator("#greeting .scene-night")).toHaveCount(1);
-  await expect(page.locator("#food .scene-hall")).toHaveCount(1);
-  await expect(page.locator("#final .scene-balcony")).toHaveCount(1);
-  await expect(page.locator("#hero .scene-background")).toHaveClass(
-    /is-active/,
-  );
-  await expect(page.locator("#hero .scene-stars i").first()).toHaveCSS(
-    "animation-play-state",
-    "running",
-  );
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator("#hero .scene-stars i").first()).toHaveCSS(
-    "animation-name",
-    "none",
-  );
+  await expect(page.locator("#guarded-date")).toBeHidden();
+  await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#guarded-date")).toContainText("12.08.2028");
+  await expect(page.locator(".dragon-guardian")).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
+  await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await page.locator("#food").scrollIntoViewIfNeeded();
+  await expect(page.locator(".journey-world")).toHaveClass(/journey-hall/);
   await page.locator("#final").scrollIntoViewIfNeeded();
-  await expect(page.locator("#hero .scene-background")).not.toHaveClass(
-    /is-active/,
-  );
-  await page.evaluate(async () => {
-    await Promise.all(
-      [...document.images].map((img) => {
-        img.loading = "eager";
-        return img.decode();
-      }),
-    );
-  });
-  await page.screenshot({ path: "/tmp/chronicle-final.png" });
+  await expect(page.locator(".journey-world")).toHaveClass(/journey-balcony/);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".dragon-breath").first()).toHaveCSS("animation-name", "none");
 });

@@ -1,4 +1,3 @@
-import SceneBackground, { sceneFor } from "./SceneBackground.jsx";
 export function Ornament({ type = "flourish", className = "" }) {
   return (
     <svg
@@ -65,7 +64,6 @@ export function Section({ number, title, children, className = "", id }) {
       className={`manuscript-section ${className}`}
       aria-labelledby={`${id}-title`}
     >
-      <SceneBackground scene={sceneFor(id)} />
       <div className="section-inner">
         <p className="chapter" aria-hidden="true">
           {number} · СВАДЕБНАЯ ХРОНИКА

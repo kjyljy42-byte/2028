@@ -7,14 +7,14 @@ import { submitRsvp, getLocalResponses } from "../src/services/rsvp.js";
 test("Moscow target, second ticks, exact zero and elapsed date", () => {
   assert.equal(
     new Date(wedding.startsAt).toISOString(),
-    "2028-06-22T10:00:00.000Z",
+    "2028-08-12T10:00:00.000Z",
   );
   assert.deepEqual(
-    getCountdown(wedding.startsAt, Date.parse("2028-06-21T08:58:57Z")),
+    getCountdown(wedding.startsAt, Date.parse("2028-08-11T08:58:57Z")),
     { total: 90063, days: 1, hours: 1, minutes: 1, seconds: 3 },
   );
   assert.equal(
-    getCountdown(wedding.startsAt, Date.parse("2028-06-21T08:58:58Z")).seconds,
+    getCountdown(wedding.startsAt, Date.parse("2028-08-11T08:58:58Z")).seconds,
     2,
   );
   assert.equal(
@@ -29,7 +29,7 @@ test("Moscow target, second ticks, exact zero and elapsed date", () => {
 test("RFC 5545 calendar has correct UTC start, escaped location and UTF-8 folding", () => {
   const ics = createCalendar(new Date("2026-01-01T00:00:00Z"));
   assert.ok(ics.startsWith("BEGIN:VCALENDAR\r\nVERSION:2.0"));
-  assert.ok(ics.includes("DTSTART:20280622T100000Z\r\n"));
+  assert.ok(ics.includes("DTSTART:20280812T100000Z\r\n"));
   const unfolded = ics.replace(/\r\n /g, "");
   assert.ok(unfolded.includes("SUMMARY:Свадебный пир — Валерий и Юлия"));
   assert.ok(

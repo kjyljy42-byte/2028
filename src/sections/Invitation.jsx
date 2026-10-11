@@ -1,4 +1,5 @@
-import SceneBackground from "../components/SceneBackground.jsx";
+import JourneyBackdrop from "../components/JourneyBackdrop.jsx";
+import DragonDate from "../components/DragonDate.jsx";
 import { useState } from "react";
 import { wedding } from "../data/wedding.js";
 import {
@@ -88,6 +89,7 @@ export default function Invitation() {
   }
   return (
     <>
+      <JourneyBackdrop />
       <header className="site-header">
         <a
           href="#hero"
@@ -96,7 +98,7 @@ export default function Invitation() {
         >
           В <span>&</span> Ю
         </a>
-        <span className="header-date">22 · 06 · 2028</span>
+        <span className="header-date">{wedding.dateNumeric}</span>
         <a href="#final" className="header-rsvp">
           Ответить на приглашение <span aria-hidden="true">↗</span>
         </a>
@@ -108,7 +110,6 @@ export default function Invitation() {
           className="hero"
           aria-labelledby="hero-title"
         >
-          <SceneBackground scene="night" />
           <div className="hero-side left" aria-hidden="true">
             ANNO DOMINI · MMXXVIII
           </div>
@@ -123,7 +124,7 @@ export default function Invitation() {
               Валерий <span className="hero-and">и</span> Юлия
             </h1>
             <Divider />
-            <p className="hero-date">{wedding.dateLabel}</p>
+            <DragonDate />
             <p className="hero-place">FEW HORSES · ПОДМОСКОВЬЕ</p>
             <div className="seal" aria-label="Печать Валерия и Юлии">
               <span>В</span>
@@ -219,9 +220,9 @@ export default function Invitation() {
           className="calendar-section"
         >
           <div className="calendar-date" aria-hidden="true">
-            <span>ИЮНЬ</span>
-            <strong>22</strong>
-            <span>ЧЕТВЕРГ · 2028</span>
+            <span>{wedding.month}</span>
+            <strong>{wedding.day}</strong>
+            <span>{wedding.weekday} · 2028</span>
           </div>
           <div>
             <p>
@@ -238,7 +239,7 @@ export default function Invitation() {
             >
               Добавить в календарь
             </MedievalButton>
-            <p className="small-copy">22 июня · 13:00 · московское время</p>
+            <p className="small-copy">{wedding.dateLabel} · {wedding.timeLabel} · московское время</p>
             {calendarMessage && (
               <p className="local-note" role="status">
                 Файл календаря готов. Откройте его в своём календаре.
@@ -564,7 +565,7 @@ export default function Invitation() {
       </main>
       <footer className="site-footer">
         <span>В & Ю</span>
-        <p>XXII · VI · MMXXVIII</p>
+        <p>{wedding.romanDate}</p>
         <small>У каждой любви есть своя сказка.</small>
         <a href="#hero">Вернуться к началу ↑</a>
       </footer>
