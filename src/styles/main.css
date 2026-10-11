@@ -2624,3 +2624,4 @@ html[data-opening="true"] body {
 .site-footer p,.site-footer small,.site-footer a { font-size:16px; line-height:1.6; color:#e8dcc4; }
 .hero .seal { width:104px; height:104px; font-size:35px; }
 .hero .seal small { font-size:19px; }
+.hero .wax-seal { display:block; width:120px; height:120px; object-fit:contain; margin:5px auto 18px; transform:rotate(-7deg); filter:drop-shadow(0 5px 7px #0008); }

@@ -112,11 +112,7 @@ export default function Invitation() {
             </h1>
             <Divider />
             <DragonDate />
-            <div className="seal" aria-label="Печать Валерия и Юлии">
-              <span>В</span>
-              <small>&</small>
-              <span>Ю</span>
-            </div>
+            <img className="wax-seal" src={wedding.images.seal} alt="Бургундская восковая печать с инициалами В и Ю" width="120" height="120" />
             <a href="#greeting" className="scroll-link">
               Листайте вниз <span aria-hidden="true">↓</span>
             </a>
