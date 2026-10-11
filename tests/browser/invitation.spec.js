@@ -33,6 +33,8 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
   await expect(page.locator(".gate-reveal")).toBeVisible();
   await expect(page.locator(".gate-leaf")).toHaveCount(2);
+  await expect(page.locator(".site-header")).toHaveCount(0);
+  await expect(page.locator(".gate-darkness")).toHaveCSS("animation-name", "gate-color-dawn");
   await expect(page.locator(".gate-landscape, .gate-welcome")).toHaveCount(0);
   const gateBox = await page.locator(".gate-depth").boundingBox();
   expect(gateBox.width).toBe(390);

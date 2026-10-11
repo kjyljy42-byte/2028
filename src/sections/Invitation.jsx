@@ -90,19 +90,6 @@ export default function Invitation() {
   return (
     <>
       <JourneyBackdrop />
-      <header className="site-header">
-        <a
-          href="#hero"
-          className="monogram"
-          aria-label="Валерий и Юлия, к началу"
-        >
-          В <span>&</span> Ю
-        </a>
-        <span className="header-date">{wedding.dateNumeric}</span>
-        <a href="#final" className="header-rsvp">
-          Ответить на приглашение <span aria-hidden="true">↗</span>
-        </a>
-      </header>
       <main id="invitation" tabIndex="-1">
         <section
           id="hero"

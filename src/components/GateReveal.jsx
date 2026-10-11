@@ -11,6 +11,8 @@ function GateLeaf({ side }) {
 export default function GateReveal() {
   return (
     <div className="gate-reveal" aria-hidden="true">
+      <div className="gate-desaturate" />
+      <div className="gate-darkness" />
       <div className="gate-depth">
         <GateLeaf side="left" />
         <GateLeaf side="right" />

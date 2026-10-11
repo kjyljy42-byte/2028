@@ -2585,3 +2585,11 @@ html[data-opening="true"] body {
 .celestial-stars i:after { width:12px; height:1px; left:-4px; top:1.5px; background:linear-gradient(90deg,transparent,#e1c493,transparent); }
 @keyframes celestial-twinkle { 0%,100% { opacity:.3; } 50% { opacity:.85; } }
 @media(prefers-reduced-motion:reduce) { .celestial-stars i { animation:none; opacity:.55; } }
+/* Color and light return while the bronze leaves open. */
+.gate-desaturate,.gate-darkness { position:absolute; inset:0; pointer-events:none; animation:gate-color-dawn 2.6s cubic-bezier(.3,.05,.2,1) .35s both; }
+.gate-desaturate { -webkit-backdrop-filter:grayscale(1); backdrop-filter:grayscale(1); }
+.gate-darkness { background:#000; }
+.gate-depth { z-index:1; animation:gate-bronze-dawn 2.6s cubic-bezier(.3,.05,.2,1) .35s both; }
+@keyframes gate-color-dawn { from { opacity:.96; } to { opacity:0; } }
+@keyframes gate-bronze-dawn { from { filter:grayscale(1) brightness(.15); } to { filter:grayscale(0) brightness(1); } }
+@media(prefers-reduced-motion:reduce) { .gate-depth,.gate-desaturate,.gate-darkness { animation:none; } }
