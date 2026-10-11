@@ -133,56 +133,26 @@ export default function Opening({ onOpen }) {
         )}
       </div>
       {ready && (
-        <div className="star-arrival" aria-live="polite">
-          <button className="star-invitation" onClick={open} disabled={leaving}>
-            <span className="star-talisman" aria-hidden="true">
-              <svg className="invitation-star" viewBox="0 0 140 140">
-                <defs>
-                  <radialGradient id="celestial-gold">
-                    <stop stopColor="#fff4d1" />
-                    <stop offset=".55" stopColor="#e5c786" />
-                    <stop offset="1" stopColor="#a67e43" />
-                  </radialGradient>
-                </defs>
-                <path
-                  d="M70 5 84 54 135 70 84 86 70 135 56 86 5 70 56 54Z"
-                  fill="url(#celestial-gold)"
-                  stroke="#ffedbd"
-                  strokeWidth="1"
-                />
-                <path
-                  d="M70 17 80 58 122 70 80 82 70 123 60 82 18 70 60 58Z"
-                  fill="none"
-                  stroke="#84653b"
-                  strokeWidth=".65"
-                />
-                <circle
-                  cx="70"
-                  cy="70"
-                  r="27"
-                  fill="#15263b"
-                  stroke="#f0d8a0"
-                  strokeWidth="1"
-                />
-                <circle
-                  cx="70"
-                  cy="70"
-                  r="23"
-                  fill="none"
-                  stroke="#c9a76a"
-                  strokeWidth=".5"
-                />
-              </svg>
-              <span className="star-monogram">В &amp; Ю</span>
-            </span>
-            <span className="star-caption">Открыть приглашение</span>
-          </button>
-          {failed && (
-            <p className="film-fallback-note">
-              Видео не загрузилось. Приглашение доступно.
-            </p>
-          )}
-        </div>
+        <>
+          <span className="invitation-meteor" aria-hidden="true" />
+          <div className="star-arrival" aria-live="polite">
+            <button
+              className="star-invitation"
+              onClick={open}
+              disabled={leaving}
+            >
+              <span className="star-monogram-reveal" aria-hidden="true">
+                В &amp; Ю
+              </span>
+              <span className="star-caption">Открыть приглашение</span>
+            </button>
+            {failed && (
+              <p className="film-fallback-note">
+                Видео не загрузилось. Приглашение доступно.
+              </p>
+            )}
+          </div>
+        </>
       )}
       {!ready && (
         <div className="film-playback-controls">

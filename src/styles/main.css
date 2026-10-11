@@ -2258,96 +2258,90 @@ html[data-opening="true"] body {
     text-shadow: none;
   }
 }
-/* A star descends from the sky, then becomes the invitation's celestial seal. */
-.star-talisman {
-  position: relative;
-  display: block;
-  width: 126px;
-  height: 126px;
-  animation: celestialDescent 2.6s cubic-bezier(0.18, 0.65, 0.25, 1) both;
+
+/* Optical meteor: a moving light source, never a hanging illustrated emblem. */
+.invitation-meteor {
+  position: absolute;
+  z-index: 2;
+  top: -8vh;
+  left: 75%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fffef7;
+  box-shadow:
+    0 0 3px 2px #fff,
+    0 0 12px 4px #ffe7b8,
+    0 0 32px 9px #e9bd6466;
   pointer-events: none;
+  animation: meteorPass 2.8s linear both;
 }
-.star-talisman .invitation-star {
-  width: 100%;
-  height: 100%;
-  transform: none;
-  filter: drop-shadow(0 0 12px #ddba7080);
-  animation: celestialGlow 4s ease-in-out 2.6s infinite;
-}
-.star-talisman:before {
+.invitation-meteor:before {
   content: "";
   position: absolute;
-  left: 50%;
-  bottom: 75%;
-  width: 2px;
-  height: 210px;
-  transform: rotate(28deg);
+  left: 1px;
+  bottom: 2px;
+  width: 3px;
+  height: 190px;
+  transform: rotate(9deg);
   transform-origin: bottom;
-  background: linear-gradient(transparent, #ead4a0aa);
-  box-shadow: 0 0 9px #edce7b88;
-  animation: celestialTrail 2.6s both;
+  background: linear-gradient(transparent, #f4dfab44 55%, #fff6da);
+  filter: blur(0.9px);
 }
-.star-monogram {
+.invitation-meteor:after {
+  content: "";
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(#ffefbe55, transparent 65%);
+  filter: blur(5px);
+}
+.star-monogram-reveal {
   font-family: var(--display);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0;
-  color: #ffe7af;
-  text-shadow: 0 1px 3px #07121f;
-  animation: celestialInk 0.8s 2.2s both;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 4px;
+  color: #ffe8b7;
+  text-shadow:
+    0 0 17px #cfa85d88,
+    0 2px 8px #07121f;
+  animation: meteorLettering 1.3s 2s both;
 }
 .star-caption {
-  animation: celestialInk 0.9s 2.4s both;
   color: #f7e6be;
+  animation: meteorLettering 1.3s 2.2s both;
 }
 .star-invitation {
-  min-height: 170px;
-  gap: 5px;
-  padding-bottom: 15px;
+  min-height: 108px;
+  gap: 16px;
+  padding: 15px 24px;
+  background: none;
 }
-.star-invitation:hover .star-talisman {
-  filter: drop-shadow(0 0 7px #f5d68755);
+.star-invitation:hover .star-monogram-reveal {
+  text-shadow:
+    0 0 23px #e8c886aa,
+    0 2px 8px #07121f;
 }
-.star-invitation:hover .invitation-star {
-  transform: none;
+.opening-video.leaving .star-monogram-reveal {
+  animation: letteringFlash 0.7s ease-out both;
 }
-.opening-video.leaving .star-talisman {
-  animation: celestialFlash 0.7s ease-out both;
-}
-@keyframes celestialDescent {
+@keyframes meteorPass {
   0% {
     opacity: 0;
-    transform: translate(35vw, -85vh) scale(0.28) rotate(-25deg);
+    transform: translate(0, 0);
   }
-  10% {
+  8% {
     opacity: 1;
   }
-  70% {
-    transform: translate(2vw, -5vh) scale(0.95) rotate(-3deg);
-  }
-  100% {
+  80% {
     opacity: 1;
-    transform: translate(0, 0) scale(1) rotate(0);
-  }
-}
-@keyframes celestialTrail {
-  0% {
-    opacity: 0;
-  }
-  15%,
-  50% {
-    opacity: 0.8;
   }
   100% {
     opacity: 0;
+    transform: translate(-32vw, 120vh);
   }
 }
-@keyframes celestialInk {
+@keyframes meteorLettering {
   from {
     opacity: 0;
   }
@@ -2355,50 +2349,33 @@ html[data-opening="true"] body {
     opacity: 1;
   }
 }
-@keyframes celestialGlow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 9px #ddba7066);
-  }
-  50% {
-    filter: drop-shadow(0 0 18px #ffe1a699);
-  }
-}
-@keyframes celestialFlash {
+@keyframes letteringFlash {
   from {
     filter: brightness(1);
   }
-  35% {
-    filter: brightness(1.8) drop-shadow(0 0 25px #ffedba);
+  40% {
+    filter: brightness(1.5);
   }
   to {
-    filter: brightness(1.1);
+    filter: brightness(1);
   }
 }
 @media (max-height: 650px) {
-  .star-talisman {
-    width: 98px;
-    height: 98px;
-  }
-  .star-monogram {
-    font-size: 15px;
-  }
   .star-invitation {
-    min-height: 137px;
+    min-height: 96px;
+    gap: 10px;
+  }
+  .star-monogram-reveal {
+    font-size: 27px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .star-talisman,
-  .star-talisman .invitation-star,
-  .star-caption,
-  .star-monogram {
-    animation: none !important;
-    transform: none;
-  }
-  .star-talisman:before {
+  .invitation-meteor {
     display: none;
   }
-  .opening-video.leaving .star-talisman {
+  .star-monogram-reveal,
+  .star-caption,
+  .opening-video.leaving .star-monogram-reveal {
     animation: none !important;
   }
 }

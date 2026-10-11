@@ -25,6 +25,11 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
     page.getByRole("button", { name: "Открыть приглашение" }),
   ).toBeVisible({ timeout: 10000 });
   await page.screenshot({ path: "/tmp/wedding-opening-night.png" });
+  await expect(page.locator(".invitation-meteor")).toHaveCSS("opacity", "0", {
+    timeout: 7000,
+  });
+  await expect(page.locator(".star-talisman, .invitation-star")).toHaveCount(0);
+  await expect(page.locator(".star-monogram-reveal")).toHaveCSS("opacity", "1");
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("[data-section]")).toHaveCount(13);
