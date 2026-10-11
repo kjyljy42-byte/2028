@@ -112,7 +112,6 @@ export default function Invitation() {
             </h1>
             <Divider />
             <DragonDate />
-            <p className="hero-place">FEW HORSES · ПОДМОСКОВЬЕ</p>
             <div className="seal" aria-label="Печать Валерия и Юлии">
               <span>В</span>
               <small>&</small>
