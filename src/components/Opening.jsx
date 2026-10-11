@@ -105,6 +105,7 @@ export default function Opening({ onOpen }) {
         Свадебное приглашение — {wedding.names}
       </h1>
       <img src={wedding.images.terrace} alt="" hidden />
+      <img src={wedding.images.gate} alt="" hidden />
       {leaving && !reduced && <GateReveal />}
       <div className="film-stage">
         {reduced || failed ? (

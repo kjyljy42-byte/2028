@@ -2564,3 +2564,9 @@ html[data-opening="true"] body {
 @keyframes gate-welcome { 0%,45% { opacity:0; } 68%,85% { opacity:1; } 100% { opacity:0; } }
 .journey-world .scene-night:after,.journey-world .scene-balcony:after { background:radial-gradient(ellipse at 50% 38%,#08142666,transparent 72%); }
 @media(prefers-reduced-motion:reduce) { .gate-reveal { display:none; } }
+/* Original bronze artwork. Trim transparent margins in CSS, preserve the PNG. */
+.gate-depth { top:auto; bottom:0; left:50%; right:auto; width:min(100%,72vh); height:auto; aspect-ratio:1266 / 1648; transform:translateX(-50%); }
+.gate-artwork { position:absolute; inset:0; overflow:hidden; }
+.gate-artwork img { position:absolute; width:148.66%; max-width:none; height:101.46%; left:-26.86%; top:-.85%; object-fit:fill; user-select:none; }
+.gate-right .gate-artwork { transform:scaleX(-1); }
+.gate-leaf { filter:drop-shadow(0 3px 5px #0009); }
