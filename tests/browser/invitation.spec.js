@@ -161,7 +161,7 @@ test("countdown ticks every second and shows Today on the wedding date", async (
   await expect(page.locator(".today")).toHaveText("Сегодня!");
 });
 
-test("full-screen portrait film, accessible dove and reduced motion", async ({
+test("full-screen portrait film, accessible star and reduced motion", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -190,7 +190,7 @@ test("full-screen portrait film, accessible dove and reduced motion", async ({
           .locator(".film-poster")
           .evaluate((img) => getComputedStyle(img).objectFit),
       ).toBe("cover");
-      const button = await page.locator(".dove-invitation").boundingBox();
+      const button = await page.locator(".star-invitation").boundingBox();
       expect(button.y).toBeGreaterThan(height * 0.65);
       expect(button.y + button.height).toBeLessThanOrEqual(height);
     }

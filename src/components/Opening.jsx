@@ -133,41 +133,49 @@ export default function Opening({ onOpen }) {
         )}
       </div>
       {ready && (
-        <div className="dove-arrival" aria-live="polite">
-          <button className="dove-invitation" onClick={open} disabled={leaving}>
-            <svg
-              className="invitation-dove"
-              viewBox="0 0 180 120"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="dove-feathers" x1="0" y1="0" x2="0" y2="1">
-                  <stop stopColor="#fff" />
-                  <stop offset="1" stopColor="#e9e7df" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M94 75C71 71 57 55 51 39 44 22 32 13 17 10 24 30 34 43 45 52 29 44 16 36 6 35 16 54 35 66 54 70 40 69 28 66 16 63 30 78 48 82 68 82L49 101 75 93 66 111 91 90C109 89 121 82 128 70L141 60 156 61 147 53C147 43 138 37 130 42L119 51C112 52 107 47 101 35 92 18 78 8 62 4 66 25 77 39 89 49 80 46 71 39 63 30 67 52 78 65 94 75Z"
-                fill="url(#dove-feathers)"
-                stroke="#fff"
-                strokeWidth="1.2"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M24 24Q39 53 66 66M20 45Q45 67 71 71M74 19Q83 44 102 59M76 43Q86 62 108 70M79 81l-15 13"
-                fill="none"
-                stroke="#c8cbd1"
-                strokeWidth="1.1"
-              />
-              <circle cx="137" cy="49" r="1.5" fill="#536077" />
-              <path
-                d="M144 60q-11 13-11 25m1-8q-12-1-13 6 11 2 13-6m-1 7q10-1 11 5-10 1-11-5"
-                fill="none"
-                stroke="#f5f0df"
-                strokeWidth="1.4"
-              />
-            </svg>
-            <span>Открыть приглашение</span>
+        <div className="star-arrival" aria-live="polite">
+          <button className="star-invitation" onClick={open} disabled={leaving}>
+            <span className="star-talisman" aria-hidden="true">
+              <svg className="invitation-star" viewBox="0 0 140 140">
+                <defs>
+                  <radialGradient id="celestial-gold">
+                    <stop stopColor="#fff4d1" />
+                    <stop offset=".55" stopColor="#e5c786" />
+                    <stop offset="1" stopColor="#a67e43" />
+                  </radialGradient>
+                </defs>
+                <path
+                  d="M70 5 84 54 135 70 84 86 70 135 56 86 5 70 56 54Z"
+                  fill="url(#celestial-gold)"
+                  stroke="#ffedbd"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M70 17 80 58 122 70 80 82 70 123 60 82 18 70 60 58Z"
+                  fill="none"
+                  stroke="#84653b"
+                  strokeWidth=".65"
+                />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="27"
+                  fill="#15263b"
+                  stroke="#f0d8a0"
+                  strokeWidth="1"
+                />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="23"
+                  fill="none"
+                  stroke="#c9a76a"
+                  strokeWidth=".5"
+                />
+              </svg>
+              <span className="star-monogram">В &amp; Ю</span>
+            </span>
+            <span className="star-caption">Открыть приглашение</span>
           </button>
           {failed && (
             <p className="film-fallback-note">

@@ -1522,7 +1522,7 @@ html[data-opening="true"] body {
   filter: none;
   mix-blend-mode: normal;
 }
-.dove-arrival {
+.star-arrival {
   position: absolute;
   inset: auto 0 0;
   display: flex;
@@ -1531,10 +1531,10 @@ html[data-opening="true"] body {
   justify-content: flex-end;
   padding: 65px 20px max(34px, env(safe-area-inset-bottom));
   background: linear-gradient(transparent, #07132177);
-  animation: doveVeil 1.2s both;
+  animation: starVeil 1.2s both;
   pointer-events: none;
 }
-.dove-invitation {
+.star-invitation {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1552,20 +1552,20 @@ html[data-opening="true"] body {
     0 2px 12px #091425,
     0 1px 3px #091425;
   pointer-events: auto;
-  animation: doveFlight 1.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: none;
 }
-.invitation-dove {
+.invitation-star {
   display: block;
   width: 122px;
   height: 82px;
   filter: drop-shadow(0 2px 7px #10213a99);
   transform-origin: 50% 60%;
 }
-.dove-invitation:hover .invitation-dove {
+.star-invitation:hover .invitation-star {
   transform: translateY(-4px);
   transition: transform 0.4s;
 }
-.dove-invitation:focus-visible {
+.star-invitation:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 6px;
 }
@@ -1620,7 +1620,7 @@ html[data-opening="true"] body {
   transform: perspective(1200px) rotateY(-7deg) scale(1.02);
   pointer-events: none;
 }
-@keyframes doveFlight {
+@keyframes starFlight {
   from {
     opacity: 0;
     transform: translateY(65px) scale(0.8) rotate(-8deg);
@@ -1633,7 +1633,7 @@ html[data-opening="true"] body {
     transform: translateY(0) scale(1) rotate(0);
   }
 }
-@keyframes doveVeil {
+@keyframes starVeil {
   from {
     opacity: 0;
   }
@@ -1646,24 +1646,24 @@ html[data-opening="true"] body {
   .film-poster {
     object-fit: contain;
   }
-  .dove-arrival {
+  .star-arrival {
     padding-bottom: 24px;
   }
-  .invitation-dove {
+  .invitation-star {
     width: 100px;
     height: 67px;
   }
 }
 @media (max-height: 650px) {
-  .dove-arrival {
+  .star-arrival {
     padding-top: 25px;
     padding-bottom: max(18px, env(safe-area-inset-bottom));
   }
-  .dove-invitation {
+  .star-invitation {
     min-height: 104px;
     font-size: 25px;
   }
-  .invitation-dove {
+  .invitation-star {
     width: 100px;
     height: 67px;
   }
@@ -1672,7 +1672,7 @@ html[data-opening="true"] body {
   .opening-video.leaving {
     transform: none;
   }
-  .dove-invitation:hover .invitation-dove {
+  .star-invitation:hover .invitation-star {
     transform: none;
   }
 }
@@ -2256,5 +2256,149 @@ html[data-opening="true"] body {
   .hero h1 {
     color: #413b2d;
     text-shadow: none;
+  }
+}
+/* A star descends from the sky, then becomes the invitation's celestial seal. */
+.star-talisman {
+  position: relative;
+  display: block;
+  width: 126px;
+  height: 126px;
+  animation: celestialDescent 2.6s cubic-bezier(0.18, 0.65, 0.25, 1) both;
+  pointer-events: none;
+}
+.star-talisman .invitation-star {
+  width: 100%;
+  height: 100%;
+  transform: none;
+  filter: drop-shadow(0 0 12px #ddba7080);
+  animation: celestialGlow 4s ease-in-out 2.6s infinite;
+}
+.star-talisman:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 75%;
+  width: 2px;
+  height: 210px;
+  transform: rotate(28deg);
+  transform-origin: bottom;
+  background: linear-gradient(transparent, #ead4a0aa);
+  box-shadow: 0 0 9px #edce7b88;
+  animation: celestialTrail 2.6s both;
+}
+.star-monogram {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #ffe7af;
+  text-shadow: 0 1px 3px #07121f;
+  animation: celestialInk 0.8s 2.2s both;
+}
+.star-caption {
+  animation: celestialInk 0.9s 2.4s both;
+  color: #f7e6be;
+}
+.star-invitation {
+  min-height: 170px;
+  gap: 5px;
+  padding-bottom: 15px;
+}
+.star-invitation:hover .star-talisman {
+  filter: drop-shadow(0 0 7px #f5d68755);
+}
+.star-invitation:hover .invitation-star {
+  transform: none;
+}
+.opening-video.leaving .star-talisman {
+  animation: celestialFlash 0.7s ease-out both;
+}
+@keyframes celestialDescent {
+  0% {
+    opacity: 0;
+    transform: translate(35vw, -85vh) scale(0.28) rotate(-25deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    transform: translate(2vw, -5vh) scale(0.95) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0);
+  }
+}
+@keyframes celestialTrail {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes celestialInk {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes celestialGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 9px #ddba7066);
+  }
+  50% {
+    filter: drop-shadow(0 0 18px #ffe1a699);
+  }
+}
+@keyframes celestialFlash {
+  from {
+    filter: brightness(1);
+  }
+  35% {
+    filter: brightness(1.8) drop-shadow(0 0 25px #ffedba);
+  }
+  to {
+    filter: brightness(1.1);
+  }
+}
+@media (max-height: 650px) {
+  .star-talisman {
+    width: 98px;
+    height: 98px;
+  }
+  .star-monogram {
+    font-size: 15px;
+  }
+  .star-invitation {
+    min-height: 137px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star-talisman,
+  .star-talisman .invitation-star,
+  .star-caption,
+  .star-monogram {
+    animation: none !important;
+    transform: none;
+  }
+  .star-talisman:before {
+    display: none;
+  }
+  .opening-video.leaving .star-talisman {
+    animation: none !important;
   }
 }
