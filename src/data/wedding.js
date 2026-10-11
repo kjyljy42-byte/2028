@@ -10,6 +10,7 @@ export const wedding = {
   mapUrl: null,
   opening: {
     video: "/assets/opening-story.mp4",
+    hasAudio: false,
     poster: "/assets/opening-story-poster.jpg",
   },
   images: {

@@ -16,7 +16,9 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   ).toBeHidden();
   await page.screenshot({ path: "/tmp/wedding-opening-day.png" });
   await expect
-    .poll(() => page.locator("video").evaluate((v) => v.ended))
+    .poll(() => page.locator("video").evaluate((v) => v.ended), {
+      timeout: 15000,
+    })
     .toBe(true);
   await expect(page.locator("video")).toHaveJSProperty("muted", true);
   await expect(
@@ -159,7 +161,7 @@ test("countdown ticks every second and shows Today on the wedding date", async (
   await expect(page.locator(".today")).toHaveText("Сегодня!");
 });
 
-test("full-screen portrait film, dove below characters and reduced motion", async ({
+test("full-screen portrait film, accessible dove and reduced motion", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -188,12 +190,8 @@ test("full-screen portrait film, dove below characters and reduced motion", asyn
           .locator(".film-poster")
           .evaluate((img) => getComputedStyle(img).objectFit),
       ).toBe("cover");
-      // Source couple occupies y=.37–.60, x=.34–.65: verify the CTA is below them after cover cropping.
-      const scale = Math.max(width / 1080, height / 1758);
-      const cropY = (1758 * scale - height) * 0.46;
-      const coupleBottom = 1758 * 0.6 * scale - cropY;
       const button = await page.locator(".dove-invitation").boundingBox();
-      expect(button.y).toBeGreaterThan(coupleBottom);
+      expect(button.y).toBeGreaterThan(height * 0.65);
       expect(button.y + button.height).toBeLessThanOrEqual(height);
     }
     expect(

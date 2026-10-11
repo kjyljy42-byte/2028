@@ -108,7 +108,7 @@ export default function Opening({ onOpen }) {
           <img
             className="film-poster"
             src={wedding.opening.poster}
-            alt="Принц и принцесса целуются на балконе замка под звёздным небом"
+            alt="Старинный замок с освещёнными окнами под звёздным небом"
           />
         ) : (
           <video
@@ -120,7 +120,7 @@ export default function Opening({ onOpen }) {
             muted={muted}
             playsInline
             preload="auto"
-            aria-label="Принц и принцесса встречаются и целуются на балконе замка. День сменяется звёздной ночью."
+            aria-label="Ночной средневековый замок среди гор и тумана."
             onEnded={() => {
               setReady(true);
               setNeedsPlay(false);
@@ -173,7 +173,7 @@ export default function Opening({ onOpen }) {
             <p className="film-fallback-note">
               Видео не загрузилось. Приглашение доступно.
             </p>
-          )}
+          ) : null}
         </div>
       )}
       {!ready && (
@@ -182,7 +182,7 @@ export default function Opening({ onOpen }) {
             <button className="film-play" type="button" onClick={play}>
               Воспроизвести видео
             </button>
-          ) : (
+          ) : wedding.opening.hasAudio ? (
             <button
               className="film-sound"
               type="button"
@@ -213,7 +213,7 @@ export default function Opening({ onOpen }) {
                 )}
               </svg>
             </button>
-          )}
+          ) : null}
         </div>
       )}
     </div>
