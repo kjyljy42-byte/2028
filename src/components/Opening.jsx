@@ -173,7 +173,7 @@ export default function Opening({ onOpen }) {
             <p className="film-fallback-note">
               Видео не загрузилось. Приглашение доступно.
             </p>
-          ) : null}
+          )}
         </div>
       )}
       {!ready && (
