@@ -2638,3 +2638,6 @@ html[data-opening="true"] body {
 .dragon-done { min-height:285px; }
 @keyframes dragon-depart { to { transform:translateX(-110%); opacity:0; } }
 @media(prefers-reduced-motion:reduce) { .dragon-exiting .dragon-guardian { animation:none; } }
+.dragon-idle-film { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none; opacity:0; }
+.dragon-idle .dragon-idle-film.is-playing { opacity:1; }
+@media(prefers-reduced-motion:reduce) { .dragon-idle .dragon-idle-film { opacity:0; } }

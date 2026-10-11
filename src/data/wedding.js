@@ -14,6 +14,7 @@ export const wedding = {
   address: "Наро-Фоминский округ, деревня Новосумино",
   mapUrl: null,
   dragon: {
+    idleVideo: "/assets/dragon-idle.mp4",
     video: "/assets/dragon-departure.mp4",
     poster: "/assets/dragon-resting.webp",
   },

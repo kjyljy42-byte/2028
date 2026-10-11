@@ -295,6 +295,8 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
   await expect(page.locator("#guarded-date")).toBeHidden();
+  await page.locator(".dragon-guardian").scrollIntoViewIfNeeded();
+  await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", false);
   await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).focus();
   await page.keyboard.press("Enter");
   await expect(page.locator(".dragon-film")).toHaveJSProperty("loop", false);
@@ -317,6 +319,7 @@ test("reduced motion reveals dragon date immediately without playing video", asy
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
+  await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", true);
   await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).click();
   await expect(page.locator("#guarded-date")).toBeVisible();
   await expect(page.locator(".dragon-film")).toHaveCount(0);
