@@ -19,6 +19,7 @@ export const wedding = {
     poster: "/assets/opening-story-poster.jpg",
   },
   images: {
+    terrace: "/assets/castle-terrace.webp",
     venue: "/assets/few-horses.jpg",
     men: "/assets/dress-men.jpg",
     women: "/assets/dress-women.jpg",

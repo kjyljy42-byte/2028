@@ -13,6 +13,5 @@ export default function JourneyBackdrop() {
   return <div className={`journey-world journey-${scene}`} aria-hidden="true">
     {["night", "courtyard", "hall", "balcony"].map(name => <div className={`journey-layer ${scene === name ? "current" : ""}`} key={name}><SceneBackground scene={name} /></div>)}
     <div className="journey-mist" />
-    <div className="castle-gates"><span /><span /></div>
   </div>;
 }

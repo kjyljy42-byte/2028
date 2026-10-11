@@ -1,3 +1,4 @@
+import { wedding } from "../data/wedding.js";
 import { useEffect, useRef } from "react";
 export default function SceneBackground({ scene = "night" }) {
   const ref = useRef(null);
@@ -15,6 +16,7 @@ export default function SceneBackground({ scene = "night" }) {
     <div
       ref={ref}
       className={`scene-background scene-${scene}`}
+      style={scene === "night" || scene === "balcony" ? { backgroundImage: `url(${wedding.images.terrace})` } : undefined}
       aria-hidden="true"
     >
       <div className="scene-clouds" />

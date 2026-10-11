@@ -2541,3 +2541,26 @@ html[data-opening="true"] body {
 @media(prefers-reduced-motion:reduce) { .journey-world *, .dragon-date *, .invitation-content.revealed { animation:none!important; transition:none!important; } .castle-gates { display:none; } }
 .scene-courtyard { background-image:url('/assets/scene-courtyard.svg'); }
 .journey-layer:not(.current) .scene-background * { animation-play-state:paused; }
+/* Wrought iron leaves open only after the invitation button is pressed. */
+.opening-video.leaving:has(.gate-reveal) { opacity:1; transform:none; animation:none; transition:none; }
+.opening-video.leaving:has(.gate-reveal) .film-stage,
+.opening-video.leaving:has(.gate-reveal) .star-arrival,
+.opening-video.leaving:has(.gate-reveal) .invitation-meteor { opacity:0; transition:opacity .4s ease; pointer-events:none; }
+.gate-reveal { position:absolute; inset:0; z-index:5; background:#101b2b; animation:gate-scene-in .45s ease both; pointer-events:none; }
+.gate-landscape { width:100%; height:100%; object-fit:cover; object-position:center; }
+.gate-depth { position:absolute; inset:0; perspective:1100px; }
+.gate-leaf { position:absolute; top:0; bottom:0; width:50%; filter:drop-shadow(0 3px 7px #000b); backface-visibility:hidden; }
+.gate-leaf svg { width:100%; height:100%; }
+.gate-left { left:0; transform-origin:left center; animation:iron-left 2.6s cubic-bezier(.3,.05,.2,1) .35s both; }
+.gate-right { right:0; transform-origin:right center; animation:iron-right 2.6s cubic-bezier(.3,.05,.2,1) .35s both; }
+.gate-right svg { transform:scaleX(-1); }
+.gate-crest { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); color:#ebd2a0; font:500 32px "Cormorant Garamond",serif; background:radial-gradient(ellipse,#12202cee,transparent 75%); width:130px; text-align:center; padding:15px; animation:gate-crest-out .5s .5s both; }
+.gate-crest i { font-size:22px; }
+.gate-welcome { position:absolute; inset:0; display:grid; place-items:center; color:#f9e5b8; font:italic 400 clamp(25px,5vw,38px) "Cormorant Garamond",serif; text-align:center; padding:30px; text-shadow:0 2px 15px #000; animation:gate-welcome 3.2s both; }
+@keyframes gate-scene-in { from { opacity:0; } to { opacity:1; } }
+@keyframes iron-left { to { transform:rotateY(-105deg); } }
+@keyframes iron-right { to { transform:rotateY(105deg); } }
+@keyframes gate-crest-out { to { opacity:0; } }
+@keyframes gate-welcome { 0%,45% { opacity:0; } 68%,85% { opacity:1; } 100% { opacity:0; } }
+.journey-world .scene-night:after,.journey-world .scene-balcony:after { background:radial-gradient(ellipse at 50% 38%,#08142666,transparent 72%); }
+@media(prefers-reduced-motion:reduce) { .gate-reveal { display:none; } }

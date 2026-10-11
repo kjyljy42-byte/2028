@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import GateReveal from "./GateReveal.jsx";
 import { wedding } from "../data/wedding.js";
 const KEY = "wedding-invitation-opened";
 export function hasOpened() {
@@ -69,7 +70,7 @@ export default function Opening({ onOpen }) {
       /* Storage is optional. */
     }
     setLeaving(true);
-    transition.current = setTimeout(onOpen, reduced ? 150 : 900);
+    transition.current = setTimeout(onOpen, reduced ? 150 : 3200);
   }
   async function toggleSound() {
     const next = !muted;
@@ -103,6 +104,8 @@ export default function Opening({ onOpen }) {
       <h1 id="opening-title" className="sr-only">
         Свадебное приглашение — {wedding.names}
       </h1>
+      <img src={wedding.images.terrace} alt="" hidden />
+      {leaving && !reduced && <GateReveal />}
       <div className="film-stage">
         {reduced || failed ? (
           <img

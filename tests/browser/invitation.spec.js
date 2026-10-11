@@ -31,6 +31,10 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   await expect(page.locator(".star-talisman, .invitation-star")).toHaveCount(0);
   await expect(page.locator(".star-monogram-reveal")).toHaveCSS("opacity", "1");
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
+  await expect(page.locator(".gate-reveal")).toBeVisible();
+  await expect(page.locator(".gate-leaf")).toHaveCount(2);
+  await expect(page.locator(".gate-left")).toHaveCSS("animation-name", "iron-left");
+  await expect(page.locator(".gate-right")).toHaveCSS("animation-name", "iron-right");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("[data-section]")).toHaveCount(13);
   await expect(page.locator("#invitation")).toBeFocused();
