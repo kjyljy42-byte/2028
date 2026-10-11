@@ -2379,3 +2379,123 @@ html[data-opening="true"] body {
     animation: none !important;
   }
 }
+/* Illuminated, intertwined initials lifted above the bottom of the screen. */
+.star-arrival {
+  bottom: clamp(64px, 12vh, 140px);
+  padding: 35px 20px 24px;
+  background: none;
+}
+.star-invitation {
+  gap: 9px;
+  padding: 10px 28px 14px;
+  min-height: 185px;
+  text-shadow: 0 2px 9px #05111f;
+}
+.star-monogram-reveal {
+  position: relative;
+  display: block;
+  width: 148px;
+  height: 106px;
+  font-family: var(--display);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  line-height: 1;
+  color: #f5d7a0;
+  filter: drop-shadow(0 0 9px #dfb76733);
+  text-shadow: 0 1px 6px #05111f;
+  animation: meteorLettering 1.3s 2s both;
+}
+.monogram-v,
+.monogram-y {
+  position: absolute;
+  font-size: 88px;
+  line-height: 1;
+  color: #f5d7a0;
+}
+.monogram-v {
+  top: -8px;
+  left: 17px;
+}
+.monogram-y {
+  top: 16px;
+  right: 6px;
+}
+.monogram-amp {
+  position: absolute;
+  top: 40px;
+  left: 62px;
+  z-index: 1;
+  font-size: 25px;
+  color: #fff0cd;
+  text-shadow: 0 1px 5px #06121f;
+}
+.monogram-rule {
+  display: block;
+  width: 160px;
+  height: 24px;
+  color: #d9bd87;
+  filter: drop-shadow(0 1px 3px #04101f);
+  animation: meteorLettering 1.2s 2.2s both;
+}
+.star-caption {
+  font-family: var(--display);
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: 1.1px;
+  line-height: 1.25;
+  color: #fff1dc;
+  text-shadow:
+    0 2px 8px #03101c,
+    0 0 18px #071626;
+  animation: meteorLettering 1.3s 2.5s both;
+}
+.star-invitation:hover .star-monogram-reveal {
+  filter: drop-shadow(0 0 13px #e9c88566);
+  transition: filter 0.5s;
+}
+@media (max-height: 650px) {
+  .star-arrival {
+    bottom: clamp(42px, 10vh, 70px);
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .star-invitation {
+    min-height: 158px;
+    gap: 6px;
+  }
+  .star-monogram-reveal {
+    width: 126px;
+    height: 87px;
+  }
+  .monogram-v,
+  .monogram-y {
+    font-size: 74px;
+  }
+  .monogram-v {
+    left: 12px;
+    top: -4px;
+  }
+  .monogram-y {
+    right: 3px;
+    top: 12px;
+  }
+  .monogram-amp {
+    left: 51px;
+    top: 34px;
+    font-size: 21px;
+  }
+  .monogram-rule {
+    width: 138px;
+    height: 20px;
+  }
+  .star-caption {
+    font-size: 25px;
+    letter-spacing: 0.7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .monogram-rule {
+    animation: none !important;
+  }
+}

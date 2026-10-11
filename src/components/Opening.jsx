@@ -142,8 +142,22 @@ export default function Opening({ onOpen }) {
               disabled={leaving}
             >
               <span className="star-monogram-reveal" aria-hidden="true">
-                В &amp; Ю
+                <span className="monogram-v">В</span>
+                <span className="monogram-amp">&amp;</span>
+                <span className="monogram-y">Ю</span>
               </span>
+              <svg
+                className="monogram-rule"
+                viewBox="0 0 180 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9 12h61m40 0h61M70 12q-15-15-25-2m65 2q15-15 25-2m-45-7 9 9-9 9-9-9Z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth=".8"
+                />
+              </svg>
               <span className="star-caption">Открыть приглашение</span>
             </button>
             {failed && (

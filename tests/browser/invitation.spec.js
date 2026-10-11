@@ -196,7 +196,8 @@ test("full-screen portrait film, accessible star and reduced motion", async ({
           .evaluate((img) => getComputedStyle(img).objectFit),
       ).toBe("cover");
       const button = await page.locator(".star-invitation").boundingBox();
-      expect(button.y).toBeGreaterThan(height * 0.65);
+      expect(button.y).toBeGreaterThan(height * 0.4);
+      expect(button.y + button.height).toBeLessThan(height * 0.9);
       expect(button.y + button.height).toBeLessThanOrEqual(height);
     }
     expect(
