@@ -2614,8 +2614,8 @@ html[data-opening="true"] body {
 .hero .eyebrow { font-size:16px; color:#f3e8ce; letter-spacing:.22em; }
 .hero .hero-subtitle { font-size:clamp(27px,4vw,34px); color:#f5e9d1; }
 .chapter { font-size:12px; line-height:1.5; color:#e0c895; letter-spacing:1.8px; }
-.hero .scroll-link { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; font:500 26px/1.3 var(--display); letter-spacing:.03em; min-height:72px; color:#ffedc3; padding:10px 16px; }
-.hero .scroll-link span { font-size:36px; line-height:1; color:#edd397; }
+.hero .scroll-link { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; font:500 19px/1.3 var(--display); letter-spacing:.03em; min-height:52px; color:#ffedc3; padding:10px 16px; }
+.hero .scroll-link span { font-size:25px; line-height:1; color:#edd397; }
 .hero .seal { filter:saturate(.65) sepia(.2); border-radius:46% 52% 44% 51%; background:radial-gradient(ellipse at 30% 22%,#7a3a35 0%,#5a2427 42%,#301519 100%); box-shadow:inset 0 0 0 5px #512325,inset 0 0 0 7px #99615255,inset 4px 5px 10px #db998d25,inset -5px -7px 14px #16070acc,0 6px 12px #02050a88; color:#ba8070; text-shadow:1px 1px 1px #210b0d,-1px -1px 0 #bd8a7766; }
 @media(max-width:760px) {
   .manuscript-section .section-inner { padding-left:10px; padding-right:10px; }
