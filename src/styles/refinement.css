@@ -71,3 +71,16 @@ body:before { opacity:.035; }
   .site-footer { padding:26px 20px; }
 }
 @media(prefers-reduced-motion:reduce) { .scroll-reveal .section-inner { opacity:1; transition:none; } }
+/* Upright lining figures give the date an even, ceremonial rhythm. */
+.video-dragon .guarded-date strong {
+  font-family:var(--display); font-style:normal; font-weight:600;
+  font-size:clamp(54px,16.5vw,96px); line-height:1.08;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+  letter-spacing:.025em; color:#ffe4ae;
+  text-shadow:0 1px 1px #7d5829,0 0 16px #d5ab5433,0 3px 6px #000b;
+}
+.video-dragon .guarded-date .wedding-hour {
+  font-style:normal; font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
