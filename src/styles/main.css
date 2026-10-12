@@ -2656,7 +2656,17 @@ html[data-opening="true"] body {
 .dragon-returning .dragon-return-film { opacity:1; }
 @keyframes dragon-depart { to { transform:translateX(calc(-100vw - 100%)); } }
 /* A gold threshold for the film movement, without shifting the video layer. */
-.dragon-portal { position:absolute; left:0; top:60px; bottom:20px; width:1px; background:linear-gradient(transparent,#8e7044 18%,#b18d51 50%,#8e7044 82%,transparent); opacity:.65; pointer-events:none; z-index:2; }
+.dragon-portal {
+  position:absolute; left:0; top:44px; bottom:20px; width:2px;
+  background:linear-gradient(transparent 0%,#c89b4f 6%,#ffe4a0 45%,#e7be6d 80%,transparent 100%);
+  box-shadow:0 0 5px #edbd6bc9,0 0 13px #d99d4566;
+  opacity:1; pointer-events:none; z-index:2;
+}
+.dragon-portal:before {
+  content:""; position:absolute; inset:0 -7px;
+  background:linear-gradient(transparent,#e3ad4c33 15%,#e3ad4c44 50%,#e3ad4c33 85%,transparent);
+  filter:blur(4px);
+}
 .video-dragon .dragon-guardian { overflow:hidden; animation:none; }
 .dragon-playing .dragon-film-fading { opacity:0; transition:opacity .2s ease; }
 .dragon-settled-idle { opacity:0; }
