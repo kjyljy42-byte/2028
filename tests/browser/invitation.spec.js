@@ -287,7 +287,7 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
   expect(await page.locator("html").getAttribute("data-opening")).toBeNull();
   expect(
     await page.locator('meta[name="theme-color"]').getAttribute("content"),
-  ).toBe("#282d24");
+  ).toBe("#071226");
   await expect(page.locator("#hero")).toBeVisible();
   await context.close();
 });

@@ -20,6 +20,9 @@ export default function Opening({ onOpen, onBeginOpen }) {
   const [failed, setFailed] = useState(false);
   const video = useRef(null);
   const transition = useRef(null);
+  const backgroundReady = useRef(null);
+  const requested = useRef(false);
+  const [preparing, setPreparing] = useState(false);
   const monogram = useRef(null);
   const letteringTimed = useRef(false);
   useLayoutEffect(() => {
@@ -69,6 +72,7 @@ export default function Opening({ onOpen, onBeginOpen }) {
     [wedding.images.background, wedding.images.gate].forEach(src => {
       const image = new Image();
       image.src = src;
+      if (src === wedding.images.background) backgroundReady.current = image.decode().catch(() => {});
     });
   }, [ready]);
   useLayoutEffect(() => {
@@ -80,8 +84,16 @@ export default function Opening({ onOpen, onBeginOpen }) {
     stage.style.setProperty("--meteor-travel-x", `${(box.left + box.width / 2 - window.innerWidth * .75) / progress}px`);
     letteringTimed.current = true;
   }, [meteor, ready, reduced]);
-  function open() {
-    if (leaving) return;
+  async function open() {
+    if (requested.current) return;
+    requested.current = true;
+    setPreparing(true);
+    if (!backgroundReady.current) {
+      const background = new Image();
+      background.src = wedding.images.background;
+      backgroundReady.current = background.decode().catch(() => {});
+    }
+    await backgroundReady.current;
     video.current?.pause();
     try {
       sessionStorage.setItem(KEY, "yes");
@@ -165,7 +177,7 @@ export default function Opening({ onOpen, onBeginOpen }) {
             <button
               className="star-invitation"
               onClick={open}
-              disabled={leaving || !ready}
+              disabled={leaving || preparing || !ready}
               style={{ visibility: ready ? "visible" : "hidden" }}
             >
               <span ref={monogram} className="star-monogram-reveal" aria-hidden="true">

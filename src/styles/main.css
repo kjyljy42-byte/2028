@@ -2812,3 +2812,4 @@ html[data-opening="true"] body {
 .video-dragon { min-height:460px; }
 .dragon-return-layer { top:95px; }
 .hero-frame { justify-content:flex-start; }
+html:not([data-opening="true"]),html:not([data-opening="true"]) body { background:#071226; }

@@ -9,7 +9,6 @@ export default function DragonDate() {
   const idleVideo = useRef(null);
   const settledIdle = useRef(null);
   const [settledReady, setSettledReady] = useState(false);
-  const [fading, setFading] = useState(false);
   const date = useRef(null);
   const timer = useRef(null);
   const revealed = phase === "returning" || phase === "settled";
@@ -74,7 +73,7 @@ export default function DragonDate() {
       {!revealed && <button type="button" className="dragon-guardian" onClick={reveal} disabled={phase !== "idle"} aria-expanded="false" aria-controls="guarded-date" aria-label="Попросить дракона открыть дату свадьбы">
         <img className="dragon-resting" src={wedding.dragon.poster} alt="" />
         <AlphaMovie ref={idleVideo} className={`dragon-idle-film ${idleReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setIdleReady(true)} onError={() => setIdleReady(false)} aria-hidden="true" />
-        <AlphaMovie ref={video} className={`dragon-film ${fading ? "dragon-film-fading" : ""}`} src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onTimeUpdate={(event) => { const node = event.currentTarget; if (phase === "playing" && node.duration - node.currentTime <= .25) setFading(true); }} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
+        <AlphaMovie ref={video} className="dragon-film" data-tail-fade="true" src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
       </button>}
       <div className="dragon-return-layer" aria-hidden="true">
         <AlphaMovie ref={returning} className="dragon-return-film" poster={wedding.dragon.settledPoster} src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />

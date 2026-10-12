@@ -15,7 +15,8 @@ const AlphaMovie = forwardRef(function AlphaMovie(props, forwardedRef) {
       const width = source.videoWidth || source.naturalWidth;
       const height = source.videoHeight || source.naturalHeight;
       if (!width || !height) return;
-      renderer.draw(source,640,Math.round(640 * height / width));
+      const resolution = Math.min(width, renderer.resolution);
+      renderer.draw(source,resolution,Math.round(resolution * height / width));
     }
     function tick() {
       draw(film);
