@@ -2672,7 +2672,8 @@ html[data-opening="true"] body {
 .dragon-settled-idle { opacity:0; }
 .dragon-settled-idle.is-playing { opacity:1; }
 @media(prefers-reduced-motion:reduce) { .dragon-settled-idle.is-playing { opacity:0; } }
-.video-dragon .dragon-guardian,.dragon-return-layer { clip-path:inset(0 0 0 17px); }
+.video-dragon .dragon-guardian { clip-path:inset(0 0 0 17px); }
+.dragon-return-layer { clip-path:none; }
 
 /* Keep the arrival's last frame visible until the resting film is ready. */
 .dragon-settled .dragon-return-film { opacity:1; }
