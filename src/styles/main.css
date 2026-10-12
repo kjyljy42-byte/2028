@@ -2803,3 +2803,12 @@ html[data-opening="true"] body {
 .dragon-contour-prompt svg { width:100%; height:100%; overflow:visible; }
 .dragon-contour-prompt text { fill:#ffe0a1; font:500 24px var(--display); letter-spacing:.25px; paint-order:stroke; stroke:#081322; stroke-width:2px; stroke-linejoin:round; }
 .dragon-contour-prompt:hover { background:none; border:0; filter:drop-shadow(0 0 5px #d5ad6655); }
+/* A quiet invitation button beneath the guardian; less empty space below it. */
+.video-dragon { min-height:445px; }
+.dragon-below-prompt { top:295px; width:min(100%,310px); min-height:66px; padding:8px 14px; display:flex; align-items:center; justify-content:center; gap:14px; font:500 21px/1.25 var(--display); border:1px solid #c5a469aa; border-radius:2px; background:linear-gradient(90deg,transparent,#0b16294d,transparent); box-shadow:inset 0 0 0 3px #08122155,0 0 12px #b9914222; }
+.dragon-button-ornament { font-size:20px; color:#c5a469; }
+.hero .wax-seal { margin-top:0; margin-bottom:0; }
+.hero .scroll-link { padding-top:2px; }
+.video-dragon { min-height:460px; }
+.dragon-return-layer { top:95px; }
+.hero-frame { justify-content:flex-start; }

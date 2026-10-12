@@ -1,8 +1,7 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AlphaMovie from "./AlphaMovie.jsx";
 import { wedding } from "../data/wedding.js";
 export default function DragonDate() {
-  const contour = useId();
   const [phase, setPhase] = useState("idle");
   const [idleReady, setIdleReady] = useState(false);
   const video = useRef(null);
@@ -81,11 +80,10 @@ export default function DragonDate() {
         <AlphaMovie ref={returning} className="dragon-return-film" poster={wedding.dragon.settledPoster} src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
         <AlphaMovie ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
       </div>
-      {phase === "idle" && <button type="button" className="dragon-tap-prompt dragon-contour-prompt" onClick={reveal} aria-controls="guarded-date" aria-label="Нажми на дракона, чтобы узнать дату">
-        <svg viewBox="0 0 480 150" aria-hidden="true">
-          <defs><path id={contour} d="M14 130 C54 5 205 5 285 44 S404 82 465 138" /></defs>
-          <text><textPath href={`#${contour}`} startOffset="50%" textAnchor="middle">Нажми на дракона, чтобы узнать дату</textPath></text>
-        </svg>
+      {phase === "idle" && <button type="button" className="dragon-tap-prompt dragon-below-prompt" onClick={reveal} aria-controls="guarded-date">
+        <span aria-hidden="true" className="dragon-button-ornament">✧</span>
+        <span>Нажми на дракона,<br />чтобы узнать дату</span>
+        <span aria-hidden="true" className="dragon-button-ornament">✧</span>
       </button>}
       {(phase === "playing" || phase === "exiting") && <p className="sr-only" role="status">Дракон открывает дату приглашения.</p>}
     </div>
