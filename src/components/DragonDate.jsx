@@ -73,7 +73,7 @@ export default function DragonDate() {
       {!revealed && <button type="button" className="dragon-guardian" onClick={reveal} disabled={phase !== "idle"} aria-expanded="false" aria-controls="guarded-date" aria-label="Попросить дракона открыть дату свадьбы">
         <img className="dragon-resting" src={wedding.dragon.poster} alt="" />
         <AlphaMovie ref={idleVideo} className={`dragon-idle-film ${idleReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setIdleReady(true)} onError={() => setIdleReady(false)} aria-hidden="true" />
-        <AlphaMovie ref={video} className="dragon-film" data-tail-fade="true" src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
+        <AlphaMovie ref={video} className="dragon-film" data-tail-fade="true" onLoadedMetadata={(event) => { event.currentTarget.closest("button")?.style.setProperty("--departure-duration", `${event.currentTarget.duration}s`); }} src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
       </button>}
       <div className="dragon-return-layer" aria-hidden="true">
         <AlphaMovie ref={returning} className="dragon-return-film" src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />

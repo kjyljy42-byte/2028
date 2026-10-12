@@ -277,7 +277,7 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
     expect(result.top).toBe(0);
     expect(result.bottom).toBeGreaterThanOrEqual(result.height);
     expect(result.root).toBe("rgb(16, 26, 40)");
-    expect(result.body).toBe("rgb(16, 26, 40)");
+    expect(result.body).toBe("rgba(0, 0, 0, 0)");
     expect(result.scroll).toBeLessThanOrEqual(result.height);
     expect(result.theme).toBe("#101a28");
   }
@@ -322,7 +322,7 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator(".journey-layer")).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
 
-  await expect(page.locator(".celestial-stars i").first()).toHaveCSS("animation-name", "none");
+  await expect(page.locator(".celestial-stars")).toHaveCount(0);
 });
 
 test("reduced motion reveals dragon date immediately without playing video", async ({ page }) => {

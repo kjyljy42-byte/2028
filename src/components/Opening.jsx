@@ -31,8 +31,10 @@ export default function Opening({ onOpen, onBeginOpen }) {
     const theme = document.querySelector('meta[name="theme-color"]');
     const previousTheme = theme?.getAttribute("content");
     root.setAttribute("data-opening", "true");
+    root.style.setProperty("--opening-poster", `url("${wedding.opening.poster}")`);
     theme?.setAttribute("content", "#101a28");
     return () => {
+      root.style.removeProperty("--opening-poster");
       if (previous === null) root.removeAttribute("data-opening");
       else root.setAttribute("data-opening", previous);
       if (previousTheme !== null && previousTheme !== undefined)
@@ -78,8 +80,9 @@ export default function Opening({ onOpen, onBeginOpen }) {
   useLayoutEffect(() => {
     if (!monogram.current || letteringTimed.current || reduced) return;
     const box = monogram.current.getBoundingClientRect();
-    const progress = (box.top + box.height / 2 + window.innerHeight * .08) / (window.innerHeight * 1.2);
     const stage = monogram.current.closest(".opening");
+    const skyHeight = stage.getBoundingClientRect().height;
+    const progress = (box.top + box.height / 2 + skyHeight * .08) / (skyHeight * 1.2);
     stage.style.setProperty("--lettering-delay", `${Math.max(0, progress * 2.8)}s`);
     stage.style.setProperty("--meteor-travel-x", `${(box.left + box.width / 2 - window.innerWidth * .75) / progress}px`);
     letteringTimed.current = true;

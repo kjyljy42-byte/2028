@@ -2818,3 +2818,15 @@ html:not([data-opening="true"]),html:not([data-opening="true"]) body { backgroun
 .invitation-content { position:relative; z-index:1; }
 @media(prefers-reduced-motion:reduce) { .dragon-settled .alpha-canvas.dragon-settled-idle { opacity:1; } }
 html,body { overscroll-behavior-y:none; }
+/* Stable imagery also covers Safari safe areas and browser-bar resizing. */
+.journey-world { inset:0 0 auto; height:100lvh; min-height:100dvh; }
+html:not([data-opening="true"]) { background-image:var(--invitation-background); background-size:cover; background-position:center; background-attachment:fixed; }
+html:not([data-opening="true"]) body { background:transparent; }
+html[data-opening="true"] { background-image:var(--opening-poster); background-size:cover; background-position:50% 46%; background-attachment:fixed; }
+html[data-opening="true"] body { background:transparent; }
+.opening-video { height:100lvh; min-height:100dvh; }
+.hero .dragon-date-heading { z-index:0; }
+.video-dragon .dragon-guardian,.dragon-return-layer { z-index:2; }
+.dragon-playing .dragon-guardian { animation:dragon-screen-exit var(--departure-duration,5.05s) ease-in-out forwards; }
+@keyframes dragon-screen-exit { 0%,65% { transform:translateX(-50%); } 100% { transform:translateX(calc(-50% - 100vw - 100%)); } }
+@media(prefers-reduced-motion:reduce) { .dragon-playing .dragon-guardian { animation:none; } }
