@@ -2657,7 +2657,7 @@ html[data-opening="true"] body {
 @keyframes dragon-depart { to { transform:translateX(calc(-100vw - 100%)); } }
 /* A gold threshold for the film movement, without shifting the video layer. */
 .dragon-portal {
-  position:absolute; left:7px; top:44px; bottom:20px; width:2px;
+  position:absolute; left:15px; top:44px; bottom:20px; width:2px;
   background:linear-gradient(transparent 0%,#c89b4f 6%,#ffe4a0 45%,#e7be6d 80%,transparent 100%);
   box-shadow:0 0 5px #edbd6bc9,0 0 13px #d99d4566;
   opacity:1; pointer-events:none; z-index:2;
@@ -2672,4 +2672,4 @@ html[data-opening="true"] body {
 .dragon-settled-idle { opacity:0; }
 .dragon-settled-idle.is-playing { opacity:1; }
 @media(prefers-reduced-motion:reduce) { .dragon-settled-idle.is-playing { opacity:0; } }
-.video-dragon .dragon-guardian,.dragon-return-layer { clip-path:inset(0 0 0 7px); }
+.video-dragon .dragon-guardian,.dragon-return-layer { clip-path:inset(0 0 0 15px); }
