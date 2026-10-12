@@ -2777,3 +2777,8 @@ html[data-opening="true"] body {
   .dragon-tap-prompt { top:210px; min-height:58px; font-size:19px; }
   .hero .wax-seal { width:62px; height:62px; }
 }
+/* Restore the large dragon while keeping the compact invitation typography. */
+.video-dragon { min-height:675px; }
+.video-dragon .dragon-guardian { top:45px; height:450px; }
+.dragon-return-layer { top:180px; height:450px; }
+.dragon-tap-prompt { top:495px; }
