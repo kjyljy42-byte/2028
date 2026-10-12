@@ -2723,3 +2723,9 @@ html[data-opening="true"] body {
   .calendar-date span { font-size:14px; }
 }
 @media(prefers-reduced-motion:reduce) { .celestial-reading-shade { transition:none; } }
+/* Trim only empty film margins and optically center the resting dragon. */
+.video-dragon { width:min(520px,100%); }
+.dragon-resting,.dragon-film,.dragon-idle-film,
+.dragon-return-layer video,.dragon-return-layer img { transform:translateX(10%); }
+.video-dragon .dragon-guardian { left:-20px; right:-20px; width:calc(100% + 40px); }
+.dragon-return-layer { left:-20px; right:-20px; }
