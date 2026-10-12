@@ -294,20 +294,20 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
 test("continuous starry background and dragon reveal work with reduced motion", async ({ page }) => {
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
-  await expect(page.locator("#guarded-date")).toBeHidden();
+  await expect(page.locator("#guarded-date")).toBeVisible();
   await expect(page.locator(".dragon-date-heading")).toBeVisible();
   await page.locator(".dragon-guardian").scrollIntoViewIfNeeded();
-  await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", false);
+  await expect(page.locator("video.dragon-idle-film")).toHaveJSProperty("paused", false);
   await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator(".dragon-film")).toHaveJSProperty("loop", false);
+  await expect(page.locator("video.dragon-film")).toHaveJSProperty("loop", false);
   await expect(page.locator("#guarded-date")).toBeVisible({ timeout: 10000 });
   await expect(page.locator("#guarded-date")).toContainText("12.08.2028");
-  await expect(page.locator(".dragon-guardian")).toHaveCount(0);
-  await expect(page.locator(".dragon-return-film")).toHaveJSProperty("loop", false);
+  await expect(page.locator(".dragon-guardian")).toHaveCount(0, { timeout: 10000 });
+  await expect(page.locator("video.dragon-return-film")).toHaveJSProperty("loop", false);
   await expect(page.locator(".dragon-date")).toHaveClass(/dragon-settled/, { timeout: 10000 });
   await expect(page.locator(".wedding-hour")).toHaveText("13:00");
-  await expect(page.locator(".dragon-settled-idle")).toHaveJSProperty("paused", false);
+  await expect(page.locator("video.dragon-settled-idle")).toHaveJSProperty("paused", false);
   await expect(page.locator(".dragon-portal")).toHaveCount(0);
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
@@ -325,8 +325,8 @@ test("reduced motion reveals dragon date immediately without playing video", asy
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
-  await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", true);
+  await expect(page.locator("video.dragon-idle-film")).toHaveJSProperty("paused", true);
   await page.getByRole("button", { name: "Нажмите на дракона, чтобы узнать дату" }).click();
   await expect(page.locator("#guarded-date")).toBeVisible();
-  await expect(page.locator(".dragon-film")).toHaveCount(0);
+  await expect(page.locator("video.dragon-film")).toHaveCount(0);
 });

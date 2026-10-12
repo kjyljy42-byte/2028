@@ -2782,3 +2782,19 @@ html[data-opening="true"] body {
 .video-dragon .dragon-guardian { top:45px; height:450px; }
 .dragon-return-layer { top:180px; height:450px; }
 .dragon-tap-prompt { top:495px; }
+/* The wedding date is always printed behind the guardian. */
+.video-dragon { min-height:505px; }
+.video-dragon .guarded-date { top:125px; z-index:0; animation:none; }
+.video-dragon .guarded-date strong { font-size:clamp(55px,14vw,82px); line-height:1.05; }
+.video-dragon .guarded-date .wedding-hour { font-size:34px; }
+.video-dragon .dragon-guardian { top:-70px; height:450px; z-index:1; }
+.dragon-return-layer { top:115px; height:450px; z-index:1; }
+.dragon-tap-prompt { top:365px; z-index:2; }
+.hero .dragon-date-heading { position:relative; z-index:2; }
+.video-dragon .dragon-guardian,.dragon-return-layer { mix-blend-mode:normal; }
+.video-dragon video { opacity:0!important; }
+.dragon-resting { display:none; }
+.alpha-canvas { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.dragon-idle .alpha-canvas.dragon-idle-film { opacity:1; }
+@media(prefers-reduced-motion:reduce) { .dragon-idle .alpha-canvas.dragon-idle-film { opacity:1; } }
+.dragon-return-layer .alpha-canvas { transform:translateX(10%); }
