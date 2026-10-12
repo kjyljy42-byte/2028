@@ -257,6 +257,7 @@ test("iPhone 16 Pro opening covers changing browser viewport and restores parchm
   });
   const page = await context.newPage();
   await page.goto("/");
+  await expect(page.getByRole("dialog")).toBeVisible();
   for (const height of [874, 740, 670, 874]) {
     await page.setViewportSize({ width: 402, height });
     const result = await page.evaluate(() => {
@@ -326,7 +327,7 @@ test("reduced motion reveals dragon date immediately without playing video", asy
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
   await expect(page.locator("video.dragon-idle-film")).toHaveJSProperty("paused", true);
-  await page.getByRole("button", { name: "Нажмите на дракона, чтобы узнать дату" }).click();
+  await page.getByRole("button", { name: "Нажми на дракона, чтобы узнать дату" }).click();
   await expect(page.locator("#guarded-date")).toBeVisible();
   await expect(page.locator("video.dragon-film")).toHaveCount(0);
 });

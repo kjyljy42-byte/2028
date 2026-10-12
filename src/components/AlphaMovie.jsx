@@ -1,3 +1,4 @@
+import { createDragonRenderer } from "../utils/dragonRenderer.js";
 import { forwardRef, useEffect, useRef } from "react";
 // Composite black-backed footage with real alpha, so foreground scales cover the date.
 const AlphaMovie = forwardRef(function AlphaMovie(props, forwardedRef) {
@@ -6,27 +7,15 @@ const AlphaMovie = forwardRef(function AlphaMovie(props, forwardedRef) {
   useEffect(() => {
     const film = node.current;
     const surface = canvas.current;
-    const context = surface.getContext("2d", { willReadFrequently: true });
+    const renderer = createDragonRenderer(surface);
     let frame;
     let stopped = false;
     function draw(source) {
-      if (stopped || !context) return;
+      if (stopped) return;
       const width = source.videoWidth || source.naturalWidth;
       const height = source.videoHeight || source.naturalHeight;
       if (!width || !height) return;
-      const targetHeight = Math.round(640 * height / width);
-      if (surface.width !== 640 || surface.height !== targetHeight) {
-        surface.width = 640;
-        surface.height = targetHeight;
-      }
-      context.drawImage(source, 0, 0, surface.width, surface.height);
-      const pixels = context.getImageData(0, 0, surface.width, surface.height);
-      const data = pixels.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const value = Math.max(data[i], data[i + 1], data[i + 2]);
-        data[i + 3] = value < 28 ? 0 : value < 70 ? Math.round((value - 28) * 255 / 42) : 255;
-      }
-      context.putImageData(pixels, 0, 0);
+      renderer.draw(source,640,Math.round(640 * height / width));
     }
     function tick() {
       draw(film);
@@ -54,6 +43,7 @@ const AlphaMovie = forwardRef(function AlphaMovie(props, forwardedRef) {
     return () => {
       stopped = true;
       cancel();
+      renderer.dispose();
       film.removeEventListener("loadeddata", loaded);
       film.removeEventListener("playing", start);
       film.removeEventListener("pause", cancel);

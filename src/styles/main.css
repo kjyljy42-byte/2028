@@ -2798,3 +2798,8 @@ html[data-opening="true"] body {
 .dragon-idle .alpha-canvas.dragon-idle-film { opacity:1; }
 @media(prefers-reduced-motion:reduce) { .dragon-idle .alpha-canvas.dragon-idle-film { opacity:1; } }
 .dragon-return-layer .alpha-canvas { transform:translateX(10%); }
+/* A gilded inscription follows the dragon's horn and upper wing. */
+.dragon-contour-prompt { top:30px; width:calc(100% + 30px); max-width:540px; height:125px; min-height:44px; padding:0; border:0; box-shadow:none; background:none; }
+.dragon-contour-prompt svg { width:100%; height:100%; overflow:visible; }
+.dragon-contour-prompt text { fill:#ffe0a1; font:500 24px var(--display); letter-spacing:.25px; paint-order:stroke; stroke:#081322; stroke-width:2px; stroke-linejoin:round; }
+.dragon-contour-prompt:hover { background:none; border:0; filter:drop-shadow(0 0 5px #d5ad6655); }
