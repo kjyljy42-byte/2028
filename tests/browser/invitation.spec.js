@@ -326,7 +326,7 @@ test("reduced motion reveals dragon date immediately without playing video", asy
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
   await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", true);
-  await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).click();
+  await page.getByRole("button", { name: "Нажмите на дракона, чтобы узнать дату" }).click();
   await expect(page.locator("#guarded-date")).toBeVisible();
   await expect(page.locator(".dragon-film")).toHaveCount(0);
 });

@@ -80,7 +80,10 @@ export default function DragonDate() {
         <video ref={returning} className="dragon-return-film" poster={wedding.dragon.settledPoster} src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
         <video ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
       </div>
-      {phase === "idle" && <p className="dragon-hint"><span>Коснитесь дракона — он откроет дату.</span></p>}
+      {phase === "idle" && <button type="button" className="dragon-tap-prompt" onClick={reveal} aria-controls="guarded-date">
+        <span className="dragon-tap-arrow" aria-hidden="true">↑</span>
+        <span>Нажмите на дракона,<br />чтобы узнать дату</span>
+      </button>}
       {(phase === "playing" || phase === "exiting") && <p className="sr-only" role="status">Дракон открывает дату приглашения.</p>}
     </div>
   );
