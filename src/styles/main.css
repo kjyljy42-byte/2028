@@ -2641,3 +2641,17 @@ html[data-opening="true"] body {
 .dragon-idle-film { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none; opacity:0; }
 .dragon-idle .dragon-idle-film.is-playing { opacity:1; }
 @media(prefers-reduced-motion:reduce) { .dragon-idle .dragon-idle-film { opacity:0; } }
+/* A visible wedding heading, then an arrival beneath the revealed date. */
+.hero { overflow:clip; }
+.video-dragon { min-height:415px; overflow:visible; }
+.hero .dragon-date-heading { font:500 clamp(29px,6vw,37px)/1.25 var(--display); color:#fff0cf; margin:0; text-shadow:0 2px 8px #020712; }
+.video-dragon .guarded-date { top:65px; inset-inline:0; animation:date-ink 1.2s ease both; }
+.video-dragon .guarded-date strong { font:500 clamp(42px,10vw,62px)/1.15 var(--display); letter-spacing:.025em; color:#fff2d2; text-shadow:0 0 16px #d6b77355,0 2px 5px #000; }
+.video-dragon .guarded-date .wedding-hour { font:500 34px/1.3 var(--display); color:#f7dfb3; margin-top:9px; letter-spacing:.08em; }
+.video-dragon .dragon-guardian { position:absolute; top:60px; left:0; right:0; }
+.video-dragon .dragon-hint { position:absolute; top:305px; left:0; right:0; }
+.dragon-return-layer { position:absolute; top:180px; left:0; right:0; height:225px; mix-blend-mode:screen; pointer-events:none; }
+.dragon-return-layer video,.dragon-return-layer img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.dragon-return-film { opacity:0; }
+.dragon-returning .dragon-return-film { opacity:1; }
+@keyframes dragon-depart { to { transform:translateX(calc(-100vw - 100%)); } }

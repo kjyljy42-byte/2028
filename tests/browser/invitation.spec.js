@@ -295,6 +295,7 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await page.addInitScript(() => sessionStorage.setItem("wedding-invitation-opened", "yes"));
   await page.goto("/");
   await expect(page.locator("#guarded-date")).toBeHidden();
+  await expect(page.locator(".dragon-date-heading")).toBeVisible();
   await page.locator(".dragon-guardian").scrollIntoViewIfNeeded();
   await expect(page.locator(".dragon-idle-film")).toHaveJSProperty("paused", false);
   await page.getByRole("button", { name: "Попросить дракона открыть дату свадьбы" }).focus();
@@ -303,6 +304,9 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator("#guarded-date")).toBeVisible({ timeout: 10000 });
   await expect(page.locator("#guarded-date")).toContainText("12.08.2028");
   await expect(page.locator(".dragon-guardian")).toHaveCount(0);
+  await expect(page.locator(".dragon-return-film")).toHaveJSProperty("loop", false);
+  await expect(page.locator(".dragon-date")).toHaveClass(/dragon-settled/, { timeout: 10000 });
+  await expect(page.locator(".wedding-hour")).toHaveText("13:00");
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await page.locator("#food").scrollIntoViewIfNeeded();
