@@ -2655,3 +2655,10 @@ html[data-opening="true"] body {
 .dragon-return-film { opacity:0; }
 .dragon-returning .dragon-return-film { opacity:1; }
 @keyframes dragon-depart { to { transform:translateX(calc(-100vw - 100%)); } }
+/* A gold threshold for the film movement, without shifting the video layer. */
+.dragon-portal { position:absolute; left:0; top:60px; bottom:20px; width:1px; background:linear-gradient(transparent,#8e7044 18%,#b18d51 50%,#8e7044 82%,transparent); opacity:.65; pointer-events:none; z-index:2; }
+.video-dragon .dragon-guardian { overflow:hidden; animation:none; }
+.dragon-playing .dragon-film-fading { opacity:0; transition:opacity .2s ease; }
+.dragon-settled-idle { opacity:0; }
+.dragon-settled-idle.is-playing { opacity:1; }
+@media(prefers-reduced-motion:reduce) { .dragon-settled-idle.is-playing { opacity:0; } }

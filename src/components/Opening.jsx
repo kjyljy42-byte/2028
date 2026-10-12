@@ -13,6 +13,7 @@ export default function Opening({ onOpen, onBeginOpen }) {
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
   const [ready, setReady] = useState(reduced);
+  const [meteor, setMeteor] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [muted, setMuted] = useState(true);
   const [needsPlay, setNeedsPlay] = useState(false);
@@ -88,6 +89,7 @@ export default function Opening({ onOpen, onBeginOpen }) {
         if (video.current.ended) {
           video.current.currentTime = 0;
           setReady(false);
+          setMeteor(false);
         }
         await play();
       }
@@ -129,6 +131,10 @@ export default function Opening({ onOpen, onBeginOpen }) {
             playsInline
             preload="auto"
             aria-label="Ночной средневековый замок среди гор и тумана."
+            onTimeUpdate={(event) => {
+              const film = event.currentTarget;
+              if (Number.isFinite(film.duration) && film.duration - film.currentTime <= 1.2) setMeteor(true);
+            }}
             onEnded={() => {
               setReady(true);
               setNeedsPlay(false);
@@ -140,9 +146,9 @@ export default function Opening({ onOpen, onBeginOpen }) {
           />
         )}
       </div>
+      {(meteor || ready) && <span className="invitation-meteor" aria-hidden="true" />}
       {ready && (
         <>
-          <span className="invitation-meteor" aria-hidden="true" />
           <div className="star-arrival" aria-live="polite">
             <button
               className="star-invitation"

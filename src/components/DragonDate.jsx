@@ -6,6 +6,9 @@ export default function DragonDate() {
   const video = useRef(null);
   const returning = useRef(null);
   const idleVideo = useRef(null);
+  const settledIdle = useRef(null);
+  const [settledReady, setSettledReady] = useState(false);
+  const [fading, setFading] = useState(false);
   const date = useRef(null);
   const timer = useRef(null);
   const revealed = phase === "returning" || phase === "settled";
@@ -25,8 +28,7 @@ export default function DragonDate() {
   function exit() {
     clearTimeout(timer.current);
     video.current?.pause();
-    setPhase("exiting");
-    timer.current = setTimeout(returnDragon, 850);
+    returnDragon();
   }
   function reveal() {
     if (phase !== "idle") return;
@@ -37,14 +39,14 @@ export default function DragonDate() {
     video.current?.play().catch(finish);
   }
   useEffect(() => {
-    const node = idleVideo.current;
-    if (!node || phase !== "idle") return;
+    const node = phase === "settled" ? settledIdle.current : idleVideo.current;
+    if (!node || (phase !== "idle" && phase !== "settled")) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
     let active = true;
     function update() {
       if (visible && !preference.matches && !document.hidden) {
-        node.play().catch(() => { if (active) setIdleReady(false); });
+        node.play().catch(() => { if (active) (phase === "settled" ? setSettledReady : setIdleReady)(false); });
       } else node.pause();
     }
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
@@ -63,6 +65,7 @@ export default function DragonDate() {
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
     <div className={`dragon-date video-dragon dragon-${phase}`}>
+      <span className="dragon-portal" aria-hidden="true" />
       <p className="dragon-date-heading">День нашей свадьбы</p>
       <div ref={date} id="guarded-date" className="guarded-date" hidden={!revealed} role="status" tabIndex={-1}>
         <strong>{wedding.dateNumeric}</strong>
@@ -71,11 +74,14 @@ export default function DragonDate() {
       {!revealed && <button type="button" className="dragon-guardian" onClick={reveal} disabled={phase !== "idle"} aria-expanded="false" aria-controls="guarded-date" aria-label="Попросить дракона открыть дату свадьбы">
         <img className="dragon-resting" src={wedding.dragon.poster} alt="" />
         <video ref={idleVideo} className={`dragon-idle-film ${idleReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setIdleReady(true)} onError={() => setIdleReady(false)} aria-hidden="true" />
-        <video ref={video} className="dragon-film" src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
+        <video ref={video} className={`dragon-film ${fading ? "dragon-film-fading" : ""}`} src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onTimeUpdate={(event) => { const node = event.currentTarget; if (phase === "playing" && node.duration - node.currentTime <= .25) setFading(true); }} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
       </button>}
       <div className="dragon-return-layer" aria-hidden="true">
         <video ref={returning} className="dragon-return-film" src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
-        {phase === "settled" && <img src={wedding.dragon.settledPoster} alt="" />}
+        {phase === "settled" && <>
+          <img src={wedding.dragon.settledPoster} alt="" />
+          <video ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.settledPoster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
+        </>}
       </div>
       {phase === "idle" && <p className="dragon-hint"><span>Коснитесь дракона — он откроет дату.</span></p>}
       {(phase === "playing" || phase === "exiting") && <p className="sr-only" role="status">Дракон открывает дату приглашения.</p>}
