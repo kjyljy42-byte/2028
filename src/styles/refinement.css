@@ -1,0 +1,73 @@
+/* A single typographic and spacing system for the complete wedding chronicle. */
+:root { --reading-cream:#f2eadc; --heading-cream:#fae8c3; --aged-gold:#c9aa70; --night:#071226; }
+body { color:var(--reading-cream); }
+body:before { opacity:.035; }
+.sky-image { position:absolute; top:0; left:50%; transform:translateX(-50%); width:var(--sky-cover-width,100%); height:var(--sky-cover-height,100lvh); max-width:none; display:block; pointer-events:none; }
+.celestial-shade { background:radial-gradient(ellipse at 50% 42%,#050c194d,transparent 82%); }
+.hero-frame { border-color:#bda36c80; outline-color:#bda36c30; }
+.hero .eyebrow { font-size:12px; letter-spacing:.24em; color:#dbc695; }
+.hero .hero-subtitle { color:#efe1c8; font-weight:400; }
+.hero h1 { color:#fff0cf; font-weight:500; text-shadow:0 2px 9px #0006; }
+.hero .hero-and { color:#c9aa70; }
+.hero .divider .ornament { stroke:#c9aa70; }
+.hero .dragon-date-heading { color:#f3e5c9; font-weight:500; letter-spacing:.01em; }
+.dragon-below-prompt { color:#f6e2b9; border-color:#c9aa7080; background:linear-gradient(90deg,transparent,#08132266,transparent); box-shadow:none; font-size:21px; letter-spacing:.01em; }
+.dragon-below-prompt:hover { border-color:#eed29a; background:#ac874a0d; }
+.hero .scroll-link { color:#e6d1a7; letter-spacing:.10em; font-size:16px; }
+.manuscript-section { padding:58px 24px; box-shadow:none; }
+.manuscript-section .section-inner { width:100%; max-width:1080px; padding:28px 20px; margin:0 auto; }
+.manuscript-section .chapter { color:#cbb07c; font:400 11px/1.5 "PT Serif",Georgia,serif; letter-spacing:.18em; margin-bottom:15px; text-align:center; }
+.manuscript-section h2 { font:500 clamp(36px,3.7vw,49px)/1.14 var(--display); color:var(--heading-cream); margin:0 auto 28px; max-width:24ch; text-align:center; text-wrap:balance; text-shadow:0 2px 7px #0006; }
+.manuscript-section h3 { font:500 clamp(29px,2.8vw,37px)/1.2 var(--display); color:var(--heading-cream); text-wrap:balance; }
+.manuscript-section p:not(.chapter):not(.signature),.manuscript-section .dress-text p,.manuscript-section .venue-copy p,.manuscript-section.gifts p:not(.chapter),.manuscript-section.overnight p:not(.chapter),.manuscript-section.children p:not(.chapter) { font:400 18px/1.78 "PT Serif",Georgia,serif; color:var(--reading-cream); margin-bottom:22px; text-shadow:0 1px 4px #0008; }
+.manuscript-section .lead { font:400 clamp(21px,2vw,25px)/1.6 var(--display)!important; color:#f7e6c8!important; text-wrap:balance; }
+.manuscript-section .handwritten { font:italic 400 25px/1.45 var(--display)!important; color:#e5c99a!important; }
+.manuscript-section .small-copy,.manuscript-section .local-note,.manuscript-section .choice-hint { font:400 15px/1.7 "PT Serif",Georgia,serif!important; color:#d8cbb6!important; }
+.dress-text,.venue-copy,.illustrated-layout > div,.children .section-inner > div { max-width:55ch; }
+.dress-text { margin-inline:auto; }
+.manuscript-section .divider { margin:26px auto 0; }
+.manuscript-section .ornament { stroke:#c9aa70; }
+.illustrated-layout { gap:42px; align-items:center; }
+.illustrated-layout .vignette { max-height:270px; object-fit:contain; }
+.venue-layout { gap:42px; align-items:center; }
+.image-frame figcaption { font:400 13px/1.65 "PT Serif",Georgia,serif; color:#d6c5a9; letter-spacing:.02em; }
+.dress-gallery h3 { margin-top:16px; }
+.palette { gap:12px; margin:28px auto 36px; }
+.manuscript-section .choice-group { margin-top:26px; }
+.manuscript-section .choice-group legend { font:500 clamp(28px,2.5vw,34px)/1.25 var(--display); color:#f7e5c4; margin-bottom:18px; text-wrap:balance; }
+.manuscript-section .choices { gap:10px; }
+.manuscript-section .choice { font:400 17px/1.45 "PT Serif",Georgia,serif; min-height:58px; padding:13px 16px; border:1px solid #bba06b77; color:#f3e8d6; background:transparent; }
+.manuscript-section .choice:hover { border-color:#dbc18a; background:#c9aa700a; }
+.manuscript-section .choice.selected { border-color:#e2c38a; background:#c9aa7017; }
+.manuscript-section .choice-mark { flex-shrink:0; border-color:#cfb078; }
+.manuscript-section .choice.selected .choice-mark:after { background:#ecd09d; }
+.manuscript-section .text-field label { font:400 17px/1.5 "PT Serif",Georgia,serif; color:#f0e4cf; }
+.manuscript-section .text-field input { font:400 17px/1.5 "PT Serif",Georgia,serif; min-height:54px; border-color:#baa06b99; background:transparent; }
+.manuscript-section .text-field input:focus { background:#08101f33; }
+.manuscript-section .text-field input::placeholder { color:#bfb29b; }
+.manuscript-section .medieval-button { font:500 23px/1.2 var(--display); min-height:56px; color:#f9e6bf; background:#09182b; border-color:#cfb27b; box-shadow:inset 0 0 0 4px #09182b,inset 0 0 0 5px #bba06b55; }
+.manuscript-section .medieval-button:hover { background:#142238; }
+.rsvp-frame { max-width:650px; margin-inline:auto; border-color:#c9aa7077; padding:30px; }
+.manuscript-section .signature { font:italic 400 clamp(35px,4vw,48px)/1.2 var(--display); color:#f9e4bd; }
+.manuscript-section .farewell { margin-top:15px; }
+.site-footer { border-color:#c9aa7044; padding:34px 24px; color:#e3cdab; }
+.site-footer p,.site-footer small,.site-footer a { font:400 14px/1.65 "PT Serif",Georgia,serif; color:#d4c3a7; }
+.scroll-reveal .section-inner { opacity:.9; transform:none; transition:opacity .6s ease; }
+.scroll-reveal.in-view .section-inner { opacity:1; transform:none; }
+@media(max-width:760px) {
+  .manuscript-section { padding:38px 22px; }
+  .manuscript-section .section-inner { padding:20px 0; }
+  .manuscript-section h2 { font-size:37px; margin-bottom:24px; }
+  .manuscript-section .chapter { font-size:10px; letter-spacing:.16em; }
+  .illustrated-layout,.venue-layout { gap:24px; }
+  .illustrated-layout .vignette { max-height:215px; max-width:265px; margin-inline:auto; }
+  .manuscript-section .choice { padding:13px 12px; font-size:16px; }
+  .manuscript-section .choice-group legend { font-size:29px; }
+  .manuscript-section .rsvp-frame { padding:24px 16px; }
+  .dress-gallery h3 { font-size:28px; }
+  .dress-gallery { gap:18px; }
+  .palette { gap:9px; }
+  .greeting .section-inner > p:not(.chapter) { max-width:26ch; margin-inline:auto; }
+  .site-footer { padding:26px 20px; }
+}
+@media(prefers-reduced-motion:reduce) { .scroll-reveal .section-inner { opacity:1; transition:none; } }

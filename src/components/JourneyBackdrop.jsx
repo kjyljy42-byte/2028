@@ -24,6 +24,7 @@ export default function JourneyBackdrop() {
   }, []);
   return createPortal(
     <div className="journey-world celestial-background" style={{ backgroundImage: `url(${wedding.images.background})` }} aria-hidden="true">
+      <img className="sky-image" src={wedding.images.background} alt="" width="1024" height="1536" decoding="sync" />
       <div className="celestial-shade" />
     </div>, document.body
   );

@@ -12,6 +12,7 @@ import "@fontsource/pt-serif/cyrillic-400.css";
 import "@fontsource/pt-serif/latin-400.css";
 import App from "./App.jsx";
 import "./styles/main.css";
+import "./styles/refinement.css";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
