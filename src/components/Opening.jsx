@@ -20,6 +20,8 @@ export default function Opening({ onOpen, onBeginOpen }) {
   const [failed, setFailed] = useState(false);
   const video = useRef(null);
   const transition = useRef(null);
+  const monogram = useRef(null);
+  const letteringTimed = useRef(false);
   useLayoutEffect(() => {
     const root = document.documentElement;
     const previous = root.getAttribute("data-opening");
@@ -68,6 +70,15 @@ export default function Opening({ onOpen, onBeginOpen }) {
       image.src = src;
     });
   }, []);
+  useLayoutEffect(() => {
+    if (!monogram.current || letteringTimed.current || reduced) return;
+    const box = monogram.current.getBoundingClientRect();
+    const progress = (box.top + box.height / 2 + window.innerHeight * .08) / (window.innerHeight * 1.2);
+    const stage = monogram.current.closest(".opening");
+    stage.style.setProperty("--lettering-delay", `${Math.max(0, progress * 2.8)}s`);
+    stage.style.setProperty("--meteor-travel-x", `${(box.left + box.width / 2 - window.innerWidth * .75) / progress}px`);
+    letteringTimed.current = true;
+  }, [meteor, ready, reduced]);
   function open() {
     if (leaving) return;
     video.current?.pause();
@@ -147,15 +158,16 @@ export default function Opening({ onOpen, onBeginOpen }) {
         )}
       </div>
       {(meteor || ready) && <span className="invitation-meteor" aria-hidden="true" />}
-      {ready && (
+      {(meteor || ready) && (
         <>
           <div className="star-arrival" aria-live="polite">
             <button
               className="star-invitation"
               onClick={open}
-              disabled={leaving}
+              disabled={leaving || !ready}
+              style={{ visibility: ready ? "visible" : "hidden" }}
             >
-              <span className="star-monogram-reveal" aria-hidden="true">
+              <span ref={monogram} className="star-monogram-reveal" aria-hidden="true">
                 <span className="monogram-v">В</span>
                 <span className="monogram-amp">&amp;</span>
                 <span className="monogram-y">Ю</span>
