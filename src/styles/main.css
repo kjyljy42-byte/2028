@@ -2741,3 +2741,39 @@ html[data-opening="true"] body {
 .video-dragon .dragon-guardian { top:45px; }
 .dragon-return-layer { top:180px; }
 .dragon-tap-prompt { top:495px; }
+/* Compact first page: dragon, instruction, seal and scroll cue share one screen. */
+.hero { padding:22px 28px; min-height:100svh; }
+.hero-frame { min-height:calc(100svh - 44px); padding:18px 18px 12px!important; }
+.hero-frame > .ornament { height:24px; margin-bottom:7px; }
+.hero .eyebrow { margin-bottom:4px; font-size:13px; }
+.hero .hero-subtitle { margin-bottom:10px; font-size:23px; }
+.hero h1 { font-size:clamp(42px,6vw,76px); line-height:1.05; }
+.hero .divider { margin:10px 0 6px; }
+.hero .divider .ornament { height:22px; }
+.video-dragon { min-height:350px; margin:4px auto 0; }
+.hero .dragon-date-heading { font-size:29px; }
+.video-dragon .dragon-guardian { top:-25px; height:300px; }
+.dragon-return-layer { top:85px; height:300px; }
+.dragon-tap-prompt { top:238px; min-height:62px; padding:4px 10px 7px; font-size:20px; }
+.dragon-tap-arrow { font-size:24px; margin-bottom:1px; }
+.video-dragon .guarded-date { top:44px; }
+.video-dragon .guarded-date strong { font-size:clamp(43px,10vw,60px); }
+.video-dragon .guarded-date .wedding-hour { font-size:29px; margin-top:3px; }
+.hero .wax-seal { width:76px; height:76px; margin:0 auto 3px; }
+.hero .scroll-link { font-size:18px; min-height:44px; padding:4px 12px; gap:2px; }
+.hero .scroll-link span { font-size:23px; }
+@media(max-width:760px) {
+  .hero { padding:16px 20px; }
+  .hero-frame { min-height:calc(100svh - 32px); padding:14px 8px 10px!important; }
+  .hero h1 { display:block; font-size:clamp(36px,10.4vw,52px); white-space:nowrap; letter-spacing:-.02em; }
+  .hero .hero-and { display:inline; font-size:.57em; margin:0 5px; line-height:1; }
+  .hero .dragon-date-heading { font-size:27px; }
+  .hero .hero-subtitle { font-size:21px; }
+}
+@media(max-height:740px) and (max-width:760px) {
+  .video-dragon { min-height:295px; }
+  .video-dragon .dragon-guardian { top:-24px; height:255px; }
+  .dragon-return-layer { top:80px; height:255px; }
+  .dragon-tap-prompt { top:210px; min-height:58px; font-size:19px; }
+  .hero .wax-seal { width:62px; height:62px; }
+}
