@@ -2683,3 +2683,43 @@ html[data-opening="true"] body {
   letter-spacing:.015em; color:#ffe1a0;
   text-shadow:0 1px 1px #7d5829,0 0 17px #d5ab5444,0 3px 6px #000b;
 }
+/* Readable later chapters without filled rectangular panels. */
+.celestial-reading-shade { position:absolute; inset:0; opacity:0; background:radial-gradient(ellipse at center,#030b18c9 0%,#030b18a3 45%,#030b184d 82%,transparent 100%); transition:opacity 1s ease; }
+.is-reading .celestial-reading-shade { opacity:1; }
+.manuscript-section .section-inner { color:#f7f0e3; text-shadow:0 1px 3px #020813; }
+.manuscript-section p:not(.chapter):not(.signature),
+.manuscript-section .greeting p:not(.chapter),
+.manuscript-section .dress-text p,
+.manuscript-section .venue-copy p,
+.manuscript-section.gifts p:not(.chapter),
+.manuscript-section.overnight p:not(.chapter),
+.manuscript-section.children p:not(.chapter) {
+  font-family:"PT Serif",Georgia,serif; font-size:clamp(18px,1.35vw,20px); line-height:1.7; color:#f7f0e3; margin-bottom:24px;
+}
+.manuscript-section .lead { font-size:clamp(21px,2vw,25px)!important; line-height:1.6; }
+.manuscript-section .handwritten { font-size:20px!important; color:#f4dfb5!important; }
+.manuscript-section h2 { font-weight:600; font-size:clamp(35px,4vw,49px); line-height:1.15; margin-bottom:30px; text-wrap:balance; }
+.manuscript-section h3 { font-weight:600; line-height:1.2; color:#ffe8b9; }
+.manuscript-section .chapter { font-size:12px; line-height:1.5; margin-bottom:18px; color:#dec58d; }
+.dress-text,.venue-copy,.illustrated-layout > div,.children .section-inner > div { max-width:62ch; }
+.dress-text,.venue-copy,.gifts .illustrated-layout > div,.overnight .illustrated-layout > div,.children .section-inner > div { text-align:left; }
+.dress-text { max-width:58ch; margin-left:auto; margin-right:auto; }
+.manuscript-section .small-copy,.manuscript-section .local-note,.manuscript-section .choice-hint { font-size:16px!important; line-height:1.65!important; color:#e6dcc8!important; }
+.image-frame figcaption { font-family:"PT Serif",Georgia,serif; font-size:14px; line-height:1.6; color:#e6dcc8; }
+.manuscript-section .choice { font-family:"PT Serif",Georgia,serif; font-size:18px; line-height:1.5; min-height:60px; padding:14px 16px; border-color:#c6ad7caa; text-shadow:0 1px 3px #010712; }
+.manuscript-section .choice.selected { border-color:#f0d194; background:#dcb8761c; }
+.manuscript-section .choice-group legend { font-weight:600; font-size:clamp(29px,3vw,36px); line-height:1.3; margin-bottom:22px; color:#fff0d1; }
+.manuscript-section .text-field label { font-family:"PT Serif",Georgia,serif; font-size:18px; line-height:1.5; color:#f7f0e3; }
+.manuscript-section .text-field input { font-family:"PT Serif",Georgia,serif; font-size:18px; line-height:1.5; min-height:54px; border-color:#c6ad7caa; }
+.manuscript-section .text-field input::placeholder { color:#d0c4ac; opacity:1; }
+.manuscript-section .medieval-button { font-size:23px; min-height:56px; line-height:1.25; }
+.countdown-part small { font-size:14px; color:#eadbbd; }
+@media(max-width:760px) {
+  .manuscript-section .section-inner { padding:28px 10px; }
+  .manuscript-section .choice { font-size:17px; padding:13px 12px; }
+  .manuscript-section .choices { gap:12px; }
+  .food .choices { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .dress-gallery h3 { font-size:27px; }
+  .calendar-date span { font-size:14px; }
+}
+@media(prefers-reduced-motion:reduce) { .celestial-reading-shade { transition:none; } }
