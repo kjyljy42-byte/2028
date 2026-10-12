@@ -2830,3 +2830,12 @@ html[data-opening="true"] body { background:transparent; }
 .dragon-playing .dragon-guardian { animation:dragon-screen-exit calc(var(--departure-duration,7.1s) - 4s) linear 4s forwards; }
 @keyframes dragon-screen-exit { from { transform:translateX(-50%); } to { transform:translateX(calc(-50% - 90vw)); } }
 @media(prefers-reduced-motion:reduce) { .dragon-playing .dragon-guardian { animation:none; } }
+/* Safari must have real image paint behind its fixed-layer compositor. */
+html:not([data-opening="true"]),html:not([data-opening="true"]) body {
+  background-image:var(--invitation-background);
+  background-size:var(--sky-cover-width,auto) var(--sky-cover-height,100lvh);
+  background-position:center top;
+  background-repeat:repeat;
+  background-attachment:scroll;
+}
+.journey-world { background-size:var(--sky-cover-width,auto) var(--sky-cover-height,100lvh); background-position:center top; }

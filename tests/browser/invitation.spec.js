@@ -315,6 +315,7 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await page.locator("#food").scrollIntoViewIfNeeded();
   const backdrop = await page.locator(".journey-world").boundingBox();
   expect(backdrop.y).toBe(0);
+  await expect(page.locator("body")).toHaveCSS("background-image", /starry-manuscript/);
   expect(backdrop.height).toBeGreaterThanOrEqual(page.viewportSize().height);
   await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
   await page.locator("#final").scrollIntoViewIfNeeded();
