@@ -77,11 +77,8 @@ export default function DragonDate() {
         <video ref={video} className={`dragon-film ${fading ? "dragon-film-fading" : ""}`} src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onTimeUpdate={(event) => { const node = event.currentTarget; if (phase === "playing" && node.duration - node.currentTime <= .25) setFading(true); }} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
       </button>}
       <div className="dragon-return-layer" aria-hidden="true">
-        <video ref={returning} className="dragon-return-film" src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
-        {phase === "settled" && <>
-          <img src={wedding.dragon.settledPoster} alt="" />
-          <video ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.settledPoster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
-        </>}
+        <video ref={returning} className="dragon-return-film" poster={wedding.dragon.settledPoster} src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
+        <video ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
       </div>
       {phase === "idle" && <p className="dragon-hint"><span>Коснитесь дракона — он откроет дату.</span></p>}
       {(phase === "playing" || phase === "exiting") && <p className="sr-only" role="status">Дракон открывает дату приглашения.</p>}

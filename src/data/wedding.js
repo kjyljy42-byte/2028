@@ -23,7 +23,7 @@ export const wedding = {
   opening: {
     video: "/assets/opening-story.mp4",
     hasAudio: false,
-    poster: "/assets/opening-story-poster.jpg",
+    poster: "/assets/opening-story-poster.webp",
   },
   images: {
     seal: "/assets/wax-seal.png",

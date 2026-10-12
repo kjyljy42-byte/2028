@@ -64,12 +64,13 @@ export default function Opening({ onOpen, onBeginOpen }) {
     };
   }, [reduced, failed]);
   useEffect(() => {
-    // Warm the image cache without adding preload pictures to the film stage.
+    if (!ready) return;
+    // Give the opening film priority; load the invitation pictures afterwards.
     [wedding.images.background, wedding.images.gate].forEach(src => {
       const image = new Image();
       image.src = src;
     });
-  }, []);
+  }, [ready]);
   useLayoutEffect(() => {
     if (!monogram.current || letteringTimed.current || reduced) return;
     const box = monogram.current.getBoundingClientRect();
