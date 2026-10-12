@@ -2813,3 +2813,8 @@ html[data-opening="true"] body {
 .dragon-return-layer { top:95px; }
 .hero-frame { justify-content:flex-start; }
 html:not([data-opening="true"]),html:not([data-opening="true"]) body { background:#071226; }
+/* Keep Safari's fixed star layer outside the scrolling invitation composition. */
+.journey-world { z-index:0; }
+.invitation-content { position:relative; z-index:1; }
+@media(prefers-reduced-motion:reduce) { .dragon-settled .alpha-canvas.dragon-settled-idle { opacity:1; } }
+html,body { overscroll-behavior-y:none; }

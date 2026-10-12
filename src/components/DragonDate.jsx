@@ -76,7 +76,7 @@ export default function DragonDate() {
         <AlphaMovie ref={video} className="dragon-film" data-tail-fade="true" src={wedding.dragon.video} poster={wedding.dragon.poster} muted playsInline preload="auto" onEnded={exit} onError={() => { if (phase === "playing") finish(); }} aria-hidden="true" />
       </button>}
       <div className="dragon-return-layer" aria-hidden="true">
-        <AlphaMovie ref={returning} className="dragon-return-film" poster={wedding.dragon.settledPoster} src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
+        <AlphaMovie ref={returning} className="dragon-return-film" src={wedding.dragon.returnVideo} muted playsInline preload="auto" onEnded={finish} onError={() => { if (phase === "returning") finish(); }} />
         <AlphaMovie ref={settledIdle} className={`dragon-settled-idle ${settledReady ? "is-playing" : ""}`} src={wedding.dragon.idleVideo} poster={wedding.dragon.poster} muted playsInline loop preload="auto" onPlaying={() => setSettledReady(true)} onError={() => setSettledReady(false)} />
       </div>
       {phase === "idle" && <button type="button" className="dragon-tap-prompt dragon-below-prompt" onClick={reveal} aria-controls="guarded-date">

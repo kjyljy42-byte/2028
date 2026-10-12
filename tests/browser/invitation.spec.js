@@ -313,6 +313,9 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await page.locator("#food").scrollIntoViewIfNeeded();
+  const backdrop = await page.locator(".journey-world").boundingBox();
+  expect(backdrop.y).toBe(0);
+  expect(backdrop.height).toBeGreaterThanOrEqual(page.viewportSize().height);
   await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
   await page.locator("#final").scrollIntoViewIfNeeded();
   await expect(page.locator(".journey-world")).toHaveClass(/celestial-background/);
