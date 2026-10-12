@@ -35,7 +35,7 @@ export default function DragonDate() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return finish();
     idleVideo.current?.pause();
     setPhase("playing");
-    timer.current = setTimeout(exit, 8500);
+    timer.current = setTimeout(exit, 11000);
     video.current?.play().catch(finish);
   }
   useEffect(() => {
