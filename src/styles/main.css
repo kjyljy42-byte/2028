@@ -2827,6 +2827,6 @@ html[data-opening="true"] body { background:transparent; }
 .opening-video { height:100lvh; min-height:100dvh; }
 .hero .dragon-date-heading { z-index:0; }
 .video-dragon .dragon-guardian,.dragon-return-layer { z-index:2; }
-.dragon-playing .dragon-guardian { animation:dragon-screen-exit var(--departure-duration,5.05s) ease-in-out forwards; }
-@keyframes dragon-screen-exit { 0%,65% { transform:translateX(-50%); } 100% { transform:translateX(calc(-50% - 100vw - 100%)); } }
+.dragon-playing .dragon-guardian { animation:dragon-screen-exit var(--departure-duration,5.05s) linear forwards; }
+@keyframes dragon-screen-exit { 0%,15% { transform:translateX(-50%); } 100% { transform:translateX(calc(-50% - 90vw)); } }
 @media(prefers-reduced-motion:reduce) { .dragon-playing .dragon-guardian { animation:none; } }
