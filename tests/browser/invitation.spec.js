@@ -308,7 +308,7 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator(".dragon-date")).toHaveClass(/dragon-settled/, { timeout: 10000 });
   await expect(page.locator(".wedding-hour")).toHaveText("13:00");
   await expect(page.locator(".dragon-settled-idle")).toHaveJSProperty("paused", false);
-  await expect(page.locator(".dragon-portal")).toBeVisible();
+  await expect(page.locator(".dragon-portal")).toHaveCount(0);
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
   await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   await page.locator("#food").scrollIntoViewIfNeeded();

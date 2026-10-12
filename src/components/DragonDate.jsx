@@ -65,7 +65,6 @@ export default function DragonDate() {
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
     <div className={`dragon-date video-dragon dragon-${phase}`}>
-      <span className="dragon-portal" aria-hidden="true" />
       <p className="dragon-date-heading">День нашей свадьбы</p>
       <div ref={date} id="guarded-date" className="guarded-date" hidden={!revealed} role="status" tabIndex={-1}>
         <strong>{wedding.dateNumeric}</strong>

@@ -2732,3 +2732,12 @@ html[data-opening="true"] body {
 .dragon-tap-prompt { position:absolute; top:300px; left:50%; transform:translateX(-50%); width:min(100%,300px); padding:8px 12px 12px; min-height:80px; background:transparent; border:1px solid #d5b67b99; color:#ffe8b5; font:500 22px/1.3 var(--display); text-align:center; box-shadow:0 0 14px #b7913b22; text-shadow:0 2px 4px #000; }
 .dragon-tap-arrow { display:block; font-size:30px; line-height:1; margin-bottom:4px; color:#f2d293; }
 .dragon-tap-prompt:hover { border-color:#ffe1a3; background:#b7913b12; }
+/* Double the dragon stage; portrait screens keep the entire resting silhouette visible. */
+.video-dragon { min-height:675px; }
+.video-dragon .dragon-guardian,.dragon-return-layer {
+  left:50%; right:auto; width:min(calc(200% + 80px),135vw);
+  transform:translateX(-50%); height:450px; clip-path:none; overflow:visible;
+}
+.video-dragon .dragon-guardian { top:45px; }
+.dragon-return-layer { top:180px; }
+.dragon-tap-prompt { top:495px; }
