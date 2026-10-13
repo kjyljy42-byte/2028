@@ -120,3 +120,37 @@ body:before { opacity:.035; }
 .hero-frame { border-color:#bda36c55; outline-color:#bda36c22; }
 .celestial-shade { background:radial-gradient(ellipse at 50% 42%,#050c1966,transparent 82%); }
 @media(prefers-reduced-motion:reduce) { .video-dragon .guarded-date { transition:none; } }
+/* Full-width illuminated pages alternate with the fixed night sky. */
+.celestial-page {
+  position:relative; isolation:isolate; padding-block:100px;
+  --reading-cream:#403329; --heading-cream:#674b2b;
+  color:var(--reading-cream);
+}
+.celestial-page::before {
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:#eee4cf url('/assets/celestial-floral.webp') center / 100% 100% no-repeat;
+  mask-image:linear-gradient(to bottom,transparent,#000 100px,#000 calc(100% - 100px),transparent);
+}
+.celestial-page .manuscript-section { background:transparent; border:0; }
+.celestial-page .manuscript-section p:not(.chapter):not(.signature),
+.celestial-page .manuscript-section h2,.celestial-page .manuscript-section h3 { text-shadow:none; }
+.celestial-page .manuscript-section p { color:#403329!important; text-shadow:none!important; }
+.celestial-page .manuscript-section .lead { color:#513c29!important; }
+.celestial-page .manuscript-section .handwritten { color:#765328!important; }
+.celestial-page .manuscript-section .small-copy,
+.celestial-page .manuscript-section .choice-hint,
+.celestial-page .image-frame figcaption { color:#65513c!important; }
+.celestial-page .manuscript-section .chapter { color:#765b36; }
+.celestial-page .manuscript-section .ornament { stroke:#98713f; }
+.celestial-page .choice-group legend,.celestial-page .manuscript-section .choice,
+.celestial-page .text-field label,.celestial-page .text-field input { color:#403329; }
+.celestial-page .manuscript-section .choice { border-color:#896a4699; background:#f8f1e53d; }
+.celestial-page .manuscript-section .choice:hover,
+.celestial-page .manuscript-section .choice.selected { border-color:#674b2b; background:#a0793422; }
+.celestial-page .choice-mark { border-color:#856537; }
+.celestial-page .choice.selected .choice-mark::after { background:#715125; }
+.celestial-page .manuscript-section .text-field input { background:#faf4e880; border-color:#896a46; }
+.celestial-page .manuscript-section .text-field input::placeholder { color:#766651; }
+.celestial-page .countdown-part span { color:#674b2b; text-shadow:none; }
+.celestial-page .countdown-part small { color:#65513c; }
+.celestial-page .dropcap::first-letter { color:#89602c; }
