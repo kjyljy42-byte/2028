@@ -64,10 +64,10 @@ export function Section({ number, title, children, className = "", id }) {
       className={`manuscript-section ${className}`}
       aria-labelledby={`${id}-title`}
     >
+      <div className="chapter-separator" aria-hidden="true">
+        <span /><Ornament /><span />
+      </div>
       <div className="section-inner">
-        <p className="chapter" aria-hidden="true">
-          {number} · СВАДЕБНАЯ ХРОНИКА
-        </p>
         {title && <h2 id={`${id}-title`}>{title}</h2>}
         {children}
       </div>
