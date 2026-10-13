@@ -84,3 +84,18 @@ body:before { opacity:.035; }
   font-style:normal; font-variant-numeric:lining-nums tabular-nums;
   font-feature-settings:"lnum" 1,"tnum" 1;
 }
+/* Larger opening typography and a closely grouped wedding heading/date. */
+.hero .eyebrow { font-size:15px; letter-spacing:.20em; margin-bottom:6px; }
+.hero .hero-subtitle { font-size:clamp(27px,3vw,34px); line-height:1.2; margin-bottom:12px; }
+.hero h1 { font-size:clamp(54px,7vw,94px); font-weight:500; line-height:1.05; }
+.hero .dragon-date-heading { font-size:clamp(32px,3.5vw,43px); line-height:1.15; }
+.video-dragon .guarded-date { top:48px; }
+.video-dragon .guarded-date .wedding-hour { font-size:38px; line-height:1.15; margin-top:5px; }
+.dragon-below-prompt { font-size:23px; }
+@media(max-width:760px) {
+  .hero h1 { font-size:clamp(38px,12vw,56px); letter-spacing:-.025em; }
+  .hero .hero-and { font-size:.6em; margin-inline:5px; }
+  .hero .dragon-date-heading { font-size:32px; }
+  .hero .eyebrow { font-size:14px; }
+}
+.video-dragon .guarded-date { position:relative; top:auto; margin:8px auto 0; }
