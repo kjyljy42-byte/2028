@@ -181,6 +181,7 @@ export default function Invitation() {
               <p className="meeting-time">
                 Сбор гостей — <strong>{wedding.timeLabel}.</strong>
               </p>
+              <div className="venue-actions">
               <MedievalButton
                 type="button"
                 onClick={() =>
@@ -195,46 +196,24 @@ export default function Invitation() {
               >
                 Показать на карте
               </MedievalButton>
+              <MedievalButton type="button" onClick={() => {
+                downloadCalendar();
+                setCalendarMessage(true);
+              }}>
+                Сохранить в календарь
+              </MedievalButton>
+              </div>
+              {calendarMessage && (
+                <p className="local-note" role="status">
+                  Файл календаря готов. Откройте его в своём календаре.
+                </p>
+              )}
               {mapMessage && (
                 <p className="local-note" role="status">
                   Ссылка на карту появится здесь, когда мы уточним маршрут.
                 </p>
               )}
             </div>
-          </div>
-        </Section>
-        <Section
-          number="V"
-          id="calendar"
-          title="Сохраните этот день"
-          className="calendar-section trial-page trial-light"
-        >
-          <div className="calendar-date" aria-hidden="true">
-            <span>{wedding.month}</span>
-            <strong>{wedding.day}</strong>
-            <span>{wedding.weekday} · 2028</span>
-          </div>
-          <div>
-            <p>
-              Пусть среди повседневных дел
-              <br />
-              найдётся место для маленькой сказки.
-            </p>
-            <MedievalButton
-              type="button"
-              onClick={() => {
-                downloadCalendar();
-                setCalendarMessage(true);
-              }}
-            >
-              Добавить в календарь
-            </MedievalButton>
-            <p className="small-copy">{wedding.dateLabel} · {wedding.timeLabel} · московское время</p>
-            {calendarMessage && (
-              <p className="local-note" role="status">
-                Файл календаря готов. Откройте его в своём календаре.
-              </p>
-            )}
           </div>
         </Section>
         <Section

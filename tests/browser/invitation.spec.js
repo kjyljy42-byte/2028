@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs/promises";
-test("full cinematic sequence, opening, focus, session persistence and 13 sections", async ({
+test("full cinematic sequence, opening, focus, session persistence and 12 sections", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -46,7 +46,7 @@ test("full cinematic sequence, opening, focus, session persistence and 13 sectio
   await expect(page.locator(".gate-left")).toHaveCSS("animation-name", "iron-left");
   await expect(page.locator(".gate-right")).toHaveCSS("animation-name", "iron-right");
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(page.locator("[data-section]")).toHaveCount(13);
+  await expect(page.locator("[data-section]")).toHaveCount(12);
   await expect(page.locator("#invitation")).toBeFocused();
   expect(await page.locator("#hero-title").boundingBox()).toEqual(heroDuring);
   await page.screenshot({ path: "/tmp/wedding-mobile.png", fullPage: true });
@@ -73,7 +73,7 @@ test("RSVP choices, custom drink, validation, mock submission, map and calendar"
     page.getByRole("status").filter({ hasText: "Ссылка на карту" }),
   ).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Добавить в календарь" }).click();
+  await page.getByRole("button", { name: "Сохранить в календарь" }).click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe("valery-yulia-2028.ics");
   const ics = await fs.readFile(await download.path(), "utf8");

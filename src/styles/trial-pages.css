@@ -39,6 +39,8 @@
 .trial-light .date-ribbon { border-color:#ac8d6055; }
 .trial-light .medieval-button { background:#60452d; color:#fff1d4; border-color:#a78758; box-shadow:inset 0 0 0 4px #60452d,inset 0 0 0 5px #c6a37366; }
 .trial-light .medieval-button:hover { background:#78583b; }
+.venue-actions { display:flex; flex-wrap:wrap; gap:12px; margin:20px 0 12px; }
+.venue-actions .medieval-button { flex:1 1 140px; min-width:0; margin:0; padding:12px 10px; font-size:20px; }
 .trial-light .chapter-separator > span { background:linear-gradient(90deg,transparent,#98734488); }
 .trial-light .choice-group legend,
 .trial-light .choice,
