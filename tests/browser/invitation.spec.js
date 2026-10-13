@@ -311,7 +311,9 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator("video.dragon-settled-idle")).toHaveJSProperty("paused", false);
   await expect(page.locator(".dragon-portal")).toHaveCount(0);
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");
-  await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(page.locator("#greeting")).toHaveCSS("background-color", "rgb(238, 231, 216)");
+  await expect(page.locator("#venue")).toHaveCSS("background-color", "rgb(238, 231, 216)");
+  await expect(page.locator("#countdown")).toHaveCSS("background-image", /52, 19, 29/);
   await page.locator("#food").scrollIntoViewIfNeeded();
   const backdrop = await page.locator(".journey-world").boundingBox();
   expect(backdrop.y).toBe(0);

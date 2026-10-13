@@ -128,7 +128,7 @@ export default function Invitation() {
           number="II"
           id="greeting"
           title="Любимые друзья!"
-          className="greeting"
+          className="greeting trial-page trial-light"
         >
           <Ornament />
           <p className="lead dropcap">
@@ -143,7 +143,7 @@ export default function Invitation() {
           number="III"
           id="countdown"
           title="До свадебного пира осталось:"
-          className="dark countdown-section"
+          className="dark countdown-section trial-page trial-burgundy"
         >
           <Ornament type="crown" />
           <Countdown />
@@ -155,7 +155,7 @@ export default function Invitation() {
           number="IV"
           id="venue"
           title="Там, где оживает сказка"
-          className="venue"
+          className="venue trial-page trial-light"
         >
           <div className="venue-layout">
             <ImageFrame

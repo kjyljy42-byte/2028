@@ -14,6 +14,7 @@ import "@fontsource/old-standard-tt/latin-400.css";
 import App from "./App.jsx";
 import "./styles/main.css";
 import "./styles/refinement.css";
+import "./styles/trial-pages.css";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
