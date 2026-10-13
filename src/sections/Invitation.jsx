@@ -124,8 +124,7 @@ export default function Invitation() {
             ❧
           </div>
         </section>
-        <div className="celestial-page">
-<Section
+        <Section
           number="II"
           id="greeting"
           title="Любимые друзья!"
@@ -152,7 +151,6 @@ export default function Invitation() {
             До дня, который станет нашей общей историей
           </p>
         </Section>
-</div>
         <Section
           number="IV"
           id="venue"
@@ -231,8 +229,7 @@ export default function Invitation() {
             )}
           </div>
         </Section>
-        <div className="celestial-page">
-<Section
+        <Section
           number="VI"
           id="dress"
           title="Облачитесь в историю"
@@ -327,7 +324,6 @@ export default function Invitation() {
             </div>
           </div>
         </Section>
-</div>
         <form id="rsvp-form" onSubmit={submit}>
           <Section
             number="VIII"
@@ -386,8 +382,7 @@ export default function Invitation() {
               </div>
             </div>
           </Section>
-          <div className="celestial-page">
-<Section
+          <Section
             number="X"
             id="children"
             title="Вечер для больших рыцарей"
@@ -475,7 +470,6 @@ export default function Invitation() {
               </div>
             </div>
           </Section>
-</div>
           <Section
             number="XIII"
             id="final"
