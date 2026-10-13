@@ -10,6 +10,7 @@ import "@fontsource/cormorant-garamond/latin-500.css";
 import "@fontsource/cormorant-garamond/latin-600.css";
 import "@fontsource/pt-serif/cyrillic-400.css";
 import "@fontsource/pt-serif/latin-400.css";
+import "@fontsource/old-standard-tt/latin-400.css";
 import App from "./App.jsx";
 import "./styles/main.css";
 import "./styles/refinement.css";

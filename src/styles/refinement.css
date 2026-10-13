@@ -99,3 +99,13 @@ body:before { opacity:.035; }
   .hero .eyebrow { font-size:14px; }
 }
 .video-dragon .guarded-date { position:relative; top:auto; margin:8px auto 0; }
+/* The engraved date rests underneath the guardian's body. */
+.video-dragon .guarded-date { position:absolute; top:115px; margin:0; }
+.video-dragon .guarded-date strong {
+  font-family:"Old Standard TT",Georgia,serif; font-weight:400; font-style:normal;
+  font-size:clamp(50px,15vw,82px); line-height:1.12; letter-spacing:.015em;
+  font-variant-numeric:lining-nums tabular-nums;
+  color:#ffe2aa; text-shadow:0 1px 1px #785025,0 0 14px #c6a05e22,0 2px 5px #0009;
+}
+.video-dragon .guarded-date .wedding-hour { font-family:"Old Standard TT",Georgia,serif; font-size:35px; }
+.video-dragon .guarded-date { top:155px; }
