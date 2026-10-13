@@ -24,14 +24,20 @@ const initialRsvp = {
   customDrink: "",
 };
 function Illustration({ name, alt, className = "" }) {
+  const illustration = wedding.illustrations[name];
   return (
     <img
       className={`vignette ${className}`}
-      src={`/assets/${name}.svg`}
+      src={illustration?.src || `/assets/${name}.svg`}
       alt={alt}
       loading="lazy"
-      width="800"
-      height="500"
+      decoding="async"
+      width={illustration?.width || 800}
+      height={illustration?.height || 500}
+      onError={(event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = `/assets/${name}.svg`;
+      }}
     />
   );
 }

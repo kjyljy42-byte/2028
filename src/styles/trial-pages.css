@@ -1,4 +1,5 @@
 /* Paper and candlelit burgundy chapters, with stars for the opening, night and finale. */
+.manuscript-section .vignette { filter:drop-shadow(0 7px 8px #160d161f); mix-blend-mode:normal; }
 .trial-page { position:relative; padding-block:38px; border:0; }
 .trial-light {
   --reading-cream:#473a30; --heading-cream:#60452d;

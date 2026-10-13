@@ -35,6 +35,14 @@ export const wedding = {
     women: "/assets/dress-women.jpg",
     couple: "/assets/couple-medieval.jpg",
   },
+  illustrations: {
+    "treasure-chest": { src: "/assets/treasure-chest.webp", width: 1200, height: 900 },
+    "castle-bedroom": { src: "/assets/castle-bedroom.webp", width: 1200, height: 900 },
+    carriage: { src: "/assets/carriage.webp", width: 1200, height: 800 },
+    "sword-shield": { src: "/assets/sword-shield.webp", width: 1200, height: 1200 },
+    "medieval-feast": { src: "/assets/medieval-feast.webp", width: 1200, height: 800 },
+    barrel: { src: "/assets/barrel.webp", width: 1200, height: 900 },
+  },
   placeholders: {
     venue: "/assets/few-horses-placeholder.svg",
     men: "/assets/dress-men-placeholder.svg",
