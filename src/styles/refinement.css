@@ -112,10 +112,11 @@ body:before { opacity:.035; }
 /* A cohesive wedding-date group after the guardian steps aside. */
 .hero .dragon-date-heading { font-size:clamp(28px,3vw,36px); line-height:1.2; }
 .video-dragon .guarded-date strong { font-size:clamp(44px,13.2vw,72px); }
-.video-dragon .guarded-date { transition:top .9s cubic-bezier(.2,.7,.25,1); }
+.video-dragon .guarded-date { transition:top .9s cubic-bezier(.2,.7,.25,1),opacity .8s ease; }
+.dragon-idle .guarded-date { opacity:.08; }
 .dragon-returning .guarded-date,.dragon-settled .guarded-date { top:44px; }
 .dragon-return-layer { top:15px; }
-.video-dragon { min-height:445px; }
+.video-dragon { min-height:390px; }
 .hero-frame { border-color:#bda36c55; outline-color:#bda36c22; }
 .celestial-shade { background:radial-gradient(ellipse at 50% 42%,#050c1966,transparent 82%); }
 @media(prefers-reduced-motion:reduce) { .video-dragon .guarded-date { transition:none; } }
