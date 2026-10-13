@@ -36,7 +36,7 @@ function Illustration({ name, alt, className = "" }) {
       height={illustration?.height || 500}
       onError={(event) => {
         event.currentTarget.onerror = null;
-        event.currentTarget.src = `/assets/${name}.svg`;
+        event.currentTarget.src = illustration?.fallback || `/assets/${name}.svg`;
       }}
     />
   );
@@ -401,12 +401,12 @@ export default function Invitation() {
           >
             <div className="children-emblem">
             <Illustration
-              name="sword-shield"
-              alt="Игрушечные деревянные меч и щит"
+              name="young-royals"
+              alt="Маленькая принцесса и юный рыцарь в средневековых нарядах"
             />
             <div className="children-copy">
               <p>
-                Мы очень любим ваших детей, но этот вечер решили сделать
+                Мы очень любим ваших малышей, но этот вечер решили сделать
                 взрослым.
               </p>
               <p>

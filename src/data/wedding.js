@@ -40,6 +40,7 @@ export const wedding = {
     "castle-bedroom": { src: "/assets/castle-bedroom.webp", width: 1200, height: 900 },
     carriage: { src: "/assets/carriage.webp", width: 1200, height: 800 },
     "sword-shield": { src: "/assets/sword-shield.webp", width: 1200, height: 1200 },
+    "young-royals": { src: "/assets/young-royals.webp", width: 1200, height: 904, fallback: "/assets/sword-shield.svg" },
     "medieval-feast": { src: "/assets/medieval-feast.webp", width: 1200, height: 800 },
     barrel: { src: "/assets/barrel.webp", width: 1200, height: 900 },
   },
