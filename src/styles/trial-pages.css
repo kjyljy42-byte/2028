@@ -1,5 +1,18 @@
 /* Paper and candlelit burgundy chapters, with stars for the opening, night and finale. */
 .manuscript-section .vignette { filter:drop-shadow(0 7px 8px #160d161f); mix-blend-mode:normal; }
+.children .section-inner { display:block; }
+.children .children-emblem { display:grid; place-items:center; max-width:620px; margin:0 auto; isolation:isolate; }
+.children .children-emblem > .vignette {
+  grid-area:1 / 1; width:92%; max-width:420px; height:auto;
+  opacity:.22; filter:none; pointer-events:none;
+}
+.children .children-copy {
+  grid-area:1 / 1; position:relative; z-index:1; width:100%;
+  padding:28px 16px; text-align:center;
+  background:radial-gradient(ellipse,#411822b3 0%,#41182255 48%,transparent 75%);
+}
+.children .children-copy p { text-shadow:0 1px 4px #170710; }
+.children .children-copy .ornament { margin:18px auto 0; }
 .trial-page { position:relative; padding-block:38px; border:0; }
 .trial-light {
   --reading-cream:#473a30; --heading-cream:#60452d;

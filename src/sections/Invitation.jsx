@@ -399,11 +399,12 @@ export default function Invitation() {
             className="children trial-page trial-burgundy"
           parchmentEdges
           >
+            <div className="children-emblem">
             <Illustration
               name="sword-shield"
               alt="Игрушечные деревянные меч и щит"
             />
-            <div>
+            <div className="children-copy">
               <p>
                 Мы очень любим ваших детей, но этот вечер решили сделать
                 взрослым.
@@ -412,6 +413,7 @@ export default function Invitation() {
                 Чтобы никто никуда не спешил и не скучал.
               </p>
               <Ornament />
+            </div>
             </div>
           </Section>
           <Section
