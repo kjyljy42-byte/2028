@@ -307,7 +307,7 @@ test("continuous starry background and dragon reveal work with reduced motion", 
   await expect(page.locator(".dragon-guardian")).toHaveCount(0, { timeout: 10000 });
   await expect(page.locator("video.dragon-return-film")).toHaveJSProperty("loop", false);
   await expect(page.locator(".dragon-date")).toHaveClass(/dragon-settled/, { timeout: 10000 });
-  await expect(page.locator(".wedding-hour")).toHaveText("13:00");
+  await expect(page.locator("#guarded-date .wedding-hour")).toHaveCount(0);
   await expect(page.locator("video.dragon-settled-idle")).toHaveJSProperty("paused", false);
   await expect(page.locator(".dragon-portal")).toHaveCount(0);
   await expect(page.locator(".journey-world")).toHaveCSS("position", "fixed");

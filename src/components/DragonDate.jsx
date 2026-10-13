@@ -68,7 +68,6 @@ export default function DragonDate() {
       <p className="dragon-date-heading">День нашей свадьбы</p>
       <div ref={date} id="guarded-date" className="guarded-date" role="status" tabIndex={-1}>
         <strong>{wedding.dateNumeric}</strong>
-        <span className="wedding-hour">{wedding.timeLabel}</span>
       </div>
       {!revealed && <button type="button" className="dragon-guardian" onClick={reveal} disabled={phase !== "idle"} aria-expanded="false" aria-controls="guarded-date" aria-label="Попросить дракона открыть дату свадьбы">
         <img className="dragon-resting" src={wedding.dragon.poster} alt="" />
