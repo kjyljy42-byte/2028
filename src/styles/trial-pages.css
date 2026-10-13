@@ -1,14 +1,15 @@
 /* Paper and candlelit burgundy chapters, with stars for the opening, night and finale. */
 .manuscript-section .vignette { filter:drop-shadow(0 7px 8px #160d161f); mix-blend-mode:normal; }
 .children .section-inner { display:block; }
-.children .children-emblem { display:grid; place-items:center; max-width:620px; margin:0 auto; isolation:isolate; }
+.children .children-emblem { position:relative; display:grid; place-items:center; max-width:620px; min-height:225px; margin:0 auto; isolation:isolate; }
 .children .children-emblem > .vignette {
-  grid-area:1 / 1; width:92%; max-width:420px; height:auto;
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:125%; max-width:540px; height:310px; object-fit:contain;
   opacity:.22; filter:none; pointer-events:none;
 }
 .children .children-copy {
   grid-area:1 / 1; position:relative; z-index:1; width:100%;
-  padding:28px 16px; text-align:center;
+  padding:12px 8px; text-align:center;
   background:radial-gradient(ellipse,#411822b3 0%,#41182255 48%,transparent 75%);
 }
 .children .children-copy p { text-shadow:0 1px 4px #170710; }
@@ -84,3 +85,8 @@
   #greeting .parchment-edge-top { top:-45px; }
   .parchment-edge { height:46px; }
 }
+.children.parchment-boundaries { padding-block:40px; overflow:clip; }
+.children .section-inner { padding-block:10px; }
+.children .chapter-separator { margin-bottom:12px; }
+.children .section-inner h2 { margin-bottom:12px; }
+.children .children-copy .ornament { margin-top:10px; }
