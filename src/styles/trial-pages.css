@@ -43,6 +43,17 @@
 .trial-light .medieval-button:hover { background:#78583b; }
 .venue-actions { display:flex; flex-wrap:wrap; gap:12px; margin:20px 0 12px; }
 .venue-actions .medieval-button { flex:1 1 140px; min-width:0; margin:0; padding:12px 10px; font-size:20px; }
+.dress .dress-text { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:850px; }
+.dress-guidance h3 { font-size:28px; margin:0 0 12px; }
+.dress-essentials { padding-left:20px; margin:0 0 12px; font:400 18px/1.6 "PT Serif",Georgia,serif; }
+.dress-essentials li { padding-left:3px; margin-bottom:6px; }
+.dress-essentials li::marker { color:#c9aa70; }
+.dress .dress-guidance p { margin-bottom:0; }
+@media(max-width:760px) {
+  .dress .dress-text { grid-template-columns:1fr; gap:20px; }
+  .dress .dress-gallery { grid-template-columns:1fr 1fr; gap:14px; }
+  .dress .dress-gallery h3 { font-size:24px; }
+}
 .trial-light .chapter-separator > span { background:linear-gradient(90deg,transparent,#98734488); }
 .trial-light .choice-group legend,
 .trial-light .choice,
