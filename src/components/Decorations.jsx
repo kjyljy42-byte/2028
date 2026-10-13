@@ -56,7 +56,14 @@ export function MedievalButton({ children, className = "", ...props }) {
     </button>
   );
 }
-export function Section({ number, title, children, className = "", id }) {
+function ParchmentEdge({ side }) {
+  return (
+    <svg className={`parchment-edge parchment-edge-${side}`} viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 0H1440V24C1350 12 1320 39 1210 30S1050 15 950 32S810 49 710 30S560 14 450 33S310 44 210 27S75 13 0 29Z" />
+    </svg>
+  );
+}
+export function Section({ number, title, children, className = "", id, parchmentEdges = false }) {
   return (
     <section
       id={id}
@@ -64,6 +71,7 @@ export function Section({ number, title, children, className = "", id }) {
       className={`manuscript-section ${className}`}
       aria-labelledby={`${id}-title`}
     >
+      {parchmentEdges && <ParchmentEdge side="top" />}
       <div className="chapter-separator" aria-hidden="true">
         <span /><Ornament /><span />
       </div>
@@ -71,6 +79,7 @@ export function Section({ number, title, children, className = "", id }) {
         {title && <h2 id={`${id}-title`}>{title}</h2>}
         {children}
       </div>
+      {parchmentEdges && <ParchmentEdge side="bottom" />}
     </section>
   );
 }

@@ -144,6 +144,7 @@ export default function Invitation() {
           id="countdown"
           title="До свадебного пира осталось:"
           className="dark countdown-section trial-page trial-burgundy"
+          parchmentEdges
         >
           <Ornament type="crown" />
           <Countdown />

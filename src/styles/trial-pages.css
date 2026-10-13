@@ -52,3 +52,17 @@
   .trial-page.scroll-reveal.in-view .chapter-separator > span { scale:1 1; }
 }
 @media(max-width:760px) { .trial-page { padding-block:28px; } }
+
+/* Sample paper borders around the burgundy countdown chapter. */
+#countdown.trial-page { padding-block:70px; }
+.parchment-edge {
+  position:absolute; inset-inline:0; width:100%; height:60px;
+  display:block; pointer-events:none; z-index:1;
+  fill:#eee7d8; filter:drop-shadow(0 3px 3px #17070d33);
+}
+.parchment-edge-top { top:-1px; }
+.parchment-edge-bottom { bottom:-1px; transform:rotate(180deg); }
+@media(max-width:760px) {
+  #countdown.trial-page { padding-block:55px; }
+  .parchment-edge { height:46px; }
+}
