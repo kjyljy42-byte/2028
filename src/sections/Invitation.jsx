@@ -199,7 +199,7 @@ export default function Invitation() {
           number="V"
           id="calendar"
           title="Сохраните этот день"
-          className="calendar-section"
+          className="calendar-section trial-page trial-light"
         >
           <div className="calendar-date" aria-hidden="true">
             <span>{wedding.month}</span>
@@ -233,7 +233,7 @@ export default function Invitation() {
           number="VI"
           id="dress"
           title="Облачитесь в историю"
-          className="dress"
+          className="dress trial-page trial-burgundy"
         >
           <p className="lead">
             Наше мероприятие пройдёт в стиле средневековья.
@@ -297,7 +297,7 @@ export default function Invitation() {
           number="VII"
           id="gifts"
           title="Самое дорогое — вы"
-          className="gifts burgundy"
+          className="gifts burgundy trial-page trial-light"
         >
           <div className="illustrated-layout">
             <Illustration
@@ -329,7 +329,7 @@ export default function Invitation() {
             number="VIII"
             id="overnight"
             title="Останьтесь в нашей сказке"
-            className="overnight"
+            className="overnight trial-page"
           >
             <div className="illustrated-layout reverse">
               <Illustration
@@ -361,7 +361,7 @@ export default function Invitation() {
             number="IX"
             id="transfer"
             title="Карета подана"
-            className="transfer"
+            className="transfer trial-page trial-light"
           >
             <div className="illustrated-layout">
               <Illustration name="carriage" alt="Лошадь со старинной каретой" />
@@ -386,7 +386,7 @@ export default function Invitation() {
             number="X"
             id="children"
             title="Вечер для больших рыцарей"
-            className="children"
+            className="children trial-page trial-burgundy"
           >
             <Illustration
               name="sword-shield"
@@ -407,7 +407,7 @@ export default function Invitation() {
             number="XI"
             id="food"
             title="К королевскому столу"
-            className="food dark"
+            className="food dark trial-page trial-light"
           >
             <p className="small-copy">Пир, достойный нашей истории</p>
             <Illustration
@@ -426,7 +426,7 @@ export default function Invitation() {
             number="XII"
             id="drinks"
             title="Поднимем кубки"
-            className="drinks"
+            className="drinks trial-page trial-burgundy"
           >
             <div className="illustrated-layout reverse">
               <Illustration
@@ -474,7 +474,7 @@ export default function Invitation() {
             number="XIII"
             id="final"
             title="Впишем вас в нашу историю?"
-            className="final"
+            className="final trial-page"
           >
             <Ornament type="crown" />
             <p className="lead">
