@@ -12,7 +12,7 @@ export const wedding = {
   startsAt: "2028-08-12T13:00:00+03:00",
   venue: "Few Horses",
   address: "Наро-Фоминский округ, деревня Новосумино",
-  mapUrl: null,
+  mapUrl: "https://yandex.com/maps/-/CDW5VI~0",
   dragon: {
     returnVideo: "/assets/dragon-return.mp4",
     settledPoster: "/assets/dragon-settled.webp",

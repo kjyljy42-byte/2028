@@ -68,10 +68,12 @@ test("RSVP choices, custom drink, validation, mock submission, map and calendar"
   await page.goto("/");
   await page.getByRole("button", { name: "Открыть приглашение" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.context().route("https://yandex.com/maps/**", route => route.fulfill({ contentType: "text/html", body: "<title>Карта</title>" }));
+  const mapPopupPromise = page.waitForEvent("popup");
   await page.getByRole("button", { name: "Показать на карте" }).click();
-  await expect(
-    page.getByRole("status").filter({ hasText: "Ссылка на карту" }),
-  ).toBeVisible();
+  const mapPopup = await mapPopupPromise;
+  await expect(mapPopup).toHaveURL("https://yandex.com/maps/-/CDW5VI~0");
+  await mapPopup.close();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Сохранить в календарь" }).click();
   const download = await downloadPromise;

@@ -168,7 +168,7 @@ export default function Invitation() {
           <div className="venue-layout">
             <ImageFrame
               imageKey="venue"
-              alt="Иллюстрированное старинное поместье Few Horses"
+              alt="Готический двор с каменным фонтаном и зеленью"
             />
             <div className="venue-copy">
               <p className="date-ribbon">{wedding.dateLabel}</p>
@@ -545,7 +545,7 @@ export default function Invitation() {
             <ImageFrame
               imageKey="couple"
               className="couple-image"
-              alt="Иллюстрация Валерия и Юлии в средневековых образах"
+              alt="Валерий и Юлия в средневековых образах"
             />
             <p className="signature">Ваши Валерий и Юлия</p>
             <p className="farewell">До скорой встречи!</p>
