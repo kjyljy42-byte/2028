@@ -114,8 +114,8 @@ body:before { opacity:.035; }
 .video-dragon .guarded-date strong { font-size:clamp(44px,13.2vw,72px); }
 .video-dragon .guarded-date { transition:top .9s cubic-bezier(.2,.7,.25,1); }
 .dragon-returning .guarded-date,.dragon-settled .guarded-date { top:44px; }
-.dragon-return-layer { top:30px; }
-.video-dragon { min-height:475px; }
+.dragon-return-layer { top:15px; }
+.video-dragon { min-height:445px; }
 .hero-frame { border-color:#bda36c55; outline-color:#bda36c22; }
 .celestial-shade { background:radial-gradient(ellipse at 50% 42%,#050c1966,transparent 82%); }
 @media(prefers-reduced-motion:reduce) { .video-dragon .guarded-date { transition:none; } }
