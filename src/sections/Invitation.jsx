@@ -129,6 +129,7 @@ export default function Invitation() {
           id="greeting"
           title="Любимые друзья!"
           className="greeting trial-page trial-light"
+          parchmentEdges={{ bottom: false }}
         >
           <Ornament />
           <p className="lead dropcap">
@@ -235,6 +236,7 @@ export default function Invitation() {
           id="dress"
           title="Облачитесь в историю"
           className="dress trial-page trial-burgundy"
+          parchmentEdges
         >
           <p className="lead">
             Наше мероприятие пройдёт в стиле средневековья.
@@ -331,6 +333,7 @@ export default function Invitation() {
             id="overnight"
             title="Останьтесь в нашей сказке"
             className="overnight trial-page"
+          parchmentEdges
           >
             <div className="illustrated-layout reverse">
               <Illustration
@@ -388,6 +391,7 @@ export default function Invitation() {
             id="children"
             title="Вечер для больших рыцарей"
             className="children trial-page trial-burgundy"
+          parchmentEdges
           >
             <Illustration
               name="sword-shield"
@@ -428,6 +432,7 @@ export default function Invitation() {
             id="drinks"
             title="Поднимем кубки"
             className="drinks trial-page trial-burgundy"
+          parchmentEdges={{ bottom: false }}
           >
             <div className="illustrated-layout reverse">
               <Illustration
@@ -476,6 +481,7 @@ export default function Invitation() {
             id="final"
             title="Впишем вас в нашу историю?"
             className="final trial-page"
+          parchmentEdges={{ top: "#34131d", bottom: false }}
           >
             <Ornament type="crown" />
             <p className="lead">

@@ -56,9 +56,9 @@ export function MedievalButton({ children, className = "", ...props }) {
     </button>
   );
 }
-function ParchmentEdge({ side }) {
+function ParchmentEdge({ side, color }) {
   return (
-    <svg className={`parchment-edge parchment-edge-${side}`} viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <svg className={`parchment-edge parchment-edge-${side}`} style={color ? { fill: color } : undefined} viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d="M0 0H1440V24C1350 12 1320 39 1210 30S1050 15 950 32S810 49 710 30S560 14 450 33S310 44 210 27S75 13 0 29Z" />
     </svg>
   );
@@ -68,10 +68,10 @@ export function Section({ number, title, children, className = "", id, parchment
     <section
       id={id}
       data-section={number}
-      className={`manuscript-section ${className}`}
+      className={`manuscript-section ${className}${parchmentEdges ? " parchment-boundaries" : ""}`}
       aria-labelledby={`${id}-title`}
     >
-      {parchmentEdges && <ParchmentEdge side="top" />}
+      {parchmentEdges && <ParchmentEdge side="top" color={parchmentEdges.top} />}
       <div className="chapter-separator" aria-hidden="true">
         <span /><Ornament /><span />
       </div>
@@ -79,7 +79,7 @@ export function Section({ number, title, children, className = "", id, parchment
         {title && <h2 id={`${id}-title`}>{title}</h2>}
         {children}
       </div>
-      {parchmentEdges && <ParchmentEdge side="bottom" />}
+      {parchmentEdges && parchmentEdges.bottom !== false && <ParchmentEdge side="bottom" color={parchmentEdges.bottom} />}
     </section>
   );
 }
